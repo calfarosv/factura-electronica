@@ -3,7 +3,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 export function setupSwagger(app) {
     const config = new DocumentBuilder()
-    .setTitle('Pasarela de Transmisión DTE')
+    .setTitle('Pasarela de Transmisión DTE CALFARO')
     .setTermsOfService('https://www.ejemploenergia.com/terminos-y-condiciones')
     .setDescription(
       'API para la transmisión de documentos tributarios electrónicos de CEL',

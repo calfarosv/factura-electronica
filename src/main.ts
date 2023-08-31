@@ -4,7 +4,7 @@ import { NestFactory } from '@nestjs/core';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { CORS } from './constants';
 import * as path from 'path';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+//import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppContextService } from './documentos/services/app.context.service';
 import { setupSwagger } from './config/swagger.config';

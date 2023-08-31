@@ -23,6 +23,7 @@ import * as path from 'path';
     MailModule,
     DocumentosModule,
   ],
+  
 })
 export class AppModule {}
 
