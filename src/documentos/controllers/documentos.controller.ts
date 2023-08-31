@@ -10,6 +10,18 @@ export class DocumentosController {
     return this.docuemntosService.getHello();
   }
 
+  @Get('Autor')
+  getAutor(): string {
+    return this.docuemntosService.getElAutor();
+
+  }
+
+  @Get('pup')
+  getPup(): string {
+    return this.docuemntosService.getPup();
+
+  }
+
   @Get('emisor')
   getEmisor() {
     return this.docuemntosService.getEmisor();

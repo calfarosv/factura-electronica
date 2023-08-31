@@ -8,6 +8,8 @@ import * as fs from 'fs';
 import { DteEmisor } from '../entities';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { string } from 'joi';
+import puppeteer from 'puppeteer';
 
 @Injectable()
 export class DocumentosService {
@@ -17,7 +19,17 @@ export class DocumentosService {
     private readonly httpService: HttpService,
     @InjectRepository(DteEmisor)
     private readonly emisorRepository: Repository<DteEmisor>,
-  ) {}
+  ) { }
+
+  getElAutor(): string {
+    return 'Autor: Cesar Alfaro';
+  }
+
+
+  getPup(): string {
+    this.example_puppeteer();
+    return 'Puppeteer';
+  }
 
   getHello(): string {
     this.example();
@@ -30,17 +42,45 @@ export class DocumentosService {
   }
 
   public async example(): Promise<void> {
+    const tempFilePathPdf = join(__dirname, '..', '..', 'public', 'factura.pdf');
     const serverUrl = this.appContextService.getServerUrl();
+    const fs = require("fs"); //puppeter
     console.log('URL: ' + serverUrl);
     console.log(join(__dirname, '..', '..', 'public', 'temporal.json'));
     const response = await firstValueFrom(
       this.httpService.get('https://jsonplaceholder.typicode.com/users/1'),
     );
 
+    (async () => {
+      
+      // The location / URL
+      const url = "https://jsonplaceholder.typicode.com/users/1";
+
+      // Create the browser
+      const browser = await puppeteer.launch({
+        headless: true
+      });
+
+      // Navigate to the website
+      const page = await browser.newPage();
+      await page.goto(url, { waitUntil: "load" });
+
+
+      // Generate the PDF
+      //await page.pdf({ path: "page.pdf" });
+      await page.pdf({ path: tempFilePathPdf });
+
+
+      // Close the browser
+      await browser.close();
+
+    })();    
+
     //console.log('DATA DE AXIOS:', response.data);
     const jsonString = JSON.stringify(response.data, null, 2);
 
     const tempFilePath = join(__dirname, '..', '..', 'public', 'temporal.json');
+    
     fs.writeFileSync(tempFilePath, jsonString, 'utf8');
 
     this.mailerService
@@ -65,11 +105,51 @@ export class DocumentosService {
             filename: 'factura.json',
             contentDisposition: 'inline', // attachment
           },
+          {
+            path: tempFilePathPdf,
+            contentType: 'application/pdf',
+            filename: 'factura.pdf',
+            contentDisposition: 'inline', // attachment
+          },
         ],
       })
       // eslint-disable-next-line @typescript-eslint/no-empty-function
-      .then(() => {})
+      .then(() => { })
       // eslint-disable-next-line @typescript-eslint/no-empty-function
-      .catch(() => {});
+      .catch(() => { });
   }
+
+  public async example_puppeteer(): Promise<void> {
+
+    const fs = require("fs");
+    const tempFilePathPdf = join(__dirname, '..', '..', 'public', 'factura.pdf');
+
+    (async () => {
+
+      // The location / URL
+      const url = "http://aqicn.org/city/beijing/";
+
+      // Create the browser
+      const browser = await puppeteer.launch({
+        headless: true
+      });
+
+      // Navigate to the website
+      const page = await browser.newPage();
+      await page.goto(url, { waitUntil: "load" });
+
+
+      // Generate the PDF
+      //await page.pdf({ path: "page.pdf" });
+      await page.pdf({ path: tempFilePathPdf+"factura.pdf" });
+      
+
+      // Close the browser
+      await browser.close();
+
+    })();
+
+  }
+
+
 }
