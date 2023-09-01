@@ -3,7 +3,7 @@ import { DocumentosService } from '../services/documentos.service';
 
 @Controller('documentos')
 export class DocumentosController {
-  constructor(private readonly docuemntosService: DocumentosService) {}
+  constructor(private readonly docuemntosService: DocumentosService) { }
 
   @Get()
   getHello(): string {
@@ -16,10 +16,29 @@ export class DocumentosController {
 
   }
 
-  @Get('pup')
-  getPup(): string {
-    return this.docuemntosService.getPup();
+  @Get('pup_01')
+  getPup_01(): string {
+    return this.docuemntosService.getPup_01();
+  }
 
+  @Get('pup_02')
+  getPup_02(): string {
+    return this.docuemntosService.getPup_02();
+  }
+
+  @Get('pup_03')
+  getPup_03(): string {
+    return this.docuemntosService.getPup_03();
+  }
+
+  @Get('pup_04')
+  getPup_04(): string {
+    return this.docuemntosService.getPup_04();
+  }
+
+  @Get('pup_05')
+  getPup_05(): string {
+    return this.docuemntosService.getPup_05();
   }
 
   @Get('emisor')
