@@ -560,7 +560,7 @@ export class DocumentosService {
     const emiNIT = data.emisor.nit;
     const recNIT = data.receptor.nit;
     const ideCGE = data.identificacion.codigoGeneracion;
-    const ideFEC = data.identificacion.fecEmi; 
+    const ideFEC = data.identificacion.fecEmi;
 
     // Combinar los valores para obtener el nombre del archivo PDF
     const nombre_archivo = `${emiNIT}_${recNIT}_${ideCGE}`;
@@ -627,9 +627,9 @@ export class DocumentosService {
     // URL para generar el código QR
     //const url = 'https://www.youtube.com/';
     //const url = 'https://webapp.dtes.mh.gob.sv/consultaPublica?ambiente=01&codGen=28576AF5-EB91-4BB6-9FEE-753D0936ACFF&fechaEmi=2023-08-28';
-    
-    const url = urlMh01+urlMh02+urlMh03+urlMh04;
-    
+
+    const url = urlMh01 + urlMh02 + urlMh03 + urlMh04;
+
     qr.toFile(fileQr, url, function (err, code) {
       if (err) {
         return console.log('error');
