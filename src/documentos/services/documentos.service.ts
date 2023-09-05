@@ -559,10 +559,11 @@ export class DocumentosService {
     // Obtener los valores necesarios del archivo JSON
     const emiNIT = data.emisor.nit;
     const recNIT = data.receptor.nit;
-    const ideNUC = data.identificacion.numeroControl;
+    const ideCGE = data.identificacion.codigoGeneracion;
+    const ideFEC = data.identificacion.fecEmi; 
 
     // Combinar los valores para obtener el nombre del archivo PDF
-    const nombre_archivo = `${emiNIT}_${recNIT}_${ideNUC}`;
+    const nombre_archivo = `${emiNIT}_${recNIT}_${ideCGE}`;
     //const fileName = `${identificacion}_${emisor}_${receptor}.pdf`;
     const filePdfDocumento = join(__dirname, '..', '..', 'public', `${nombre_archivo}.pdf`);
     //Codigo QR
@@ -580,7 +581,7 @@ export class DocumentosService {
     const datosJson = require(join(__dirname, '..', '..', 'public', nombre_json));
 
     const newFileJsonDocumento = join(__dirname, '..', '..', 'public', `${nombre_archivo}` + '.json');
-    fs.writeFileSync(newFileJsonDocumento, fileJsonDocumento, 'utf8');
+    fs.writeFileSync(newFileJsonDocumento, jsonData, 'utf8');
 
     (async function () {
       try {
@@ -618,10 +619,17 @@ export class DocumentosService {
     })();
 
     //Codigo QR
+    const urlMh01 = 'https://webapp.dtes.mh.gob.sv/consultaPublica?ambiente=01&codGen=';
+    const urlMh02 = ideCGE;
+    const urlMh03 = '&fechaEmi=';
+    const urlMh04 = ideFEC;
 
     // URL para generar el código QR
-    const url = 'https://webapp.dtes.mh.gob.sv/consultaPublica?ambiente=01&codGen=28576AF5-EB91-4BB6-9FEE-753D0936ACFF&fechaEmi=2023-08-28';
-
+    //const url = 'https://www.youtube.com/';
+    //const url = 'https://webapp.dtes.mh.gob.sv/consultaPublica?ambiente=01&codGen=28576AF5-EB91-4BB6-9FEE-753D0936ACFF&fechaEmi=2023-08-28';
+    
+    const url = urlMh01+urlMh02+urlMh03+urlMh04;
+    
     qr.toFile(fileQr, url, function (err, code) {
       if (err) {
         return console.log('error');
