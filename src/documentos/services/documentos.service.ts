@@ -64,7 +64,12 @@ export class DocumentosService {
   getPup_08(): string {
     this.example_puppeteer_08();
     return 'Puppeteer 08';
-  }  
+  }
+
+  getPup_09(): string {
+    this.example_puppeteer_09();
+    return 'Puppeteer 09';
+  }
 
   getHello(): string {
     this.example();
@@ -81,7 +86,7 @@ export class DocumentosService {
     const serverUrl = this.appContextService.getServerUrl();
     console.log('URL: ' + serverUrl);
     const fs = require("fs"); //puppeter
-    
+
     console.log(join(__dirname, '..', '..', 'public', 'temporal.json'));
     const response = await firstValueFrom(
       this.httpService.get('https://jsonplaceholder.typicode.com/users/1'),
@@ -350,7 +355,7 @@ export class DocumentosService {
 
   public async example_puppeteer_05(): Promise<void> {
     const serverUrl = this.appContextService.getServerUrl();
-    console.log('URL: ' + serverUrl);    
+    console.log('URL: ' + serverUrl);
     const moment_hora = require('moment');
     let currentDate = moment_hora().format('YYYY-MM-DD');
     let currentTime = moment_hora().format('hh-mm-ss');
@@ -479,7 +484,7 @@ export class DocumentosService {
     //-----
     const fileJsonDocumento = join(__dirname, '..', '..', 'public', 'cf_cel.json');
     const filePdfDocumento = join(__dirname, '..', '..', 'public', `${nombre_archivo}.pdf`);
-    
+
     console.log(filePdfDocumento);
     //console.log(tempFilePathPdf);
 
@@ -537,64 +542,69 @@ export class DocumentosService {
 
   public async example_puppeteer_08(): Promise<void> {
     const serverUrl = this.appContextService.getServerUrl();
-    console.log('URL: ' + serverUrl);    
+    console.log('URL: ' + serverUrl);
     const puppeteer = require('puppeteer');
     const fs = require('fs-extra');
     const hbs = require('handlebars');
     const path = require('path');
-    const moment = require('moment');
-    const moment_hora = require('moment');
+    const nombre_json = 'ccf_cel.json';
+    const qr = require('qrcode');
+    // Ruta del archivo JSON
+    const fileJsonDocumento = join(__dirname, '..', '..', 'public', nombre_json);
 
-    let currentDate = moment_hora().format('YYYY-MM-DD');
-    let currentTime = moment_hora().format('hh-mm-ss');
-    //const nombre_archivo = 'prueba' + '_' + currentDate + '_' + currentTime;
-    const fileJsonDocumento = join(__dirname, '..', '..', 'public', 'cf_cel.json');
-    const datos = require(join(__dirname, '..', '..', 'public', 'cf_cel.json'));
-    
+    // Leer el archivo JSON
+    const jsonData = fs.readFileSync(fileJsonDocumento, 'utf-8');
+    const data = JSON.parse(jsonData);
 
+    // Obtener los valores necesarios del archivo JSON
+    const emiNIT = data.emisor.nit;
+    const recNIT = data.receptor.nit;
+    const ideNUC = data.identificacion.numeroControl;
 
-  // Ruta del archivo JSON
-  const jsonFilePath = 'cf_cel.json';
-
-  // Leer el archivo JSON
-  const jsonData = fs.readFileSync(fileJsonDocumento, 'utf-8');
-  const data = JSON.parse(jsonData);
-
-  // Obtener los valores necesarios del archivo JSON
-  const emisorNIT = data.emisor.nit;
-  const receptorND = data.receptor.numDocumento;
-  const identificacionNC = data.identificacion.numeroControl;
-  
-  // Combinar los valores para obtener el nombre del archivo PDF
-  const nombre_archivo = `${emisorNIT}_${receptorND}_${identificacionNC}`;
-  //const fileName = `${identificacion}_${emisor}_${receptor}.pdf`;
-  const tempPdfEjemplo = join(__dirname, '..', '..', 'public', `${nombre_archivo}.pdf`);
-
+    // Combinar los valores para obtener el nombre del archivo PDF
+    const nombre_archivo = `${emiNIT}_${recNIT}_${ideNUC}`;
+    //const fileName = `${identificacion}_${emisor}_${receptor}.pdf`;
+    const filePdfDocumento = join(__dirname, '..', '..', 'public', `${nombre_archivo}.pdf`);
+    //Codigo QR
+    const fileQr = join(__dirname, '..', '..', 'public', `${nombre_archivo}.png`);
     //url: `${serverUrl}/static/`,
     const compile = async function (templateName, datos) {
       const filePath = path.join(process.cwd(), 'templates', `${templateName}.hbs`);
       const html = await fs.readFile(filePath, 'utf-8');
+
       //console.log(html);
       return hbs.compile(html)(datos);
     };
 
-    hbs.registerHelper('dateFormat', function (value, format) {
-      console.log('formatting', value, format);
-      return moment(value).format(format);
-    });
+    // Datos del archivo JSON    
+    const datosJson = require(join(__dirname, '..', '..', 'public', nombre_json));
+
+    const newFileJsonDocumento = join(__dirname, '..', '..', 'public', `${nombre_archivo}` + '.json');
+    fs.writeFileSync(newFileJsonDocumento, fileJsonDocumento, 'utf8');
 
     (async function () {
       try {
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
 
-        console.log(datos);
-        const content = await compile('email-order-success', datos);
+        // Variables fijas
+        const fixedVariables = {
+          //title: 'Factura',
+          //message: '¡Gracias por su compra!',
+          codigo_qr: `${nombre_archivo}.png`,
+          url: `${serverUrl}/static/`,
+        };
+        // Combinar los datos del archivo JSON con las variables fijas
+        const fixedPlusJson = { ...datosJson, ...fixedVariables };
+
+
+        //console.log(datosJson);
+        const content = await compile('email-order-success', fixedPlusJson);
 
         await page.setContent(content);
         await page.emulateMediaType('screen');
         await page.pdf({
-          path: tempPdfEjemplo,
+          path: filePdfDocumento,
           format: 'A4',
           printBackground: true,
         });
@@ -606,11 +616,27 @@ export class DocumentosService {
         console.log('our errpr', e);
       }
     })();
-    
+
+    //Codigo QR
+
+    // URL para generar el código QR
+    const url = 'https://webapp.dtes.mh.gob.sv/consultaPublica?ambiente=01&codGen=28576AF5-EB91-4BB6-9FEE-753D0936ACFF&fechaEmi=2023-08-28';
+
+    qr.toFile(fileQr, url, function (err, code) {
+      if (err) {
+        return console.log('error');
+
+      }
+      {
+        console.log(code);
+        console.log('Código QR generado correctamente.');
+      }
+
+    });
 
     this.mailerService
       .sendMail({
-        //to: ['calfaro@cel.gob.sv', 'romalsi@gmail.com'],
+        //to: ['calfaro@cel.gob.sv', 'cesar.alfaro@gmail.com'],
         to: ['calfaro@cel.gob.sv'],
         from: 'calfaro@cel.gob.sv',
         subject: 'Factura',
@@ -626,15 +652,21 @@ export class DocumentosService {
         },
         attachments: [
           {
-            path: fileJsonDocumento,
+            path: newFileJsonDocumento,
             contentType: 'application/json',
-            filename: 'factura.json',
+            filename: newFileJsonDocumento,
             contentDisposition: 'inline', // attachment
           },
           {
-            path: tempPdfEjemplo,
+            path: filePdfDocumento,
             contentType: 'application/pdf',
-            filename: 'factura.pdf',
+            filename: filePdfDocumento,
+            contentDisposition: 'inline', // attachment
+          },
+          {
+            path: fileQr,
+            contentType: 'application/png',
+            filename: fileQr,
             contentDisposition: 'inline', // attachment
           },
         ],
@@ -644,8 +676,34 @@ export class DocumentosService {
       .then(() => { })
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       .catch(() => { });
-}
+  }
 
+  public async example_puppeteer_09(): Promise<void> {
+    const serverUrl = this.appContextService.getServerUrl();
+    console.log('URL: ' + serverUrl);
+    const nombre_archivo = 'qr_prueba';
+    const fileQr = join(__dirname, '..', '..', 'public', `${nombre_archivo}.png`);
+
+    const qr = require('qrcode');
+
+    // URL para generar el código QR
+    const url = 'https://webapp.dtes.mh.gob.sv/consultaPublica?ambiente=01&codGen=28576AF5-EB91-4BB6-9FEE-753D0936ACFF&fechaEmi=2023-08-28';
+
+    qr.toFile(fileQr, url, function (err, code) {
+      if (err) {
+        return console.log('error');
+        console.log(code);
+      }
+      {
+        console.log('Código QR generado correctamente.');
+      }
+
+    });
+
+
+
+
+  };
 
 
 }
