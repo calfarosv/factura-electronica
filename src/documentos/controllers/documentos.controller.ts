@@ -41,6 +41,21 @@ export class DocumentosController {
     return this.docuemntosService.getPup_05();
   }
 
+  @Get('pup_06')
+  getPup_06(): string {
+    return this.docuemntosService.getPup_06();
+  }
+
+  @Get('pup_07')
+  getPup_07(): string {
+    return this.docuemntosService.getPup_07();
+  }  
+
+  @Get('pup_08')
+  getPup_08(): string {
+    return this.docuemntosService.getPup_08();
+  }  
+
   @Get('emisor')
   getEmisor() {
     return this.docuemntosService.getEmisor();

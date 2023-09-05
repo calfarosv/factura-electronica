@@ -51,6 +51,21 @@ export class DocumentosService {
     return 'Puppeteer 05';
   }
 
+  getPup_06(): string {
+    this.example_puppeteer_06();
+    return 'Puppeteer 06';
+  }
+
+  getPup_07(): string {
+    this.example_puppeteer_07();
+    return 'Puppeteer 07';
+  }
+
+  getPup_08(): string {
+    this.example_puppeteer_08();
+    return 'Puppeteer 08';
+  }  
+
   getHello(): string {
     this.example();
     return 'Hello World!';
@@ -64,8 +79,9 @@ export class DocumentosService {
   public async example(): Promise<void> {
     const tempFilePathPdf = join(__dirname, '..', '..', 'public', 'factura.pdf');
     const serverUrl = this.appContextService.getServerUrl();
-    const fs = require("fs"); //puppeter
     console.log('URL: ' + serverUrl);
+    const fs = require("fs"); //puppeter
+    
     console.log(join(__dirname, '..', '..', 'public', 'temporal.json'));
     const response = await firstValueFrom(
       this.httpService.get('https://jsonplaceholder.typicode.com/users/1'),
@@ -112,7 +128,7 @@ export class DocumentosService {
         // text: 'Bienvenido', // plaintext body
         //html: '<h1>Bienvenido</h1>',
         template: 'email-order-success',
-        //template: 'factura_01',
+        //template: 'factura_03',
         context: {
           url: `${serverUrl}/static/`,
           name: 'Cesar Alfaro',
@@ -227,7 +243,7 @@ export class DocumentosService {
     var fecha = new Date();
     var hora_actual = fecha.getHours();
     const moment_hora = require('moment');
-    
+
     let currentDate = moment_hora().format('YYYY-MM-DD')
     let currentTime = moment_hora().format('hh-mm-ss')
 
@@ -236,9 +252,9 @@ export class DocumentosService {
     //const data = require('../../../src/database.json');
     const data = join(__dirname, '..', '..', 'public', 'database.json');
     //const tempPdfEjemplo = join(__dirname, '..', '..', 'public', 'factura_cesar.pdf');
-    const nombre_archivo = 'cesar_factura'+ '_' + currentDate + '_' + currentTime;
+    const nombre_archivo = 'cesar_factura' + '_' + currentDate + '_' + currentTime;
     const tempPdfEjemplo = join(__dirname, '..', '..', 'public', `${nombre_archivo}.pdf`);
-    
+
     //const plantilla = join(__dirname, '..', '..', 'public', 'database.json');
     const hbs = require('handlebars');
     const path = require('path');
@@ -258,34 +274,34 @@ export class DocumentosService {
       return moment(value).format(format);
     });
 
-      (async function () {
-        try {
-          const browser = await puppeteer.launch();
-          const page = await browser.newPage();
-          const content = await compile('factura_02', data);
+    (async function () {
+      try {
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+        const content = await compile('factura_02', data);
 
-          await page.setContent(content);
-          await page.emulateMediaType('screen');
-          await page.pdf({
-            path: tempPdfEjemplo,
-            format: 'A4',
-            printBackground: true,
-          });
-          await browser.close();
-          console.log("PDF Generated")
+        await page.setContent(content);
+        await page.emulateMediaType('screen');
+        await page.pdf({
+          path: tempPdfEjemplo,
+          format: 'A4',
+          printBackground: true,
+        });
+        await browser.close();
+        console.log("PDF Generated")
 
-          //process.exit();
-        } catch (e) {
-          console.log('our errpr', e);
-        }
-      })();
+        //process.exit();
+      } catch (e) {
+        console.log('our errpr', e);
+      }
+    })();
   }
 
   public async example_puppeteer_04(): Promise<void> {
     const moment_hora = require('moment');
     let currentDate = moment_hora().format('YYYY-MM-DD');
     let currentTime = moment_hora().format('hh-mm-ss');
-    const nombre_archivo = 'prueba_'+ '_' + currentDate + '_' + currentTime;
+    const nombre_archivo = 'prueba_' + '_' + currentDate + '_' + currentTime;
     const puppeteer = require('puppeteer');
     const fs = require('fs-extra');
     const hbs = require('handlebars');
@@ -293,19 +309,19 @@ export class DocumentosService {
     const datos = require(join(__dirname, '..', '..', 'public', 'database.json'));
     const tempPdfEjemplo = join(__dirname, '..', '..', 'public', `${nombre_archivo}.pdf`);
     const moment = require('moment');
-    
-    
-   const compile = async function (templateName, datos) {
-    const filePath = path.join(process.cwd(), 'templates', `${templateName}.hbs`);
-    const html = await fs.readFile(filePath, 'utf-8');
-    //console.log(html);
-    return hbs.compile(html)(datos);
-  };
-   
-  hbs.registerHelper('dateFormat', function (value, format) {
-    console.log('formatting',value, format);
-    return moment(value).format(format);
-  });
+
+
+    const compile = async function (templateName, datos) {
+      const filePath = path.join(process.cwd(), 'templates', `${templateName}.hbs`);
+      const html = await fs.readFile(filePath, 'utf-8');
+      //console.log(html);
+      return hbs.compile(html)(datos);
+    };
+
+    hbs.registerHelper('dateFormat', function (value, format) {
+      console.log('formatting', value, format);
+      return moment(value).format(format);
+    });
 
     (async function () {
       try {
@@ -322,7 +338,7 @@ export class DocumentosService {
           format: 'A4',
           printBackground: true,
         });
-    
+
         console.log('done');
         await browser.close();
         process.exit();
@@ -333,10 +349,12 @@ export class DocumentosService {
   }
 
   public async example_puppeteer_05(): Promise<void> {
+    const serverUrl = this.appContextService.getServerUrl();
+    console.log('URL: ' + serverUrl);    
     const moment_hora = require('moment');
     let currentDate = moment_hora().format('YYYY-MM-DD');
     let currentTime = moment_hora().format('hh-mm-ss');
-    const nombre_archivo = 'prueba_'+ '_' + currentDate + '_' + currentTime;
+    const nombre_archivo = 'prueba' + '_' + currentDate + '_' + currentTime;
     const puppeteer = require('puppeteer');
     const fs = require('fs-extra');
     const hbs = require('handlebars');
@@ -344,27 +362,29 @@ export class DocumentosService {
     const datos = require(join(__dirname, '..', '..', 'public', 'cf_cel.json'));
     const tempPdfEjemplo = join(__dirname, '..', '..', 'public', `${nombre_archivo}.pdf`);
     const moment = require('moment');
-    
-    
-   const compile = async function (templateName, datos) {
-    const filePath = path.join(process.cwd(), 'templates', `${templateName}.hbs`);
-    const html = await fs.readFile(filePath, 'utf-8');
-    //console.log(html);
-    return hbs.compile(html)(datos);
-  };
-   
-  hbs.registerHelper('dateFormat', function (value, format) {
-    console.log('formatting',value, format);
-    return moment(value).format(format);
-  });
 
-    (async function () { 
+    //url: `${serverUrl}/static/`,
+
+
+    const compile = async function (templateName, datos) {
+      const filePath = path.join(process.cwd(), 'templates', `${templateName}.hbs`);
+      const html = await fs.readFile(filePath, 'utf-8');
+      //console.log(html);
+      return hbs.compile(html)(datos);
+    };
+
+    hbs.registerHelper('dateFormat', function (value, format) {
+      console.log('formatting', value, format);
+      return moment(value).format(format);
+    });
+
+    (async function () {
       try {
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
 
         console.log(datos);
-        const content = await compile('factura_02', datos);
+        const content = await compile('email-order-success', datos);
 
         await page.setContent(content);
         await page.emulateMediaType('screen');
@@ -372,15 +392,260 @@ export class DocumentosService {
           path: tempPdfEjemplo,
           format: 'A4',
           printBackground: true,
-        }); 
-    
+        });
+
         console.log('done');
         await browser.close();
-        process.exit();
+        //process.exit();
       } catch (e) {
         console.log('our errpr', e);
       }
     })();
   }
+
+  public async example_puppeteer_06(): Promise<void> {
+    const serverUrl = this.appContextService.getServerUrl();
+    console.log('URL: ' + serverUrl);
+    //-----------------------------------------------------------------------------------------    
+    const puppeteer = require('puppeteer');
+    const handlebars = require('handlebars');
+    const fs = require('fs');
+    const path = require('path');
+
+    // Función para generar el archivo PDF
+    async function generatePDF() {
+      // Rutas de los archivos y carpetas
+      //const imagesFolder = path.join(__dirname, '../../images');
+      //const templatePath = path.join(__dirname, '../../templates/factura_03.hbs');
+      const templatePath = path.join(process.cwd(), 'templates', 'factura_03.hbs');
+      //const outputPath = path.join(__dirname, '../../../dist/public/factura.pdf');
+      const outputPath = join(__dirname, '..', '..', 'public', 'hola.pdf');
+      //console.log('imagesFolder: ' + imagesFolder);
+      console.log('templatePath: ' + templatePath);
+      console.log('outputPath: ' + outputPath);
+      // Cargar la plantilla HBS desde un archivo
+      const template = fs.readFileSync(templatePath, 'utf-8');
+      console.log(template);
+      // Compilar la plantilla HBS utilizando Handlebars
+      const compiledTemplate = handlebars.compile(template);
+      console.log(compiledTemplate);
+      // Datos de ejemplo para la plantilla HBS
+      const templateData = {
+        title: 'Factura',
+        message: '¡Gracias por su compra!',
+        url: `${serverUrl}/static/`,
+      };
+      console.log('templateData: ' + templateData);
+      // Renderizar la plantilla con los datos proporcionados
+      const renderedTemplate = compiledTemplate(templateData);
+      console.log('renderedTemplate: ' + renderedTemplate);
+      // Crear una instancia del navegador Puppeteer
+      const browser = await puppeteer.launch();
+      const page = await browser.newPage();
+
+      // Establecer el contenido HTML de la página con la plantilla renderizada
+      await page.setContent(renderedTemplate);
+
+      // Generar el archivo PDF
+      await page.pdf({ path: outputPath, format: 'A4' });
+
+      // Cerrar el navegador Puppeteer
+      await browser.close();
+
+      console.log('Archivo PDF generado correctamente.');
+    }
+
+    // Llamar a la función para generar el archivo PDF
+    generatePDF();
+
+  }
+
+
+  public async example_puppeteer_07(): Promise<void> {
+    const serverUrl = this.appContextService.getServerUrl();
+    console.log('URL: ' + serverUrl);
+    //-----
+    const moment_hora = require('moment');
+    let currentDate = moment_hora().format('YYYY-MM-DD');
+    let currentTime = moment_hora().format('hh-mm-ss');
+    const nombre_archivo = 'Factura' + '_' + currentDate + '_' + currentTime;
+
+    const puppeteer = require('puppeteer');
+    const fs = require('fs-extra');
+    const hbs = require('handlebars');
+    const path = require('path');
+    const moment = require('moment');
+    const datos = require(join(__dirname, '..', '..', 'public', 'cf_cel.json'));
+    //-----
+    const fileJsonDocumento = join(__dirname, '..', '..', 'public', 'cf_cel.json');
+    const filePdfDocumento = join(__dirname, '..', '..', 'public', `${nombre_archivo}.pdf`);
+    
+    console.log(filePdfDocumento);
+    //console.log(tempFilePathPdf);
+
+    const compile = async function (templateName, datos) {
+      const filePath = path.join(process.cwd(), 'templates', `${templateName}.hbs`);
+      const html = await fs.readFile(filePath, 'utf-8');
+      //console.log(html);
+      return hbs.compile(html)(datos);
+    };
+
+    hbs.registerHelper('dateFormat', function (value, format) {
+      console.log('formatting', value, format);
+      return moment(value).format(format);
+    });
+
+    this.mailerService
+      .sendMail({
+        //to: ['calfaro@cel.gob.sv', 'romalsi@gmail.com'],
+        to: ['calfaro@cel.gob.sv'],
+        from: 'calfaro@cel.gob.sv',
+        subject: 'PRUEBAS Factura Electrónica - CEL',
+        // text: 'Bienvenido', // plaintext body
+        html: '<h1>Bienvenido</h1>',
+        //template: 'email-order-success',
+        //template: 'factura_03',
+        context: {
+          url: `${serverUrl}/static/`,
+          name: 'Cesar Alfaro',
+          asunto: '',
+          people: ['abc', 'def', 'ghi'],
+        },
+        attachments: [
+          {
+            path: fileJsonDocumento,
+            contentType: 'application/json',
+            filename: 'factura.json',
+            contentDisposition: 'inline', // attachment
+          },
+          /*{
+            path: filePdfDocumento1,
+            contentType: 'application/pdf',
+            filename: 'factura.pdf',
+            contentDisposition: 'inline', // attachment
+          },*/
+        ],
+      }
+      )
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      .then(() => { })
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      .catch(() => { });
+
+  }
+
+
+  public async example_puppeteer_08(): Promise<void> {
+    const serverUrl = this.appContextService.getServerUrl();
+    console.log('URL: ' + serverUrl);    
+    const puppeteer = require('puppeteer');
+    const fs = require('fs-extra');
+    const hbs = require('handlebars');
+    const path = require('path');
+    const moment = require('moment');
+    const moment_hora = require('moment');
+
+    let currentDate = moment_hora().format('YYYY-MM-DD');
+    let currentTime = moment_hora().format('hh-mm-ss');
+    //const nombre_archivo = 'prueba' + '_' + currentDate + '_' + currentTime;
+    const fileJsonDocumento = join(__dirname, '..', '..', 'public', 'cf_cel.json');
+    const datos = require(join(__dirname, '..', '..', 'public', 'cf_cel.json'));
+    
+
+
+  // Ruta del archivo JSON
+  const jsonFilePath = 'cf_cel.json';
+
+  // Leer el archivo JSON
+  const jsonData = fs.readFileSync(fileJsonDocumento, 'utf-8');
+  const data = JSON.parse(jsonData);
+
+  // Obtener los valores necesarios del archivo JSON
+  const emisorNIT = data.emisor.nit;
+  const receptorND = data.receptor.numDocumento;
+  const identificacionNC = data.identificacion.numeroControl;
   
+  // Combinar los valores para obtener el nombre del archivo PDF
+  const nombre_archivo = `${emisorNIT}_${receptorND}_${identificacionNC}`;
+  //const fileName = `${identificacion}_${emisor}_${receptor}.pdf`;
+  const tempPdfEjemplo = join(__dirname, '..', '..', 'public', `${nombre_archivo}.pdf`);
+
+    //url: `${serverUrl}/static/`,
+    const compile = async function (templateName, datos) {
+      const filePath = path.join(process.cwd(), 'templates', `${templateName}.hbs`);
+      const html = await fs.readFile(filePath, 'utf-8');
+      //console.log(html);
+      return hbs.compile(html)(datos);
+    };
+
+    hbs.registerHelper('dateFormat', function (value, format) {
+      console.log('formatting', value, format);
+      return moment(value).format(format);
+    });
+
+    (async function () {
+      try {
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+
+        console.log(datos);
+        const content = await compile('email-order-success', datos);
+
+        await page.setContent(content);
+        await page.emulateMediaType('screen');
+        await page.pdf({
+          path: tempPdfEjemplo,
+          format: 'A4',
+          printBackground: true,
+        });
+
+        console.log('done');
+        await browser.close();
+        //process.exit();
+      } catch (e) {
+        console.log('our errpr', e);
+      }
+    })();
+    
+
+    this.mailerService
+      .sendMail({
+        //to: ['calfaro@cel.gob.sv', 'romalsi@gmail.com'],
+        to: ['calfaro@cel.gob.sv'],
+        from: 'calfaro@cel.gob.sv',
+        subject: 'Factura',
+        // text: 'Bienvenido', // plaintext body
+        html: '<h1>Bienvenido</h1>',
+        //template: 'email-order-success',
+        //template: 'factura_03',
+        context: {
+          url: `${serverUrl}/static/`,
+          name: 'Cesar Alfaro',
+          asunto: '',
+          //people: ['Yehuda Katz', 'Alan Johnson', 'Charles Jolley'],
+        },
+        attachments: [
+          {
+            path: fileJsonDocumento,
+            contentType: 'application/json',
+            filename: 'factura.json',
+            contentDisposition: 'inline', // attachment
+          },
+          {
+            path: tempPdfEjemplo,
+            contentType: 'application/pdf',
+            filename: 'factura.pdf',
+            contentDisposition: 'inline', // attachment
+          },
+        ],
+      }
+      )
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      .then(() => { })
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      .catch(() => { });
+}
+
+
+
 }

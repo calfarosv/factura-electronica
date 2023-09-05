@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
 
 
+
     <style type="text/css">
         body {
             text-align: center;
@@ -45,23 +46,6 @@
             font-weight: 400;
         }
 
-p.tamanio_01{
-  font-size:1.8em;
-  line-height:1.2em;
-}
-
-p.tamanio_02{
-  font-size:1.5em;
-  line-height:1.5em;
-}
-
-p.tamanio_03{
-  font-size:0.85em;
-  line-height:1.3em;
-}
-
-
-
         .text-center {
             text-align: center
         }
@@ -83,7 +67,7 @@ p.tamanio_03{
         }
 
         table {
-            margin-top: 10px
+            margin-top: 30px
         }
 
 		.headt td {
@@ -140,7 +124,7 @@ p.tamanio_03{
 </head>
 
 <body style="margin: 20px auto;">
-    <table border="0" cellpadding="0" cellspacing="0"
+    <table align="center" border="0" cellpadding="0" cellspacing="0"
         style="padding: 0 30px;background-color: #fff; -webkit-box-shadow: 0px 0px 14px -4px rgba(0, 0, 0, 0.2705882353);box-shadow: 0px 0px 14px -4px rgba(0, 0, 0, 0.2705882353);width: 100%;">
         <tbody>
             <tr>
@@ -148,8 +132,9 @@ p.tamanio_03{
               <table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
 
                         <tr>
-                            <td rowspan="2" style="width: 20%; text-align: center;">
-                            <img src="images/logo_cel.png" width="142" height="41" alt=""/></td>
+                            <td rowspan="2" style="width: 20%; text-align: center;"><img
+                                    src="http://localhost:3003/static/assets/images/email-temp/logo_success.png" alt="">
+                            </td>
                             <td style="text-align: center; font-weight: bold;">DOCUMENTO TROBUTARIO ELECTRÓNICO</td>
                             <td rowspan="2" style="width: 20%; text-align: center;">1.0</td>
                         </tr>
@@ -159,25 +144,54 @@ p.tamanio_03{
 
                   </table>
 
-<table cellpadding="0" cellspacing="0" border="0" style="width: 100%;margin-top: 5px; margin-bottom: 5px;">
+<table cellpadding="0" cellspacing="0" border="0" style="width: 100%;margin-top: 10px;    margin-bottom: 10px;">
                                 <tbody>
                                     <tr>
-                              <td align="left" style="background-color: #fafafa; border: 1px solid #ddd; padding: 15px; letter-spacing: 0.3px; width: 40%; font-size: small;"><p class="tamanio_03"><strong>Código de Generación:</strong><br>
-                                {{identificacion.codigoGeneracion}}<br>
-  <strong>Número de Control:</strong><br>
-                                {{identificacion.numeroControl}}<br>
-  <strong>Sello de Recepción:</strong><br>
-                                789</p></td>
-                                    <td style="text-align: center" alt=" " height="146" width="30">
-                                   	  <img src="assets/images/wr-code.png" width="120" height="120" alt=""/></td>
-                                    <td align="left" style="background-color: #fafafa;border: 1px solid #ddd;padding: 15px;letter-spacing: 0.3px; width: 40%; font-size: small;">
-                                            <p class="tamanio_03"><b>Modelo de Facturación:</b><br>
-                                            123<br>
-                                            <b>Tipo de Transmisión:</b><br>
-                                            456<br>
-                                            <b>Fecha y hora de Generación:</b><br>
-                                            {{identificacion.fecEmi}}  {{identificacion.horEmi}}</p>
+                              <td style="background-color: #fafafa;border: 1px solid #ddd;padding: 15px;letter-spacing: 0.3px;width: 40%;">
 
+                                        <table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100%; font-size: small;" >
+                                          <tr>
+                                            <td><h5 style="margin-top: 15px; font-weight: bold;">Código de Generación:</h5></td>
+                                          </tr>
+                                          <tr>
+                                            <td><h5 style="margin-top: 15px;">{{identificacion.codigoGeneracion}}</h5></td>
+                                          </tr>
+                                          <tr>
+                                            <td><h5 style="margin-top: 15px; font-weight: bold;">Número de Control:</h5></td>
+                                          </tr>
+                                          <tr>
+                                            <td><h5 style="margin-top: 15px;">{{identificacion.numeroControl}}</h5></td>
+                                          </tr>
+                                          <tr>
+                                            <td><h5 style="margin-top: 15px; font-weight: bold;">Sello de Recepción:</h5></td>
+                                          </tr>
+                                          <tr>
+                                            <td><h5 style="margin-top: 15px;">Z</h5></td>
+                                          </tr>
+                                    </table>
+                                    <td style="text-align: center"http://localhost:3003/static/assets/images/email-temp/logo_space.jpg" alt=" " height="25" width="30"><img src="http://localhost:3003/static/assets/images/email-temp/logo_success.png" alt=""></td>
+                                    <td style="background-color: #fafafa;border: 1px solid #ddd;padding: 15px;letter-spacing: 0.3px;width: 40%;">
+
+                                        <table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100%; font-size: small;" >
+                                          <tr>
+                                            <td><h5 style="margin-top: 15px; font-weight: bold;">Modelo de Facturación:</h5></td>
+                                          </tr>
+                                          <tr>
+                                            <td><h5 style="margin-top: 15px;">A</h5></td>
+                                          </tr>
+                                          <tr>
+                                            <td><h5 style="margin-top: 15px; font-weight: bold;">Tipo de Transmisión:</h5></td>
+                                          </tr>
+                                          <tr>
+                                            <td><h5 style="margin-top: 15px;">B</h5></td>
+                                          </tr>
+                                          <tr>
+                                            <td><h5 style="margin-top: 15px; font-weight: bold;">Fecha y hora de Generación:</h5></td>
+                                          </tr>
+                                          <tr>
+                                            <td><h5 style="margin-top: 15px;">{{identificacion.fecEmi}}  {{identificacion.horEmi}}</h5></td>
+                                          </tr>
+                                        </table>
                                     </td>
                                 </tr>
                             </tbody>
