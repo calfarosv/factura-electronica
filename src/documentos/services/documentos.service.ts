@@ -559,7 +559,9 @@ export class DocumentosService {
     // Obtener los valores necesarios del archivo JSON
     const emiNIT = data.emisor.nit;
     const recNIT = data.receptor.nit;
+    const recNOM = data.receptor.nombre;
     const ideCGE = data.identificacion.codigoGeneracion;
+    const ideNCO = data.identificacion.numeroControl;
     const ideFEC = data.identificacion.fecEmi;
 
     // Combinar los valores para obtener el nombre del archivo PDF
@@ -590,27 +592,51 @@ export class DocumentosService {
 
         // Variables fijas
         const fixedVariables = {
-          //title: 'Factura',
-          //message: '¡Gracias por su compra!',
           codigo_qr: `${nombre_archivo}.png`,
-          url: `${serverUrl}/static/`,
+          url: `${serverUrl}/static/`
         };
         // Combinar los datos del archivo JSON con las variables fijas
         const fixedPlusJson = { ...datosJson, ...fixedVariables };
 
 
         //console.log(datosJson);
-        const content = await compile('email-order-success', fixedPlusJson);
+        const content = await compile('cel_ccf', fixedPlusJson);
+
+  // Definir el contenido del encabezado y el pie de página como plantillas HTML
+  const v_headerTemplate = `
+    <div style="font-size: 12px; text-align: center;">
+      Encabezado personalizado
+    </div>
+  `;
+
+  const v_footerTemplate = `
+    <div style="font-size: 10px; text-align: right;">
+      Página <span class="pageNumber"></span> de <span class="totalPages"></span>
+    </div>
+  `;
 
         await page.setContent(content);
         await page.emulateMediaType('screen');
+        // Agregar estilos CSS para el encabezado y pie de página
+        await page.addStyleTag({
+          content: `
+            @page {
+              size: A4;
+              margin-top: 40px;
+              margin-bottom: 40px;
+            }
+          `
+        });
         await page.pdf({
           path: filePdfDocumento,
           format: 'A4',
           printBackground: true,
+          displayHeaderFooter: true,
+          headerTemplate: v_headerTemplate,//`<div style="font-size: 10px">CEL</div>`,
+          footerTemplate: v_footerTemplate,//`<div style="font-size: 10px"><span class="pageNumber"></span> / <span class="totalPages"></span></div>`,
         });
 
-        console.log('done');
+        console.log('Proceso Finalizado');
         await browser.close();
         //process.exit();
       } catch (e) {
@@ -636,7 +662,7 @@ export class DocumentosService {
 
       }
       {
-        console.log(code);
+        //console.log(code);
         console.log('Código QR generado correctamente.');
       }
 
@@ -649,13 +675,16 @@ export class DocumentosService {
         from: 'calfaro@cel.gob.sv',
         subject: 'Factura',
         // text: 'Bienvenido', // plaintext body
-        html: '<h1>Bienvenido</h1>',
-        //template: 'email-order-success',
+        //html: '<h1>Bienvenido</h1>',
+        template: 'cel_correo_ccf',
         //template: 'factura_03',
         context: {
           url: `${serverUrl}/static/`,
           name: 'Cesar Alfaro',
           asunto: '',
+          codgen: ideCGE,
+          numcon: ideNCO,
+          nomrec: recNOM,
           //people: ['Yehuda Katz', 'Alan Johnson', 'Charles Jolley'],
         },
         attachments: [

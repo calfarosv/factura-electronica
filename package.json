@@ -38,6 +38,8 @@
     "express-handlebars": "^7.0.7",
     "fs-extra": "^11.1.1",
     "handlebars": "^4.7.7",
+    "handlebars-intl": "^1.1.2",
+    "handlebars-layouts": "^3.1.4",
     "joi": "^17.9.2",
     "moment": "^2.29.4",
     "nodemailer": "^6.9.3",
