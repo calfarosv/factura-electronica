@@ -129,7 +129,7 @@ export class DocumentosService {
         //to: ['calfaro@cel.gob.sv', 'romalsi@gmail.com'],
         to: ['calfaro@cel.gob.sv'],
         from: 'calfaro@cel.gob.sv',
-        subject: 'Factura / Comprobante de Credito Fiscal - CEL ✔',
+        subject: 'Factura / Comprobante de Credito Fiscal - CEL ?',
         // text: 'Bienvenido', // plaintext body
         //html: '<h1>Bienvenido</h1>',
         template: 'email-order-success',
@@ -551,12 +551,18 @@ export class DocumentosService {
     const qr = require('qrcode');
     // Ruta del archivo JSON
     const fileJsonDocumento = join(__dirname, '..', '..', 'public', nombre_json);
+    // Fecha y hora actual
+    const moment_hora = require('moment');
+    let currentDate = moment_hora().format('DD/MM/YYYY');
+    let currentTime = moment_hora().format('hh:mm:ss');
+    const Fecha_hora = currentDate + '   ' + currentTime;
 
     // Leer el archivo JSON
     const jsonData = fs.readFileSync(fileJsonDocumento, 'utf-8');
     const data = JSON.parse(jsonData);
 
     // Obtener los valores necesarios del archivo JSON
+    const ideTDT = data.identificacion.tipoDte;
     const emiNIT = data.emisor.nit;
     const recNIT = data.receptor.nit;
     const recNOM = data.receptor.nombre;
@@ -571,13 +577,50 @@ export class DocumentosService {
     //Codigo QR
     const fileQr = join(__dirname, '..', '..', 'public', `${nombre_archivo}.png`);
     //url: `${serverUrl}/static/`,
+
     const compile = async function (templateName, datos) {
       const filePath = path.join(process.cwd(), 'templates', `${templateName}.hbs`);
       const html = await fs.readFile(filePath, 'utf-8');
-
       //console.log(html);
       return hbs.compile(html)(datos);
     };
+
+    v_tdte01_nombre_doc: string;
+    v_tdte01_version_doc: string;
+    v_tdte01_receptor: string;
+    v_tdte03_nombre_doc: string;
+    v_tdte03_version_doc: string;
+    v_tdte03_receptor: string;
+
+        //---- DATOS PARA TIPO DTE 01
+        v_tdte01_nombre_doc: 'FACTURA';
+        v_tdte01_version_doc: 'Ver 1.0';
+        v_tdte01_receptor: `
+      <p class="tamanio_02"><strong>RECEPTOR</strong></p>
+      <p class="tamanio_04"><b>{{receptor.nombre}}</b><br>
+          NIT: <b>{{receptor.nit}}</b><br>
+          NRC: <b>{{receptor.nrc}}</b><br>
+          ACTIVIDAD: <b>{{receptor.descActividad}}</b><br>
+          <b>{{receptor.direccion.complemento}}</b><br>
+          TEL: <b>{{receptor.telefono}}</b><br>
+          Correo electrónico: <b>{{receptor.correo}}</b><br>
+          Establecimiento: <b>{{receptor.nombreComercial}}</b><br>
+      </p>';`;
+        //---- DATOS PARA TIPO DTE 03
+        v_tdte03_nombre_doc: 'COMPROBANTE DE CRÉDITO FISCAL';
+        v_tdte03_version_doc: 'Ver 3.0';
+        v_tdte03_receptor: `
+      <p class="tamanio_02"><strong>RECEPTOR</strong></p>
+      <p class="tamanio_04"><b>{{receptor.nombre}}</b><br>
+          NIT: <b>{{receptor.nit}}</b><br>
+          NRC: <b>{{receptor.nrc}}</b><br>
+          ACTIVIDAD: <b>{{receptor.descActividad}}</b><br>
+          <b>{{receptor.direccion.complemento}}</b><br>
+          TEL: <b>{{receptor.telefono}}</b><br>
+          Correo electrónico: <b>{{receptor.correo}}</b><br>
+          Establecimiento: <b>{{receptor.nombreComercial}}</b><br>
+      </p>';`;
+
 
     // Datos del archivo JSON    
     const datosJson = require(join(__dirname, '..', '..', 'public', nombre_json));
@@ -585,13 +628,24 @@ export class DocumentosService {
     const newFileJsonDocumento = join(__dirname, '..', '..', 'public', `${nombre_archivo}` + '.json');
     fs.writeFileSync(newFileJsonDocumento, jsonData, 'utf8');
 
-    (async function () {
+    (async function genera_pdf () {
       try {
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
-
+/*
+        if (ideTDT == '01') {
+          v_nombre_doc: v_tdte01_nombre_doc,
+          v_version: v_tdte01_version_doc,
+          v_receptor: v_tdte01_receptor
+        } else if (ideTDT == '03') {
+          const v_nombre_doc = v_tdte03_nombre_doc;
+          const v_version = v_tdte03_version_doc;
+          const v_receptor = v_tdte03_receptor;
+        }        
+*/
         // Variables fijas
         const fixedVariables = {
+
           codigo_qr: `${nombre_archivo}.png`,
           url: `${serverUrl}/static/`
         };
@@ -602,18 +656,38 @@ export class DocumentosService {
         //console.log(datosJson);
         const content = await compile('cel_ccf', fixedPlusJson);
 
-  // Definir el contenido del encabezado y el pie de página como plantillas HTML
-  const v_headerTemplate = `
-    <div style="font-size: 12px; text-align: center;">
-      Encabezado personalizado
-    </div>
-  `;
+        // Definir el contenido del encabezado y el pie de página como plantillas HTML
+        const v_headerTemplate = ``;
+        /*  
+          const v_headerTemplate = `
+            <div style="font-size: 12px; text-align: center;">
+              Encabezado personalizado
+            </div>
+          `;
+        */
+        /*
+                const v_footerTemplate = 
+                `<div style="font-size: 10px; text-align: right;">
+                  Página <span class="pageNumber"></span> de <span class="totalPages"></span>
+                </div>`;
+        */
+        const v_footerTemplate =
+          `
 
-  const v_footerTemplate = `
-    <div style="font-size: 10px; text-align: right;">
-      Página <span class="pageNumber"></span> de <span class="totalPages"></span>
-    </div>
-  `;
+          <table width="100%" border="0">
+          <tbody>
+            <tr>
+              <td style="width: 50%; text-align: left; padding-left: 0.5em; font-size: small; font-family: 'Open Sans', sans-serif; padding-left: 0.5em">
+                <div style="font-size: 7px;">&nbsp;&nbsp;&nbsp;Fecha y hora actual:  `+ `${Fecha_hora}` + `</div>
+              </td>
+              <td style="width: 50%; text-align: right; padding-right: 0.5em; font-size: small; font-family: 'Open Sans', sans-serif; padding-right: 0.5em">
+                <div style="font-size: 7px;">Página <span class="pageNumber"></span> de <span class="totalPages"></span>&nbsp;&nbsp;&nbsp;</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      `;
+
 
         await page.setContent(content);
         await page.emulateMediaType('screen');
@@ -622,7 +696,7 @@ export class DocumentosService {
           content: `
             @page {
               size: A4;
-              margin-top: 40px;
+              margin-top: 0px;
               margin-bottom: 40px;
             }
           `
@@ -645,7 +719,8 @@ export class DocumentosService {
     })();
 
     //Codigo QR
-    const urlMh01 = 'https://webapp.dtes.mh.gob.sv/consultaPublica?ambiente=01&codGen=';
+    //const urlMh01 = 'https://webapp.dtes.mh.gob.sv/consultaPublica?ambiente=01&codGen=';
+    const urlMh01 = 'https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=';
     const urlMh02 = ideCGE;
     const urlMh03 = '&fechaEmi=';
     const urlMh04 = ideFEC;
@@ -724,7 +799,9 @@ export class DocumentosService {
     const qr = require('qrcode');
 
     // URL para generar el código QR
-    const url = 'https://webapp.dtes.mh.gob.sv/consultaPublica?ambiente=01&codGen=28576AF5-EB91-4BB6-9FEE-753D0936ACFF&fechaEmi=2023-08-28';
+
+    //const url = 'https://webapp.dtes.mh.gob.sv/consultaPublica?ambiente=01&codGen=28576AF5-EB91-4BB6-9FEE-753D0936ACFF&fechaEmi=2023-08-28';
+    const url = 'https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=28576AF5-EB91-4BB6-9FEE-753D0936ACFF&fechaEmi=2023-08-28';
 
     qr.toFile(fileQr, url, function (err, code) {
       if (err) {
