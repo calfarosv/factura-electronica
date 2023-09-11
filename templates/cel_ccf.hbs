@@ -327,7 +327,7 @@
                                     <p class="tamanio_05">{{cuerpodoc.numItem}}</p>
                                 </td>
                                 <td class="col2" style="text-align: center;">
-                                    <p class="tamanio_05">{{formatNumber cuerpodoc.cantidad}}</p>
+                                    <p class="tamanio_05">{{formatNumber_Cantidad cuerpodoc.cantidad}}</p>
                                 </td>
                                 <td class="col3" style="text-align: center;">
                                     <p class="tamanio_05">{{cuerpodoc.uniMedida}}</p>
@@ -402,7 +402,7 @@
                         <tbody>
                             <tr>
                                 <td class="colxxx1" align="right">
-                                	<p class="tamanio_04"><strong>Suma Total de Operaciones:</strong></p>
+                                	<p class="tamanio_04"><strong>{{{descTot01}}}</strong></p>
                                 </td>
                                 <td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
                                     <p class="tamanio_04">{{formatNumber_Moneda resumen.subTotalVentas}}</p>
@@ -466,14 +466,9 @@
                                     <p class="tamanio_04">{{formatNumber_Moneda resumen.subTotal}}</p>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="colxxx1" align="right">
-                                    <p class="tamanio_04"><b>IVA Percibido:</b></p>
-                                </td>
-                                <td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
-                                    <p class="tamanio_04">{{formatNumber_Moneda resumen.ivaPerci1}}</p>
-                                </td>
-                            </tr>
+                            <!--  SE MUESTRA O NO LA COLUMNA DEL IVA PERSIBIDO  -->
+                                    {{{ivaPercibido}}}
+                            <!--      -->
                             <tr>
                                 <td class="colxxx1" align="right">
                                     <p class="tamanio_04"><b>IVA Retenido:</b></p>

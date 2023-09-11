@@ -50,29 +50,45 @@ export class DocumentosService {
     const jsonData = fs.readFileSync(fileJsonDocumento, 'utf-8');
     const data = JSON.parse(jsonData);
 
-    // Registra el helper personalizado en Handlebars
+    // 
     // Se establece  minimumFractionDigits y maximumFractionDigits en 2
     // para mostrar exactamente 2 decimales. 
     hbs.registerHelper('formatNumber_Moneda', function (number) {
       // Aplica el formato de número deseado
-      const formattedNumber = number.toLocaleString('en-US', {
+      const formattedNumber = number !== null ? number.toLocaleString('en-US', {
         style: 'currency',
         currency: 'USD',
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
-      });
+      }) : '';
       return formattedNumber;
     });
 
-    hbs.registerHelper('formatNumber', function(number) {
+    // Se establece  minimumFractionDigits y maximumFractionDigits en 2
+    // para mostrar exactamente 2 decimales. 
+    hbs.registerHelper('formatNumber_Cantidad', function (number) {
       // Aplica el formato de número deseado
-      const formattedNumber = number.toLocaleString('en-US', {
+      const formattedNumber = number !== null ? number.toLocaleString('en-US', {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
-      });
+      }) : '';
       return formattedNumber;
     });
 
+
+    function formatCurrency(amount, locale, currency, decimalDigits) {
+      if (amount === null || amount === undefined) {
+        return ''; // Devuelve una cadena vacía si el valor es nulo o indefinido
+      }
+      
+      return amount.toLocaleString(locale, {
+        style: 'currency',
+        currency: currency,
+        currencyDisplay: 'symbol',
+        minimumFractionDigits: decimalDigits,
+        maximumFractionDigits: decimalDigits
+      });
+    }
 
     // Obtener los valores necesarios del archivo JSON
     const ide_TDT = data.identificacion.tipoDte;
@@ -90,8 +106,9 @@ export class DocumentosService {
     const rec_EST = data.receptor.nombreComercial;
     const rec_TDO = data.receptor.tipoDocumento;
     const rec_NDO = data.receptor.numDocumento;
-
-
+    const res_IVP = formatCurrency(data.resumen.ivaPerci1, 'en-US', 'USD', 2);
+    
+    
     //---- DATOS PARA TIPO DTE 01
     const v_01_nombre_doc = 'FACTURA';
     const v_01_version_doc = 'Ver 1.0';
@@ -103,6 +120,9 @@ export class DocumentosService {
           Correo electrónico: <b>${rec_COR}</b><br>
           Establecimiento: <b>${rec_EST}</b><br>
       </p>`;
+    const v_01_ivaPercibido = ``;
+    const v_01_descTot1 = `Sumatoria de Ventas:`;
+
     //---- DATOS PARA TIPO DTE 03
     const v_03_nombre_doc = 'COMPROBANTE DE CRÉDITO FISCAL';
     const v_03_version_doc = 'Ver 3.0';
@@ -116,24 +136,43 @@ export class DocumentosService {
           Correo electrónico: <b>${rec_COR}</b><br>
           Establecimiento: <b>${rec_EST}</b><br>
       </p>`;
+    const v_03_ivaPercibido = `
+      <tr>
+        <td class="colxxx1" align="right">
+            <p class="tamanio_04"><b>IVA Percibido:</b></p>
+        </td>
+        <td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
+        <p class="tamanio_04">${res_IVP}</p>
+        </td>
+      </tr>`;
+    const v_03_descTot1 = `Suma Total de Operaciones`;
 
     let v_nombre_doc = '';
     let v_version = '';
     let v_receptor = '';
     let nombre_archivo = '';
+    let v_ivaPercibido = '';
+    let v_descTot01 = '';
 
     if (ide_TDT == '01') {
       v_nombre_doc = v_01_nombre_doc;
       v_version = v_01_version_doc;
       v_receptor = v_01_receptor;
+      v_ivaPercibido = v_01_ivaPercibido;
+      v_descTot01 = v_01_descTot1;
       // Definiendo nombre del archivo PDF
       nombre_archivo = `${emi_NIT}_${rec_NDO}_${ide_CGE}`;
     } else if (ide_TDT == '03') {
       v_nombre_doc = v_03_nombre_doc;
       v_version = v_03_version_doc;
       v_receptor = v_03_receptor;
+      v_ivaPercibido = v_03_ivaPercibido;
+      v_descTot01 = v_03_descTot1;
+      // Definiendo nombre del archivo PDF
       nombre_archivo = `${emi_NIT}_${rec_NIT}_${ide_CGE}`;
     }
+
+
 
 
     //const fileName = `${identificacion}_${emisor}_${receptor}.pdf`;
@@ -155,7 +194,7 @@ export class DocumentosService {
     const fileJsonDocumentoNew = join(__dirname, '..', '..', 'public', `${nombre_archivo}` + '.json');
     fs.writeFileSync(fileJsonDocumentoNew, jsonData, 'utf8');
 
-    async function generaPdf(ideTDT: any, v_nombre_doc: any, v_version: any, v_receptor: any) {
+    async function generaPdf(ideTDT: any, v_nombre_doc: any, v_version: any, v_receptor: any, v_ivaPercibido: any, v_descTot01: any) {
       try {
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
@@ -166,6 +205,8 @@ export class DocumentosService {
           nombre_doc: v_nombre_doc,
           version: v_version,
           receptor: v_receptor,
+          ivaPercibido: v_ivaPercibido,
+          descTot01: v_descTot01,
           codigo_qr: `${nombre_archivo}.png`,
           url: `${serverUrl}/static/`
         };
@@ -253,7 +294,7 @@ export class DocumentosService {
 
     await generaQr();
     console.log('QR generado');
-    await generaPdf(ide_TDT, v_nombre_doc, v_version, v_receptor);
+    await generaPdf(ide_TDT, v_nombre_doc, v_version, v_receptor, v_ivaPercibido, v_descTot01);
     console.log('PDF generado');
     await this.envioCorreo(ide_CGE, ide_NCO, rec_NOM, fileJsonDocumentoNew, filePdfDocumento, fileQr);
     console.log('Correlo Electrónico Enviado');
