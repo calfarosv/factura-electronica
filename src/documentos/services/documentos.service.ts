@@ -79,7 +79,7 @@ export class DocumentosService {
     });
 
     //VALIDA SI LA VARIABLE DEL JSON EXISTE O NO
-    hbs.registerHelper('isDefined', function(value) {
+    hbs.registerHelper('isDefined', function (value) {
       return value !== undefined;
     });
 
@@ -137,7 +137,7 @@ export class DocumentosService {
       `<td class="col7" style="text-align: center;">
               <p class="tamanio_05"><b>Otros Montos no afectados</b></p>
            </td>`;
-    const v_01_noGravadoHtml01 = `<td style="text-align: right;"><p class="tamanio_05">`;	    
+    const v_01_noGravadoHtml01 = `<td style="text-align: right;"><p class="tamanio_05">`;
     const v_01_noGravadoHtml02 = `</p></td>`;
     const v_01_ivaPercibido = ``;
     const v_01_totalNoGravado = ` 
@@ -180,7 +180,7 @@ export class DocumentosService {
       `<td class="col7" style="text-align: center;">
           <p class="tamanio_05"><b>Otros Montos no afectados</b></p>
        </td>`;
-    const v_03_noGravadoHtml01 = `<td style="text-align: right;"><p class="tamanio_05">`;	    
+    const v_03_noGravadoHtml01 = `<td style="text-align: right;"><p class="tamanio_05">`;
     const v_03_noGravadoHtml02 = `</p></td>`;
     const v_03_ivaPercibido = `
       <tr>
@@ -274,7 +274,7 @@ export class DocumentosService {
       // Definiendo nombre del archivo PDF
       nombre_archivo = `${emi_NIT}_${rec_NDO}_${ide_CGE}`;
       /////////////////////////////////////////////////
-      //---- DEFINO PARTIALS PARA PLANTILLA
+      //---- DEFINO PARTIALS PARA PLANTILLA - TIPO 01
       /////////////////////////////////////////////////
       hbs.registerPartial('columnaNoGravado01', v_01_noGravadoHtml01);
       hbs.registerPartial('columnaNoGravado02', v_01_noGravadoHtml02);
@@ -294,7 +294,7 @@ export class DocumentosService {
       // Definiendo nombre del archivo PDF
       nombre_archivo = `${emi_NIT}_${rec_NIT}_${ide_CGE}`;
       /////////////////////////////////////////////////
-      //---- DEFINO PARTIALS PARA PLANTILLA
+      //---- DEFINO PARTIALS PARA PLANTILLA - TIPO 03
       /////////////////////////////////////////////////
       hbs.registerPartial('columnaNoGravado01', v_03_noGravadoHtml01);
       hbs.registerPartial('columnaNoGravado02', v_03_noGravadoHtml02);
@@ -314,11 +314,25 @@ export class DocumentosService {
       // Definiendo nombre del archivo PDF
       nombre_archivo = `${emi_NIT}_${rec_NIT}_${ide_CGE}`;
       /////////////////////////////////////////////////
-      //---- DEFINO PARTIALS PARA PLANTILLA
+      //---- DEFINO PARTIALS PARA PLANTILLA - TIPO 05
       /////////////////////////////////////////////////
       hbs.registerPartial('columnaNoGravado01', v_05_noGravadoHtml01);
-      hbs.registerPartial('columnaNoGravado02', v_05_noGravadoHtml02); 
+      hbs.registerPartial('columnaNoGravado02', v_05_noGravadoHtml02);
     }
+
+    ///////////////////////////////////////////////////////////
+    //---- DEFINO PARTIALS PARA PLANTILLA PARA TODOS LOS TIPOS
+    ///////////////////////////////////////////////////////////
+    hbs.registerPartial('tributosHtml01', `<tr>
+    <td class="colxxx1" align="right">
+        <p class="tamanio_04"><b>`);
+    hbs.registerPartial('tributosHtml02', `</b></p>
+    </td>
+    <td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
+        <p class="tamanio_04">`);
+    hbs.registerPartial('tributosHtml03', `</p>
+    </td>
+</tr>`);
 
     //DEFINO NOMBRE DEL ARCHIVO PDF
     const filePdfDocumento = join(__dirname, '..', '..', 'public', `${nombre_archivo}.pdf`);

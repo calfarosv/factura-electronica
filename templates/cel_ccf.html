@@ -361,7 +361,7 @@
                                 {{formatNumber_Moneda cuerpodoc.noGravado}}
                                 {{> columnaNoGravado02}}
                                 {{else}}
-                                <p>no existe</p>
+                                <p>&nbsp;</p>
                                 {{/if}}
 
                                 <td style="text-align: right;">
@@ -439,19 +439,25 @@
                                     <p class="tamanio_04">{{formatNumber_Moneda resumen.descuGravada}}</p>
                                 </td>
                             </tr>
+                            {{#if (isDefined resumen.tributos.[0].codigo)}}
+								<!-- <p>CON Tributo</p> -->
+								{{#each resumen.tributos}}
+									{{> tributosHtml01}}
+									{{this.descripcion}}
+									{{> tributosHtml02}}
+									{{formatNumber_Moneda this.valor}}
+									{{> tributosHtml03}}
+								{{/each}}
+							{{else}}
+								<!-- <p>SIN Tributo</p> -->
+								{{> tributosHtml01}}
+								<p class="tamanio_04"><b>Tributo</b></p>
+								{{> tributosHtml02}}
+								<p class="tamanio_04">$0.00</p>
+								{{> tributosHtml03}}
+                            {{/if}}
 
-                            {{#each resumen.tributos}}
-                            <tr>
-                                <td class="colxxx1" align="right">
-                                    <p class="tamanio_04"><b>{{this.descripcion}}</b></p>
-                                </td>
-                                <td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
-                                    <p class="tamanio_04">
-                                        {{formatNumber_Moneda this.valor}}
-                                    </p>
-                                </td>
-                            </tr>
-                            {{/each}}
+
                             <tr>
                                 <td class="colxxx1" align="right">
                                     <p class="tamanio_04"><b>Sub-Total:</b></p>
