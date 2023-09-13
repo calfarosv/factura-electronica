@@ -7,9 +7,9 @@ export class DocumentosController {
 
 
 
-  @Get('pup_08')
-  getPup_08(): string {
-    return this.docuemntosService.getPup_08();
+  @Get('genera_documento')
+  genera_documento(): string {
+    return this.docuemntosService.genera_documento();
   }  
 
 

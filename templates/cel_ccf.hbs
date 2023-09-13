@@ -110,7 +110,11 @@
         }
 
         .col4 {
-            width: 28%;
+                {
+                    {
+                    porc_descripcion
+                }
+            }
         }
 
         .col5,
@@ -122,18 +126,22 @@
         .col8,
         .col9,
         .col10 {
-            width: 11%;
+            width: 10%;
+        }
+
+        .colXL {
+            width: 70%;
         }
 
         .colxxx1 {
             width: 67%;
-        }		
+        }
 
         .colxxx2 {
             width: 33%;
-        }		
-		
-		
+        }
+
+
         th,
         td {
             border: 0px solid #ddd;
@@ -259,8 +267,6 @@
                         <tbody>
                             <tr>
                                 <td align="left" valign="top"
-
-
                                     style="background-color: #fafafa; border: 1px solid #ddd; padding: 1px; padding-left: 0.5em; letter-spacing: 0.3px; width: 42%; font-size: small;">
                                     <p class="tamanio_02"><strong>EMISOR</strong></p>
                                     <p class="tamanio_04"><b>{{emisor.nombre}}</b><br>
@@ -279,14 +285,21 @@
                                 <td align="left" valign="top"
                                     style="background-color: #fafafa; border: 1px solid #ddd; padding: 1px; padding-left: 0.5em; letter-spacing: 0.3px; width: 42%; font-size: small;">
                                     <p class="tamanio_02"><strong>RECEPTOR</strong></p>
+
+                                    {{#if receptor}}
                                     {{{receptor}}}
+                                    {{else}}
+                                    <p>no existe receptor</p>
+                                    {{/if}}
+
                                 </td>
                             </tr>
                         </tbody>
                     </table>
 
 
-                    <table class="table-cuerpo-factura" border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 0px;">
+                    <table class="table-cuerpo-factura" border="0" cellpadding="0" cellspacing="0"
+                        style="width: 100%; margin-bottom: 0px;">
                         <tbody>
                             <tr style="background-color: #fafafa;border: 1px solid #ddd; font-size: small;">
                                 <td class="col1" style="text-align: center;">
@@ -307,9 +320,10 @@
                                 <td class="col6" style="text-align: center;">
                                     <p class="tamanio_05"><b>Descuento por ítem</b></p>
                                 </td>
-                                <td class="col7" style="text-align: center;">
-                                    <p class="tamanio_05"><b>Otros Montos no afectados</b></p>
-                                </td>
+
+                                <!--  SE MUESTRA O NO LA COLUMNA DEL IVA PERSIBIDO  -->
+                                {{{noGravadoEtiqueta}}}
+                                <!--  -->
                                 <td class="col8" style="text-align: center;">
                                     <p class="tamanio_05"><b>Ventas no Sujetas</b></p>
                                 </td>
@@ -322,7 +336,7 @@
                             </tr>
 
                             {{#each cuerpoDocumento as |cuerpodoc|}}
-                            <tr style="font-size: small; font-size: small;">
+                            <tr class="table-cuerpo-factura" style="font-size: small; font-size: small;">
                                 <td class="col1" style="text-align: center;">
                                     <p class="tamanio_05">{{cuerpodoc.numItem}}</p>
                                 </td>
@@ -341,9 +355,15 @@
                                 <td style="text-align: right;">
                                     <p class="tamanio_05">{{formatNumber_Moneda cuerpodoc.montoDescu}}</p>
                                 </td>
-                                <td style="text-align: right;">
-                                    <p class="tamanio_05">{{formatNumber_Moneda cuerpodoc.noGravado}}</p>
-                                </td>
+
+                                {{#if (isDefined cuerpodoc.noGravado)}}
+                                {{> columnaNoGravado01}}
+                                {{formatNumber_Moneda cuerpodoc.noGravado}}
+                                {{> columnaNoGravado02}}
+                                {{else}}
+                                <p>no existe</p>
+                                {{/if}}
+
                                 <td style="text-align: right;">
                                     <p class="tamanio_05">{{formatNumber_Moneda cuerpodoc.ventaNoSuj}}</p>
                                 </td>
@@ -358,51 +378,35 @@
 
                         </tbody>
                     </table>
-                    <table class="table-cuerpo-factura" border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 0px; font-size: small;">
-                       <tbody>
-                        <tr style="font-size: small">
-                            <td class="col1" style="text-align: center;">
-                                <p class="tamanio_05">&nbsp;</p>
-                            </td>
-                            <td class="col2" style="text-align: center;">
-                                <p class="tamanio_05">&nbsp;</p>
-                            </td>
-                            <td class="col3" style="text-align: center;">
-                                <p class="tamanio_05">&nbsp;</p>
-                            </td>
-                            <td class="col4" style="text-align: left;">
-                                <p class="tamanio_05">&nbsp;</p>
-                            </td>
-                            <td class="col5" style="text-align: right;">
-                                <p class="tamanio_05">&nbsp;</p>
-                            </td>
-                            <td class="col6" style="text-align: right; padding-right: 0.3em">
-                                <p class="tamanio_05"><strong>SUMA DE</strong></p>
-                            </td>
-                            <td class="col7" style="text-align: left">
-                            	<p class="tamanio_05"><strong>VENTAS:</strong></p>
-                            </td>
-                            <td class="col8" style="text-align: right;">
-                                <p class="tamanio_05">{{formatNumber_Moneda resumen.totalNoSuj}}</p>
-                            </td>
-                            <td class="col9" style="text-align: right;">
-                                <p class="tamanio_05">{{formatNumber_Moneda resumen.totalExenta}}</p>
-                            </td>
-                            <td class="col10" style="text-align: right; padding-right: 0.5em;">
-                                <p class="tamanio_05">{{formatNumber_Moneda resumen.totalGravada}}</p>
-                            </td>
-                        </tr>
+                    <table class="table-cuerpo-factura" border="0" cellpadding="0" cellspacing="0"
+                        style="width: 100%; margin-bottom: 0px; font-size: small;">
+                        <tbody>
+                            <tr style="font-size: small">
+                                <td class="colXL" style="text-align: right; padding-right: 0.5em;">
+                                    <p class="tamanio_05"><strong>SUMA DE VENTAS:</strong></p>
+                                </td>
+                                <td class="col8" style="text-align: right;">
+                                    <p class="tamanio_05">{{formatNumber_Moneda resumen.totalNoSuj}}</p>
+                                </td>
+                                <td class="col9" style="text-align: right;">
+                                    <p class="tamanio_05">{{formatNumber_Moneda resumen.totalExenta}}</p>
+                                </td>
+                                <td class="col10" style="text-align: right; padding-right: 0.5em;">
+                                    <p class="tamanio_05">{{formatNumber_Moneda resumen.totalGravada}}</p>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
 
                     <hr size="2px" color="1b1c37">
 
 
-                    <table class="table-cuerpo-factura" border="1" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 5px; font-size: small;">
+                    <table class="table-cuerpo-factura" border="1" cellpadding="0" cellspacing="0"
+                        style="width: 100%; margin-bottom: 5px; font-size: small;">
                         <tbody>
                             <tr>
                                 <td class="colxxx1" align="right">
-                                	<p class="tamanio_04"><strong>{{{descTot01}}}</strong></p>
+                                    <p class="tamanio_04"><strong>{{{descTot01}}}</strong></p>
                                 </td>
                                 <td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
                                     <p class="tamanio_04">{{formatNumber_Moneda resumen.subTotalVentas}}</p>
@@ -410,7 +414,8 @@
                             </tr>
                             <tr>
                                 <td class="colxxx1" align="right">
-                                    <p class="tamanio_04"><b>Monto Global Desc., Rebajas y otros a ventas no sujetas:</b></p>
+                                    <p class="tamanio_04"><b>Monto Global Desc., Rebajas y otros a ventas no
+                                            sujetas:</b></p>
                                 </td>
                                 <td class="colxx2" style="text-align: right; padding-right: 0.5em;">
                                     <p class="tamanio_04">{{formatNumber_Moneda resumen.descuNoSuj}}</p>
@@ -434,30 +439,19 @@
                                     <p class="tamanio_04">{{formatNumber_Moneda resumen.descuGravada}}</p>
                                 </td>
                             </tr>
+
+                            {{#each resumen.tributos}}
                             <tr>
                                 <td class="colxxx1" align="right">
-                                    <p class="tamanio_04"><b>Nombre del Tributo:</b></p>
+                                    <p class="tamanio_04"><b>{{this.descripcion}}</b></p>
                                 </td>
                                 <td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
                                     <p class="tamanio_04">
-                                        {{#each resumen.tributos}}
-                                        {{this.descripcion}}
-                                        {{/each}}
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="colxx1" align="right">
-                                    <p class="tamanio_04"><b>Valor del Tributo:</b></p>
-                                </td>
-                                <td colspan="3" style="text-align: right; padding-right: 0.5em;">
-                                    <p class="tamanio_04">
-                                        {{#each resumen.tributos}}
                                         {{formatNumber_Moneda this.valor}}
-                                        {{/each}}
                                     </p>
                                 </td>
                             </tr>
+                            {{/each}}
                             <tr>
                                 <td class="colxxx1" align="right">
                                     <p class="tamanio_04"><b>Sub-Total:</b></p>
@@ -467,7 +461,7 @@
                                 </td>
                             </tr>
                             <!--  SE MUESTRA O NO LA COLUMNA DEL IVA PERSIBIDO  -->
-                                    {{{ivaPercibido}}}
+                            {{{ivaPercibido}}}
                             <!--      -->
                             <tr>
                                 <td class="colxxx1" align="right">
@@ -493,26 +487,17 @@
                                     <p class="tamanio_04">{{formatNumber_Moneda resumen.montoTotalOperacion}}</p>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="colxxx1" align="right">
-                                    <p class="tamanio_04"><b>Total Otros montos no afectados:</b></p>
-                                </td>
-                                <td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
-                                    <p class="tamanio_04">{{formatNumber_Moneda resumen.totalNoGravado}}</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="colxxx1" align="right">
-                                    <p class="tamanio_04"><b>Total a Pagar:</b></p>
-                                </td>
-                                <td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
-                                    <p class="tamanio_04">{{formatNumber_Moneda resumen.totalPagar}}</p>
-                                </td>
-                            </tr>
+                            <!--  SE MUESTRA O NO LA COLUMNA DEL IVA PERSIBIDO  -->
+                            {{{totalNoGravado}}}
+                            <!--      -->
+                            <!--  SE MUESTRA O NO LA COLUMNA DEL IVA PERSIBIDO  -->
+                            {{{totalPagar}}}
+                            <!--      -->
                         </tbody>
                     </table>
 
-                    <table class="order-detail" border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 2px; font-size: small;">
+                    <table class="order-detail" border="0" cellpadding="0" cellspacing="0"
+                        style="width: 100%; margin-bottom: 2px; font-size: small;">
                         <tbody>
                             <tr style="background-color: #fafafa;border: 1px solid #ddd;">
                                 <td style="width: 15%; text-align: right;">
@@ -540,7 +525,8 @@
                         </tbody>
                     </table>
 
-                    <table class="order-detail" border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 2px; font-size: small;">
+                    <table class="order-detail" border="0" cellpadding="0" cellspacing="0"
+                        style="width: 100%; margin-bottom: 2px; font-size: small;">
                         <tbody>
                             <tr style="background-color: #fafafa;border: 1px solid #ddd;">
                                 <td style="width: 35%; text-align: right;">
@@ -574,13 +560,14 @@
                     </table>
 
 
-                    <table class="order-detail" border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 2px; font-size: small;">
+                    <table class="order-detail" border="0" cellpadding="0" cellspacing="0"
+                        style="width: 100%; margin-bottom: 2px; font-size: small;">
                         <tbody>
-							<tr>
-								<td colspan="4" style="text-align: left; padding-left: 0.5em;">
-								<p class="tamanio_04"><b>APENDICES</b></p>
-								</td>
-							</tr>
+                            <tr>
+                                <td colspan="4" style="text-align: left; padding-left: 0.5em;">
+                                    <p class="tamanio_04"><b>APENDICES</b></p>
+                                </td>
+                            </tr>
                             <tr style="background-color: #fafafa;border: 1px solid #ddd;">
                                 <td style="width: 35%; text-align: right;">
                                     <p class="tamanio_04"><b>&nbsp;</b></p>
@@ -610,8 +597,8 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>                
-                
+                    </table>
+
 
                 </td>
             </tr>
