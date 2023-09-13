@@ -39,7 +39,7 @@ export class DocumentosService {
     const qr = require('qrcode');
 
     //ARCHIVO JSON////////////////////////////////
-    const nombre_json = 'documento_cel_01.json';
+    const nombre_json = 'documento_cel_05.json';
     //////////////////////////////////////////////
 
     // Ruta del archivo JSON
