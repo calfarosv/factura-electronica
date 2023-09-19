@@ -254,7 +254,7 @@
                                         <b>Tipo de Transmisión:</b><br>
                                         456<br>
                                         <b>Fecha y hora de Generación:</b><br>
-                                        {{identificacion.fecEmi}} {{identificacion.horEmi}}
+                                        {{formatDate identificacion.fecEmi}} {{identificacion.horEmi}}
                                     </p>
 
                                 </td>
@@ -297,6 +297,21 @@
                         </tbody>
                     </table>
 
+				
+					{{#if venta_terceros}}
+						{{{venta_terceros}}}
+					{{/if}}
+                                        
+                                                                                
+					{{#if documentos_relacionados}}
+						{{{documentos_relacionados}}}
+					{{/if}}
+
+                    
+					{{#if otros_documentos}}
+						{{{otros_documentos}}}
+					{{/if}}
+
 
                     <table class="table-cuerpo-factura" border="0" cellpadding="0" cellspacing="0"
                         style="width: 100%; margin-bottom: 0px;">
@@ -321,7 +336,7 @@
                                     <p class="tamanio_05"><b>Descuento por ítem</b></p>
                                 </td>
 
-                                <!--  SE MUESTRA O NO LA COLUMNA DEL IVA PERSIBIDO  -->
+                                <!--  SE MUESTRA O NO LA COLUMNA DEL IVA PERCIBIDO  -->
                                 {{{noGravadoEtiqueta}}}
                                 <!--  -->
                                 <td class="col8" style="text-align: center;">
@@ -466,7 +481,7 @@
                                     <p class="tamanio_04">{{formatNumber_Moneda resumen.subTotal}}</p>
                                 </td>
                             </tr>
-                            <!--  SE MUESTRA O NO LA COLUMNA DEL IVA PERSIBIDO  -->
+                            <!--  SE MUESTRA O NO LA COLUMNA DEL IVA PERCIBIDO  -->
                             {{{ivaPercibido}}}
                             <!--      -->
                             <tr>
@@ -493,10 +508,10 @@
                                     <p class="tamanio_04">{{formatNumber_Moneda resumen.montoTotalOperacion}}</p>
                                 </td>
                             </tr>
-                            <!--  SE MUESTRA O NO LA COLUMNA DEL IVA PERSIBIDO  -->
+                            <!--  SE MUESTRA O NO LA COLUMNA DEL IVA PERCIBIDO  -->
                             {{{totalNoGravado}}}
                             <!--      -->
-                            <!--  SE MUESTRA O NO LA COLUMNA DEL IVA PERSIBIDO  -->
+                            <!--  SE MUESTRA O NO LA COLUMNA DEL IVA PERCIBIDO  -->
                             {{{totalPagar}}}
                             <!--      -->
                         </tbody>
@@ -531,79 +546,14 @@
                         </tbody>
                     </table>
 
-                    <table class="order-detail" border="0" cellpadding="0" cellspacing="0"
-                        style="width: 100%; margin-bottom: 2px; font-size: small;">
-                        <tbody>
-                            <tr style="background-color: #fafafa;border: 1px solid #ddd;">
-                                <td style="width: 35%; text-align: right;">
-                                    <p class="tamanio_04"><b>Responsable por parte del Emisor: </b></p>
-                                </td>
-                                <td style="width: 25%; text-align: left; padding-left: 0.5em;">
-                                    <p class="tamanio_04">&nbsp;</p>
-                                </td>
-                                <td style="width: 20%; text-align: right;">
-                                    <p class="tamanio_04"><b>No. de Documento: </b></p>
-                                </td>
-                                <td style="width: 20%; text-align: left; padding-left: 0.5em;">
-                                    <p class="tamanio_04">&nbsp;</p>
-                                </td>
-                            </tr>
-                            <tr style="background-color: #fafafa;border: 1px solid #ddd;">
-                                <td style="width: 35%; text-align: right;">
-                                    <p class="tamanio_04"><b>Responsable por parte del Receptor: </b></p>
-                                </td>
-                                <td style="width: 25%; text-align: left; padding-left: 0.5em;">
-                                    <p class="tamanio_04">&nbsp;</p>
-                                </td>
-                                <td style="width: 20%; text-align: right;">
-                                    <p class="tamanio_04"><b>No. de Documento: </b></p>
-                                </td>
-                                <td style="width: 20%; text-align: left; padding-left: 0.5em;">
-                                    <p class="tamanio_04">&nbsp;</p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+					{{#if extension}}
+						{{{extension}}}
+					{{/if}}
 
 
-                    <table class="order-detail" border="0" cellpadding="0" cellspacing="0"
-                        style="width: 100%; margin-bottom: 2px; font-size: small;">
-                        <tbody>
-                            <tr>
-                                <td colspan="4" style="text-align: left; padding-left: 0.5em;">
-                                    <p class="tamanio_04"><b>APENDICES</b></p>
-                                </td>
-                            </tr>
-                            <tr style="background-color: #fafafa;border: 1px solid #ddd;">
-                                <td style="width: 35%; text-align: right;">
-                                    <p class="tamanio_04"><b>&nbsp;</b></p>
-                                </td>
-                                <td style="width: 25%; text-align: left; padding-left: 0.5em;">
-                                    <p class="tamanio_04">&nbsp;</p>
-                                </td>
-                                <td style="width: 20%; text-align: right;">
-                                    <p class="tamanio_04"><b>&nbsp;</b></p>
-                                </td>
-                                <td style="width: 20%; text-align: left; padding-left: 0.5em;">
-                                    <p class="tamanio_04">&nbsp;</p>
-                                </td>
-                            </tr>
-                            <tr style="background-color: #fafafa;border: 1px solid #ddd;">
-                                <td style="width: 35%; text-align: right;">
-                                    <p class="tamanio_04"><b>&nbsp;</b></p>
-                                </td>
-                                <td style="width: 25%; text-align: left; padding-left: 0.5em;">
-                                    <p class="tamanio_04">&nbsp;</p>
-                                </td>
-                                <td style="width: 20%; text-align: right;">
-                                    <p class="tamanio_04"><b>&nbsp;</b></p>
-                                </td>
-                                <td style="width: 20%; text-align: left; padding-left: 0.5em;">
-                                    <p class="tamanio_04">&nbsp;</p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+					{{#if apendice}}
+						{{{apendice}}}
+					{{/if}}
 
 
                 </td>
