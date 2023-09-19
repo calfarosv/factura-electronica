@@ -172,7 +172,7 @@ export class DocumentosService {
       }
     }
  
-
+/*
     console.log('ven_TER: ' + ven_TER);
     console.log('doc_REL: ' + doc_REL);
     console.log('otr_DOC: ' + otr_DOC);
@@ -180,7 +180,7 @@ export class DocumentosService {
     console.log('dre_TGE: ' + dre_TGE);
     console.log('dre_NDO: ' + dre_NDO);
     console.log('dre_FEE: ' + dre_FEE);
-
+*/
     /////////////////////////////////////////////////
     //---- DATOS PARA TIPO DTE 01 - FACTURA
     /////////////////////////////////////////////////
