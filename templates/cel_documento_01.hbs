@@ -218,12 +218,58 @@
                                 <p class="tamanio_02"><strong>DOCUMENTO TRIBUTARIO ELECTRÓNICO</strong></p>
                             </td>
                             <td rowspan="2" style="width: 20%; text-align: center;">
-                                <p class="tamanio_04">{{version}}</p>
+                                <p class="tamanio_04">Ver. {{identificacion.version}}</p>
                             </td>
                         </tr>
                         <tr>
                             <td style="text-align: center;">
-                                <p class="tamanio_02"><strong>{{nombre_doc}}</strong></p>
+                               
+								{{#isEqual identificacion.tipoDte "01"}}
+								  <p class="tamanio_02"><strong>FACTURA</strong></p>
+								{{else}}
+								  {{#isEqual identificacion.tipoDte "03"}}
+									<p class="tamanio_02"><strong>COMPROBANTE DE CRÉDITO FISCAL</strong></p>
+								  {{else}}
+									{{#isEqual identificacion.tipoDte "04"}}
+									  <p class="tamanio_02"><strong>NOTA DE REMISIÓN</strong></p>
+									{{else}}
+									  {{#isEqual identificacion.tipoDte "05"}}
+										<p class="tamanio_02"><strong>NOTA DE CRÉDITO</strong></p>
+									  {{else}}
+										{{#isEqual identificacion.tipoDte "06"}}
+										  <p class="tamanio_02"><strong>NOTA DE DÉBITO</strong></p>
+										{{else}}
+										  {{#isEqual identificacion.tipoDte "07"}}
+											<p class="tamanio_02"><strong>COMPROBANTE DE RETENCIÓN</strong></p>
+										  {{else}}
+											{{#isEqual identificacion.tipoDte "08"}}
+											  <p class="tamanio_02"><strong>COMPROBANTE DE LIQUIDACIÓN</strong></p>
+											{{else}}
+											  {{#isEqual identificacion.tipoDte "09"}}
+												<p class="tamanio_02"><strong>DOCUMENTO CONTABLE DE LIQUIDACIÓN</strong></p>
+											  {{else}}
+												{{#isEqual identificacion.tipoDte "11"}}
+												  <p class="tamanio_02"><strong>FACTURAS DE EXPORTACIÓN</strong></p>
+												{{else}}
+												  {{#isEqual identificacion.tipoDte "14"}}
+													<p class="tamanio_02"><strong>FACTURA DE SUJETO EXCLUIDO</strong></p>
+												  {{else}}
+													{{#isEqual identificacion.tipoDte "15"}}
+													  <p class="tamanio_02"><strong>COMPROBANTE DE DONACIÓN</strong></p>
+													{{else}}
+													  <p class="tamanio_02"><strong>NO DEFINIDO</strong></p>
+													{{/isEqual}}
+												  {{/isEqual}}
+												{{/isEqual}}
+											  {{/isEqual}}
+											{{/isEqual}}
+										  {{/isEqual}}
+										{{/isEqual}}
+									  {{/isEqual}}
+									{{/isEqual}}
+								  {{/isEqual}}
+								{{/isEqual}}
+                               
                             </td>
                         </tr>
 
@@ -272,11 +318,12 @@
                                     <p class="tamanio_04"><b>{{emisor.nombre}}</b><br>
                                         NIT: <b>{{emisor.nit}}</b><br>
                                         NRC: <b>{{emisor.nrc}}</b><br>
-                                        NRC: <b>{{emisor.descActividad}}</b><br>
+                                        Actividad económica: <b>{{emisor.descActividad}}</b><br>
                                         <b>{{emisor.direccion.complemento}}</b><br>
                                         TEL: <b>{{emisor.telefono}}</b><br>
                                         Correo electrónico: <b>{{emisor.correo}}</b><br>
-                                        Establecimiento: <b>{{emisor.nombreComercial}}</b><br>
+                                        Nombre Comercial: <b>{{emisor.nombreComercial}}</b><br>
+                                        Tipo Establecimiento: <b>{{tipoEstablecimiento}}</b><br>
                                     </p>
                                 </td>
                                 <td style="text-align: center;width: 16%">
@@ -286,11 +333,93 @@
                                     style="background-color: #fafafa; border: 1px solid #ddd; padding: 1px; padding-left: 0.5em; letter-spacing: 0.3px; width: 42%; font-size: small;">
                                     <p class="tamanio_02"><strong>RECEPTOR</strong></p>
 
-                                    {{#if receptor}}
-                                    {{{receptor}}}
-                                    {{else}}
-                                    <p>no existe receptor</p>
-                                    {{/if}}
+									{{#isEqual identificacion.tipoDte "01"}}
+										<p>TIPO 01</p>
+										<p class="tamanio_04">Nombre o razón social: <b>{{receptor.nombre}}</b><br>
+										  Tipo de Doc. de Ide.: <b>{{receptor.tipoDocumento}}</b><br>
+										  No. Doc. de Ide.: <b>{{receptor.numDocumento}}</b><br>
+										  Correo electrónico: <b>{{receptor.correo}}</b><br>
+										  Nombre Comercial: <b>{{receptor.nombre}}</b><br>
+										</p>
+									{{else}}
+									  {{#isEqual identificacion.tipoDte "03"}}
+											<p>TIPO 03</p>
+											<p class="tamanio_04">Nombre o razón social: <b>{{receptor.nombre}}</b><br>
+											  NIT: <b>{{receptor.nit}}</b><br>
+											  NRC: <b>{{receptor.nrc}}</b><br>
+											  ACTIVIDAD: <b>{{receptor.descActividad}}</b><br>
+											  <b>{{receptor.direccion.complemento}}</b><br>
+											  TEL: <b>{{receptor.telefono}}</b><br>
+											  Correo electrónico: <b>{{receptor.correo}}</b><br>
+											  Establecimiento: <b>{{receptor.nombreComercial}}</b><br>
+											</p>
+									  {{else}}
+										{{#isEqual identificacion.tipoDte "04"}}
+											 <p>TIPO 04</p>
+										{{else}}
+										  {{#isEqual identificacion.tipoDte "05"}}
+											  <p>TIPO 05</p>
+											  <p class="tamanio_04">Nombre o razón social: <b>{{receptor.nombre}}</b><br>
+											    NIT: <b>{{receptor.nit}}</b><br>
+											    NRC: <b>{{receptor.nrc}}</b><br>
+											    ACTIVIDAD: <b>{{receptor.descActividad}}</b><br>
+											    <b>{{receptor.direccion.complemento}}</b><br>
+											    TEL: <b>{{receptor.telefono}}</b><br>
+											    Correo electrónico: <b>{{receptor.correo}}</b><br>
+											    Establecimiento: <b>{{receptor.nombreComercial}}</b><br>
+											  </p>
+										  {{else}}
+											{{#isEqual identificacion.tipoDte "06"}}
+												  <p>TIPO 06</p>
+												  <p class="tamanio_04">Nombre o razón social: <b>{{receptor.nombre}}</b><br>
+													NIT: <b>{{receptor.nit}}</b><br>
+													NRC: <b>{{receptor.nrc}}</b><br>
+													ACTIVIDAD: <b>{{receptor.descActividad}}</b><br>
+													<b>{{receptor.direccion.complemento}}</b><br>
+													TEL: <b>{{receptor.telefono}}</b><br>
+													Correo electrónico: <b>{{receptor.correo}}</b><br>
+													Establecimiento: <b>{{receptor.nombreComercial}}</b><br>
+												  </p>
+											{{else}}
+											  {{#isEqual identificacion.tipoDte "07"}}
+												  <p>TIPO 07</p>
+												  <p class="tamanio_04">Nombre o razón social: <b>{{receptor.nombre}}</b><br>
+													NIT: <b>{{receptor.nit}}</b><br>
+													NRC: <b>{{receptor.nrc}}</b><br>
+													ACTIVIDAD: <b>{{receptor.descActividad}}</b><br>
+													<b>{{receptor.direccion.complemento}}</b><br>
+													TEL: <b>{{receptor.telefono}}</b><br>
+													Correo electrónico: <b>{{receptor.correo}}</b><br>
+													Establecimiento: <b>{{receptor.nombreComercial}}</b><br>
+												  </p>
+											  {{else}}
+												{{#isEqual identificacion.tipoDte "08"}}
+											  		<p>TIPO 08</p>
+												{{else}}
+												  {{#isEqual identificacion.tipoDte "09"}}
+											  		  <p>TIPO 09</p>
+												  {{else}}
+													{{#isEqual identificacion.tipoDte "11"}}
+											  			<p>TIPO 11</p>
+													{{else}}
+													  {{#isEqual identificacion.tipoDte "14"}}
+											  			  <p>TIPO 14</p>
+													  {{else}}
+														{{#isEqual identificacion.tipoDte "15"}}
+											  			  	<p>TIPO 15</p>
+														{{else}}
+														  <p>No existe receptor</p>
+														{{/isEqual}}
+													  {{/isEqual}}
+													{{/isEqual}}
+												  {{/isEqual}}
+												{{/isEqual}}
+											  {{/isEqual}}
+											{{/isEqual}}
+										  {{/isEqual}}
+										{{/isEqual}}
+									  {{/isEqual}}
+									{{/isEqual}}
 
                                 </td>
                             </tr>
@@ -298,18 +427,88 @@
                     </table>
 
 				
-					{{#if venta_terceros}}
-						{{{venta_terceros}}}
+					{{#if ventaTercero}}
+						<table class="order-detail" border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 2px; font-size: small;">
+						  <tbody>
+							  <tr>
+								  <td colspan="4" style="text-align: center">
+									  <p class="tamanio_04"><b>VENTA A CUENTA DE TERCEROS</b></p>
+								  </td>
+							  </tr>
+							  <tr style="background-color: #fafafa;border: 1px solid #ddd;">
+								<td style="width: 15%; text-align: right; padding-right: 0.5em;">
+									  <p class="tamanio_04"><b>NIT:</b></p>
+								  </td>
+								  <td style="width: 25%; text-align: left; padding-left: 0.5em;">
+									  <p class="tamanio_04">&nbsp;</p>
+								  </td>
+								  <td style="width: 25%; text-align: right; padding-right: 0.5em;">
+									  <p class="tamanio_04"><b>Nombre, denominación o razón social:</b></p>
+								  </td>
+								  <td style="width: 35%; text-align: left; padding-left: 0.5em;">
+									  <p class="tamanio_04">&nbsp;</p>
+								  </td>
+							  </tr>
+						  </tbody>
+					  </table>
 					{{/if}}
                                         
                                                                                 
-					{{#if documentos_relacionados}}
-						{{{documentos_relacionados}}}
+					{{#if documentoRelacionado}}
+					  <table class="order-detail" border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 2px; font-size: small;">
+						<tbody>
+							<tr>
+								<td colspan="6" style="text-align: center">
+									<p class="tamanio_04"><b>DOCUMENTOS RELACIONADOS</b></p>
+								</td>
+							</tr>
+							<tr style="background-color: #fafafa;border: 1px solid #ddd;">
+								<td style="width: 15%; text-align: right; padding-right: 0.5em;">
+									<p class="tamanio_04"><b>Tipo de documento:</b></p>
+								</td>
+								<td style="width: 15%; text-align: left; padding-left: 0.5em;">
+									<p class="tamanio_04">{{documentoRelacionado.[0].tipoDocumento}}</p>
+								</td>
+								<td style="width: 20%; text-align: right; padding-right: 0.5em;">
+									<p class="tamanio_04"><b>No. de documento:</b></p>
+								</td>
+								<td style="width: 20%; text-align: left; padding-left: 0.5em;">
+									<p class="tamanio_04">{{documentoRelacionado.[0].numeroDocumento}}</p>
+								</td>
+								<td style="width: 15%; text-align: right; padding-right: 0.5em;">
+									<p class="tamanio_04"><b>Fecha del documento:</b></p>
+								</td>
+								<td style="width: 15%; text-align: left; padding-left: 0.5em;">
+									<p class="tamanio_04">{{documentoRelacionado.[0].fechaEmision}}</p>
+								</td>
+						  </tr>
+						</tbody>
+					  </table>
 					{{/if}}
 
                     
-					{{#if otros_documentos}}
-						{{{otros_documentos}}}
+					{{#if otrosDocumentos}}
+					  <table class="order-detail" border="0" cellpadding="0" cellspacing="0"  style="width: 100%; margin-bottom: 2px; font-size: small;">
+						<tbody>
+							<tr>
+								<td colspan="4" style="text-align: center">
+									<p class="tamanio_04"><b>OTROS DOCUMENTOS ASOCIADOS</b></p>
+								</td>
+							</tr>
+							  <td style="width: 15%; text-align: right; padding-right: 0.5em;">
+									<p class="tamanio_04"><b>Identificación documento:</b></p>
+								</td>
+								<td style="width: 25%; text-align: left; padding-left: 0.5em;">
+									<p class="tamanio_04">&nbsp;</p>
+								</td>
+								<td style="width: 15%; text-align: right; padding-right: 0.5em;">
+									<p class="tamanio_04"><b>Descripción:</b></p>
+								</td>
+								<td style="width: 45%; text-align: left; padding-left: 0.5em;">
+									<p class="tamanio_04">&nbsp;</p>
+								</td>
+						</tbody>
+					  </table>  
 					{{/if}}
 
 
@@ -517,17 +716,16 @@
                         </tbody>
                     </table>
 
-                    <table class="order-detail" border="0" cellpadding="0" cellspacing="0"
-                        style="width: 100%; margin-bottom: 2px; font-size: small;">
+                    <table class="order-detail" border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 2px; font-size: small;">
                         <tbody>
                             <tr style="background-color: #fafafa;border: 1px solid #ddd;">
-                                <td style="width: 15%; text-align: right;">
+                                <td style="width: 15%; text-align: right; padding-right: 0.5em;">
                                     <p class="tamanio_04"><b>Valor en Letras: </b></p>
                                 </td>
                                 <td style="width: 50%; text-align: left;; padding-left: 0.5em;">
                                     <p class="tamanio_04">{{resumen.totalLetras}}</p>
                                 </td>
-                                <td style="width: 25%; text-align: right;">
+                                <td style="width: 25%; text-align: right; padding-right: 0.5em;">
                                     <p class="tamanio_04"><b>Condición de la Operación: </b></p>
                                 </td>
                                 <td style="width: 10%; text-align: left; padding-left: 0.5em;">
@@ -535,7 +733,7 @@
                                 </td>
                             </tr>
                             <tr style="background-color: #fafafa;border: 1px solid #ddd;">
-                                <td style="width: 15%; text-align: right;">
+                                <td style="width: 15%; text-align: right; padding-right: 0.5em;">
                                     <p class="tamanio_04"><b>Observaciones: </b></p>
                                 </td>
                                 <td colspan="3" style="width: 85%; text-align: left; padding-left: 0.5em;">
@@ -547,12 +745,79 @@
                     </table>
 
 					{{#if extension}}
-						{{{extension}}}
+						<table class="order-detail" border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 2px; font-size: small;">
+						<tbody>
+						  <tr style="background-color: #fafafa;border: 1px solid #ddd;">
+							<td style="width: 20%; text-align: right; padding-right: 0.5em;">
+							  <p class="tamanio_04"><b>Responsable por parte del Emisor: </b></p>
+							</td>
+							<td style="width: 45%; text-align: left; padding-left: 0.5em;">
+							  <p class="tamanio_04">{{extension.nombEntrega}}</p>
+							</td>
+							<td style="width: 15%; text-align: right; padding-right: 0.5em;">
+							  <p class="tamanio_04"><b>No. de Documento: </b></p>
+							</td>
+							<td style="width: 25%; text-align: left; padding-left: 0.5em;">
+							  <p class="tamanio_04">{{extension.docuEntrega}}</p>
+							</td>
+						  </tr>
+						  <tr style="background-color: #fafafa;border: 1px solid #ddd;">
+							<td style="width: 20%; text-align: right; padding-right: 0.5em;">
+							  <p class="tamanio_04"><b>Responsable por parte del Receptor: </b></p>
+							</td>
+							<td style="width: 40%; text-align: left; padding-left: 0.5em;">
+							  <p class="tamanio_04">{{extension.nombRecibe}}</p>
+							</td>
+							<td style="width: 15%; text-align: right; padding-right: 0.5em;">
+							  <p class="tamanio_04"><b>No. de Documento: </b></p>
+							</td>
+							<td style="width: 25%; text-align: left; padding-left: 0.5em;">
+							  <p class="tamanio_04">{{extension.docuRecibe}}</p>
+							</td>
+						  </tr>
+						</tbody>
+					  </table>
 					{{/if}}
 
 
 					{{#if apendice}}
-						{{{apendice}}}
+						<table class="order-detail" border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 2px; font-size: small;">
+						  <tbody>
+							  <tr>
+								  <td colspan="4" style="text-align: left; padding-left: 0.5em;">
+									  <p class="tamanio_04"><b>APENDICES</b></p>
+								  </td>
+							  </tr>
+							  <tr style="background-color: #fafafa;border: 1px solid #ddd;">
+								  <td style="width: 35%; text-align: right;">
+									  <p class="tamanio_04"><b>&nbsp;</b></p>
+								  </td>
+								  <td style="width: 25%; text-align: left; padding-left: 0.5em;">
+									  <p class="tamanio_04">&nbsp;</p>
+								  </td>
+								  <td style="width: 20%; text-align: right;">
+									  <p class="tamanio_04"><b>&nbsp;</b></p>
+								  </td>
+								  <td style="width: 20%; text-align: left; padding-left: 0.5em;">
+									  <p class="tamanio_04">&nbsp;</p>
+								  </td>
+							  </tr>
+							  <tr style="background-color: #fafafa;border: 1px solid #ddd;">
+								  <td style="width: 35%; text-align: right;">
+									  <p class="tamanio_04"><b>&nbsp;</b></p>
+								  </td>
+								  <td style="width: 25%; text-align: left; padding-left: 0.5em;">
+									  <p class="tamanio_04">&nbsp;</p>
+								  </td>
+								  <td style="width: 20%; text-align: right;">
+									  <p class="tamanio_04"><b>&nbsp;</b></p>
+								  </td>
+								  <td style="width: 20%; text-align: left; padding-left: 0.5em;">
+									  <p class="tamanio_04">&nbsp;</p>
+								  </td>
+							  </tr>
+						  </tbody>
+					  </table>
 					{{/if}}
 
 

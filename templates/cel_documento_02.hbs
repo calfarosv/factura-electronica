@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/images/favicon/1.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/images/favicon/1.png" type="image/x-icon">
+    <title>SISDTE-CEL | Factura </title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+
+
+    <style type="text/css">
+        body {
+            text-align: center;
+            margin: 0 auto;
+            max-width: 950px;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #FFFFFF;
+            display: block;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            display: inline-block;
+            text-decoration: unset;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        p {
+            margin: 2px 0;
+        }
+
+        h5 {
+            color: #444;
+            text-align: left;
+            font-weight: 400;
+        }
+
+        p.tamanio_01 {
+            font-size: 1.4em;
+            line-height: 1.2em;
+        }
+
+        p.tamanio_02 {
+            font-size: 1em;
+            line-height: 1.4em;
+        }
+
+        p.tamanio_03 {
+            font-size: 0.95em;
+            line-height: 1.3em;
+        }
+
+        p.tamanio_04 {
+            font-size: 0.7em;
+            line-height: 1.3em;
+        }
+
+        p.tamanio_05 {
+            font-size: 0.66em;
+            line-height: 1.2em;
+        }
+
+        .text-center {
+            text-align: center
+        }
+
+        .main-bg-light {
+            background-color: #fafafa;
+        }
+
+        .title {
+            color: #444444;
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-bottom: 0;
+            text-transform: uppercase;
+            display: inline-block;
+            line-height: 1;
+        }
+
+        table {
+            margin-top: 10px;
+            table-layout: fixed;
+        }
+
+
+        .table-cuerpo-factura {
+            table-layout: fixed;
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        .col1,
+        .col2,
+        .col3 {
+            width: 6%;
+        }
+
+        .col4 {
+                {
+                    {
+                    porc_descripcion
+                }
+            }
+        }
+
+        .col5,
+        .col6,
+        .col7 {
+            width: 7%;
+        }
+
+        .col8,
+        .col9,
+        .col10 {
+            width: 10%;
+        }
+
+        .colXL {
+            width: 70%;
+        }
+
+        .colxxx1 {
+            width: 67%;
+        }
+
+        .colxxx2 {
+            width: 33%;
+        }
+
+
+        th,
+        td {
+            border: 0px solid #ddd;
+            padding: 0px;
+        }
+
+        .headt td {
+            height: 10px;
+        }
+
+        table.top-0 {
+            margin-top: 0;
+        }
+
+        table.order-detail {
+            border: 1px solid #ddd;
+            border-collapse: collapse;
+        }
+
+        table.order-detail tr:nth-child(even) {
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table.order-detail tr:nth-child(odd) {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .pad-left-right-space {
+            border: unset !important;
+        }
+
+        .pad-left-right-space td {
+            padding: 5px 15px;
+        }
+
+        .pad-left-right-space td p {
+            margin: 0;
+        }
+
+        .pad-left-right-space td b {
+            font-size: 15px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .order-detail th {
+            font-size: 16px;
+            padding: 15px;
+            text-align: center;
+            background: #fafafa;
+        }
+
+        .footer-social-icon tr td img {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body style="margin: 0px auto;">
+    <table border="0" cellpadding="0" cellspacing="0"
+        style="padding: 0 30px;background-color: #fff; -webkit-box-shadow: 0px 0px 14px -4px rgba(0, 0, 0, 0.2705882353);box-shadow: 0px 0px 14px -4px rgba(0, 0, 0, 0.2705882353);width: 100%;">
+        <tbody>
+            <tr>
+                <td>
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
+
+                        <tr>
+                            <td rowspan="2" style="width: 20%; text-align: center;">
+                                <img src="{{url}}assets/images/email-temp/logo-text.png" alt=""
+                                    style=" max-width: 150px ; max-height: 100px; ">
+                            </td>
+                            <td style="text-align: center;">
+                                <p class="tamanio_02"><strong>DOCUMENTO TRIBUTARIO ELECTRÓNICO</strong></p>
+                            </td>
+                            <td rowspan="2" style="width: 20%; text-align: center;">
+                                <p class="tamanio_04">{{version}}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">
+                                <p class="tamanio_02"><strong>{{nombre_doc}}</strong></p>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                    <table cellpadding="0" cellspacing="0" border="0" style="width: 100%;margin-top: 5px; margin-bottom: 2px;">
+                        <tbody>
+                            <tr>
+                                <td align="left" valign="top" style="background-color: #fafafa; border: 1px solid #ddd; padding: 1px; padding-left: 0.5em; letter-spacing: 0.3px; width: 42%; font-size: small;">
+                                    <p class="tamanio_04"><strong>Código de Generación:</strong><br>
+                                        {{identificacion.codigoGeneracion}}<br>
+                                        <strong>Número de Control:</strong><br>
+                                        {{identificacion.numeroControl}}<br>
+                                        <strong>Sello de Recepción:</strong><br>
+                                        789
+                                    </p>
+                                </td>
+                                <td style="width: 16%; text-align: center;">
+                                    <img src="{{url}}assets/images/email-temp/{{codigo_qr}}" alt=""
+                                        style=" max-width: 150px ; max-height: 100px; ">
+                                </td>
+                                <td align="left" valign="top"
+                                    style="background-color: #fafafa; border: 1px solid #ddd; padding: 1px; padding-left: 0.5em; letter-spacing: 0.3px; width: 42%; font-size: small;">
+                                    <p class="tamanio_04"><b>Modelo de Facturación:</b><br>
+                                        123<br>
+                                        <b>Tipo de Transmisión:</b><br>
+                                        456<br>
+                                        <b>Fecha y hora de Generación:</b><br>
+                                        {{formatDate identificacion.fecEmi}} {{identificacion.horEmi}}
+                                    </p>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    
+                                                            
+					<table cellpadding="0" cellspacing="0" border="0" style="width: 100%;margin-top: 5px; margin-bottom: 2px;">
+                      <tbody>
+						<tr style="background-color: #fafafa;border: 1px solid #ddd;">
+						  	<td colspan="6" align="center" valign="top" style="background-color: #fafafa; border: 1px solid #ddd; padding: 1px; padding-left: 0.5em; letter-spacing: 0.3px; width: 42%; font-size: small;">
+						  		<p class="tamanio_02"><strong>AGENTE DE RETENCIÓN</strong></p>
+							</td>
+						</tr>                        
+						<tr style="background-color: #fafafa;border: 1px solid #ddd; font-size: small;">
+						  <td style="width: 10%; text-align: right; padding-right: 0.5em;">
+						  <p class="tamanio_04"><b>Nombre o razón social:</b></p>
+						  </td>
+						  <td style="width: 23%; text-align: left;; padding-left: 0.5em;">
+						  <p class="tamanio_04">{{emisor.nombre}}<br>
+						  </td>
+						  <td style="width: 10%; text-align: right; padding-right: 0.5em;">
+						  <p class="tamanio_04"><b>Nombre Comercial:</b></p>
+						  </td>
+						  <td style="width: 23%; text-align: left;; padding-left: 0.5em;">
+						  <p class="tamanio_04">{{emisor.nombreComercial}}<br>
+						  </td>
+						  <td style="width: 10%; text-align: right; padding-right: 0.5em;">
+						  <p class="tamanio_04"><b>NIT:</b></p>
+						  </td>
+						  <td style="width: 23%; text-align: left;; padding-left: 0.5em;">
+						  <p class="tamanio_04">{{emisor.nit}}<br>
+						  </td>
+						</tr>
+						<tr style="background-color: #fafafa;border: 1px solid #ddd; font-size: small;">
+						  <td style="width: 10%; text-align: right; padding-right: 0.5em;">
+						  <p class="tamanio_04"><b>NRC:</b></p>
+						  </td>
+						  <td style="width: 23%; text-align: left;; padding-left: 0.5em;">
+						  <p class="tamanio_04">{{emisor.nrc}}<br>
+						  </td>
+						  <td style="width: 10%; text-align: right; padding-right: 0.5em;">
+						  <p class="tamanio_04"><b>Actividad económica:</b></p>
+						  </td>
+						  <td style="width: 23%; text-align: left;; padding-left: 0.5em;">
+						  <p class="tamanio_04">{{emisor.descActividad}}<br>
+						  </td>
+						  <td style="width: 10%; text-align: right; padding-right: 0.5em;">
+						  <p class="tamanio_04"><b>Dirección:</b></p>
+						  </td>
+						  <td style="width: 23%; text-align: left;; padding-left: 0.5em;">
+						  <p class="tamanio_04">{{emisor.direccion.complemento}}<br>
+						  </td>
+						</tr>
+						<tr style="background-color: #fafafa;border: 1px solid #ddd; font-size: small;">
+						  <td style="width: 10%; text-align: right; padding-right: 0.5em;">
+						  <p class="tamanio_04"><b>Número de teléfono:</b></p>
+						  </td>
+						  <td style="width: 23%; text-align: left;; padding-left: 0.5em;">
+						  <p class="tamanio_04">{{emisor.telefono}}<br>
+						  </td>
+						  <td style="width: 10%; text-align: right; padding-right: 0.5em;">
+						  <p class="tamanio_04"><b>Correo electrónico</b></p>
+						  </td>
+						  <td style="width: 23%; text-align: left;; padding-left: 0.5em;">
+						  <p class="tamanio_04">{{emisor.correo}}<br>
+						  </td>
+						  <td style="width: 10%; text-align: right; padding-right: 0.5em;">
+						  <p class="tamanio_04"><b>Tipo de establecimiento:</b></p>
+						  </td>
+						  <td style="width: 23%; text-align: left;; padding-left: 0.5em;">
+						  <p class="tamanio_04">{{emisor.tipoEstablecimiento}}<br>
+						  </td>
+						</tr>
+					  </tbody>
+					</table>
+
+
+					<table cellpadding="0" cellspacing="0" border="0" style="width: 100%;margin-top: 5px; margin-bottom: 2px;">
+                      <tbody>
+						<tr style="background-color: #fafafa;border: 1px solid #ddd;">
+						  	<td colspan="6" align="center" valign="top" style="background-color: #fafafa; border: 1px solid #ddd; padding: 1px; padding-left: 0.5em; letter-spacing: 0.3px; width: 42%; font-size: small;">
+						  		<p class="tamanio_02"><strong>SUJETO DE RETENCIÓN (RECEPTOR)</strong></p>
+							</td>
+						</tr>                        
+						<tr style="background-color: #fafafa;border: 1px solid #ddd; font-size: small;">
+						  <td style="width: 10%; text-align: right; padding-right: 0.5em;">
+						  <p class="tamanio_04"><b>Nombre o razón social:</b></p>
+						  </td>
+						  <td style="width: 23%; text-align: left;; padding-left: 0.5em;">
+						  <p class="tamanio_04">{{receptor.nombre}}<br>
+						  </td>
+						  <td style="width: 10%; text-align: right; padding-right: 0.5em;">
+						  <p class="tamanio_04"><b>Nombre Comercial:</b></p>
+						  </td>
+						  <td style="width: 23%; text-align: left;; padding-left: 0.5em;">
+						  <p class="tamanio_04">{{receptor.nombreComercial}}<br>
+						  </td>
+						  <td style="width: 10%; text-align: right; padding-right: 0.5em;">
+						  <p class="tamanio_04"><b>NIT:</b></p>
+						  </td>
+						  <td style="width: 23%; text-align: left;; padding-left: 0.5em;">
+						  <p class="tamanio_04">{{receptor.nit}}<br>
+						  </td>
+						</tr>
+						<tr style="background-color: #fafafa;border: 1px solid #ddd; font-size: small;">
+						  <td style="width: 10%; text-align: right; padding-right: 0.5em;">
+						  <p class="tamanio_04"><b>NRC:</b></p>
+						  </td>
+						  <td style="width: 23%; text-align: left;; padding-left: 0.5em;">
+						  <p class="tamanio_04">{{receptor.nrc}}<br>
+						  </td>
+						  <td style="width: 10%; text-align: right; padding-right: 0.5em;">
+						  <p class="tamanio_04"><b>Actividad económica:</b></p>
+						  </td>
+						  <td style="width: 23%; text-align: left;; padding-left: 0.5em;">
+						  <p class="tamanio_04">{{receptor.descActividad}}<br>
+						  </td>
+						  <td style="width: 10%; text-align: right; padding-right: 0.5em;">
+						  <p class="tamanio_04"><b>Dirección:</b></p>
+						  </td>
+						  <td style="width: 23%; text-align: left;; padding-left: 0.5em;">
+						  <p class="tamanio_04">{{receptor.direccion.complemento}}<br>
+						  </td>
+						</tr>
+						<tr style="background-color: #fafafa;border: 1px solid #ddd; font-size: small;">
+						  <td style="width: 10%; text-align: right; padding-right: 0.5em;">
+						  <p class="tamanio_04"><b>Número de teléfono:</b></p>
+						  </td>
+						  <td style="width: 23%; text-align: left;; padding-left: 0.5em;">
+						  <p class="tamanio_04">{{receptor.telefono}}<br>
+						  </td>
+						  <td style="width: 10%; text-align: right; padding-right: 0.5em;">
+						  <p class="tamanio_04"><b>Correo electrónico</b></p>
+						  </td>
+						  <td style="width: 23%; text-align: left;; padding-left: 0.5em;">
+						  <p class="tamanio_04">{{receptor.correo}}<br>
+						  </td>
+						  <td style="width: 10%; text-align: right; padding-right: 0.5em;">
+						  <p class="tamanio_04"><b>Tipo de establecimiento:</b></p>
+						  </td>
+						  <td style="width: 23%; text-align: left;; padding-left: 0.5em;">
+						  <p class="tamanio_04">{{receptor.nombreComercial}}<br>
+						  </td>
+						</tr>
+					  </tbody>
+					</table>
+				
+
+
+                    <table class="table-cuerpo-factura" border="0" cellpadding="0" cellspacing="0"
+                        style="width: 100%; margin-bottom: 0px;">
+                        <tbody>
+                            <tr style="background-color: #fafafa;border: 1px solid #ddd; font-size: small;">
+                                <td class="col1" style="text-align: center;">
+                                    <p class="tamanio_05"><strong>No</strong></p>
+                                </td>
+                                <td class="col2" style="text-align: center;">
+                                    <p class="tamanio_05"><b>Cantidad</b></p>
+                                </td>
+                                <td class="col3" style="text-align: center;">
+                                    <p class="tamanio_05"><strong>Unidad</strong></p>
+                                </td>
+                                <td class="col4" style="text-align: center;">
+                                    <p class="tamanio_05"><b>Descripción</b></p>
+                                </td>
+                                <td class="col5" style="text-align: center;">
+                                    <p class="tamanio_05"><b>Precio Unitario</b></p>
+                                </td>
+                                <td class="col6" style="text-align: center;">
+                                    <p class="tamanio_05"><b>Descuento por ítem</b></p>
+                                </td>
+                                <td class="col10" style="text-align: center;">
+                                    <p class="tamanio_05"><b>Ventas Gravadas</b></p>
+                                </td>
+                            </tr>
+
+                            {{#each cuerpoDocumento as |cuerpodoc|}}
+                            <tr class="table-cuerpo-factura" style="font-size: small; font-size: small;">
+                                <td class="col1" style="text-align: center;">
+                                    <p class="tamanio_05">{{cuerpodoc.numItem}}</p>
+                                </td>
+                                <td class="col2" style="text-align: center;">
+                                    <p class="tamanio_05">{{formatNumber_Cantidad cuerpodoc.cantidad}}</p>
+                                </td>
+                                <td class="col3" style="text-align: center;">
+                                    <p class="tamanio_05">{{cuerpodoc.uniMedida}}</p>
+                                </td>
+                                <td class="col4" style="text-align: left;">
+                                    <p class="tamanio_05">{{cuerpodoc.descripcion}}</p>
+                                </td>
+                                <td style="text-align: right;">
+                                    <p class="tamanio_05">{{formatNumber_Moneda cuerpodoc.precioUni}}</p>
+                                </td>
+                                <td style="text-align: right;">
+                                    <p class="tamanio_05">{{formatNumber_Moneda cuerpodoc.montoDescu}}</p>
+                                </td>
+                                <td style="text-align: right; padding-right: 0.5em;">
+                                    <p class="tamanio_05">{{formatNumber_Moneda cuerpodoc.ventaGravada}}</p>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+
+
+                    <hr size="2px" color="1b1c37">
+
+
+					<table class="table-cuerpo-factura" border="1" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 5px; font-size: small;">
+					  <tbody>
+                            <tr>
+                              <td colspan="3" style="width: 17%; text-align: right; padding-right: 0.5em;">
+                                    <p class="tamanio_04"><b> Total monto sujeto a tetención:</b></p>
+                              </td>
+                              <td style="width: 33%; text-align: left; padding-left: 0.5em;">
+                                    <p class="tamanio_04">{{formatNumber_Moneda resumen.montoTotalOperacion}}</p>
+                              </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 17%; text-align: right; padding-right: 0.5em;">
+                                    <p class="tamanio_04"><b>Valor en letras IVA retenido:</b></p>
+                                </td>
+                                <td style="width: 33%; text-align: left; padding-left: 0.5em;">
+                                    <p class="tamanio_04">{{formatNumber_Moneda resumen.montoTotalOperacion}}</p>
+                                </td>
+                                <td style="width: 17%; text-align: right; padding-right: 0.5em;">
+                                    <p class="tamanio_04"><b> Total IVA Retenido:</b></p>
+                                </td>
+                                <td style="width: 33%; text-align: left; padding-left: 0.5em;">
+                                    <p class="tamanio_04">{{formatNumber_Moneda resumen.montoTotalOperacion}}</p>
+                                </td>                                
+                            </tr>                            
+  						</tbody>
+                    </table>
+
+
+					<table class="order-detail" border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 2px; font-size: small;">
+					  <tbody>
+						  <tr style="background-color: #fafafa;border: 1px solid #ddd;">
+							  <td style="width: 20%; text-align: right; padding-right: 0.5em;">
+								  <p class="tamanio_04"><b>Responsable por parte del Emisor: </b></p>
+							  </td>
+							  <td style="width: 45%; text-align: left; padding-left: 0.5em;">
+								  <p class="tamanio_04">${nuloReemplazar}</p>
+							  </td>
+							  <td style="width: 15%; text-align: right; padding-right: 0.5em;">
+								  <p class="tamanio_04"><b>No. de Documento: </b></p>
+							  </td>
+							  <td style="width: 25%; text-align: left; padding-left: 0.5em;">
+								  <p class="tamanio_04">${nuloReemplazar}</p>
+							  </td>
+						  </tr>
+						  <tr style="background-color: #fafafa;border: 1px solid #ddd;">
+							  <td style="width: 20%; text-align: right; padding-right: 0.5em;">
+								  <p class="tamanio_04"><b>Responsable por parte del Receptor: </b></p>
+							  </td>
+							  <td style="width: 40%; text-align: left; padding-left: 0.5em;">
+								  <p class="tamanio_04">${nuloReemplazar}</p>
+							  </td>
+							  <td style="width: 15%; text-align: right; padding-right: 0.5em;">
+								  <p class="tamanio_04"><b>No. de Documento: </b></p>
+							  </td>
+							  <td style="width: 25%; text-align: left; padding-left: 0.5em;">
+								  <p class="tamanio_04">${nuloReemplazar}</p>
+							  </td>
+						  </tr>
+                        <tr style="background-color: #fafafa;border: 1px solid #ddd;">
+                          <td style="width: 20%; text-align: right; padding-right: 0.5em;">
+                          	<p class="tamanio_04"><b>Observación General:</b></p>
+                          </td>
+                          <td colspan="3" style="width: 25%; text-align: left; padding-left: 0.5em;">
+                          	<p class="tamanio_04">${nuloReemplazar}</p>
+                          </td>
+                        </tr>						  
+					  </tbody>
+					</table>
+
+
+
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</body>
+
+</html>
