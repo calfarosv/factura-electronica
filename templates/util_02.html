@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="assets/images/favicon/1.png" type="image/x-icon">
+        <link rel="shortcut icon" href="assets/images/favicon/1.png" type="image/x-icon">
+        <title>SISDTE-CEL | Factura </title>
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <style type="text/css">
+        body {
+            text-align: center;
+            margin: 0 auto;
+            max-width: 950px;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #e2e2e2;
+            display: block;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            display: inline-block;
+            text-decoration: unset;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        p {
+            margin: 15px 0;
+        }
+
+        h5 {
+            color: #444;
+            text-align: left;
+            font-weight: 400;
+        }
+
+p.tamanio_01{
+  font-size:1.8em;
+  line-height:1.2em;
+}
+
+p.tamanio_02{
+  font-size:1.5em;
+  line-height:1.5em;
+}
+
+p.tamanio_03{
+  font-size:0.85em;
+  line-height:1.3em;
+}
+		
+p.tamanio_04{
+  font-size:0.7em;
+  line-height:1.3em;
+}		
+
+
+
+        .text-center {
+            text-align: center
+        }
+
+        .main-bg-light {
+            background-color: #fafafa;
+        }
+
+        .title {
+            color: #444444;
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-bottom: 0;
+            text-transform: uppercase;
+            display: inline-block;
+            line-height: 1;
+        }
+
+        table {
+            margin-top: 10px
+        }
+
+		.headt td {
+		  height: 10px;
+		}
+
+        table.top-0 {
+            margin-top: 0;
+        }
+
+        table.order-detail {
+            border: 1px solid #ddd;
+            border-collapse: collapse;
+        }
+
+        table.order-detail tr:nth-child(even) {
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table.order-detail tr:nth-child(odd) {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .pad-left-right-space {
+            border: unset !important;
+        }
+
+        .pad-left-right-space td {
+            padding: 5px 15px;
+        }
+
+        .pad-left-right-space td p {
+            margin: 0;
+        }
+
+        .pad-left-right-space td b {
+            font-size: 15px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .order-detail th {
+            font-size: 16px;
+            padding: 15px;
+            text-align: center;
+            background: #fafafa;
+        }
+
+        .footer-social-icon tr td img {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+    </style>
+ 
+    </head>
+    <body style="margin: 20px auto;">
+    
+
+      <p>&nbsp;</p>
+      
+    <table class="order-detail" border="1" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 5px;">
+        <tbody>
+          <tr>
+            <td style="width: 7%; text-align: center;">No</td>
+            <td style="width: 7%; text-align: center;">Cantidad</td>
+            <td style="width: 7%; text-align: center;">Unidad</td>
+            <td style="width: 19%; text-align: center;">Descripción</td>
+            <td style="width: 10%; text-align: center;"><p>Precio Unitario</p></td>
+            <td style="width: 10%; text-align: center;"><p>Descuento por ítem</p></td>
+            <td style="width: 10%; text-align: center;"><p>Otros Montos no afectados</p></td>
+            <td style="width: 10%; text-align: center;"><p>Ventas no Sujetas</p></td>
+            <td style="width: 10%; text-align: center;">Ventas Excentas</td>
+            <td style="width: 10%; text-align: center;">Ventas Gravadas</td>
+          </tr>
+          <tr>
+            <td align="center">v_num</td>
+            <td align="center">v_can</td>
+            <td align="center">v_uni</td>
+            <td align="left">v_des</td>
+            <td align="right">v_pru</td>
+            <td align="right">v_dpi</td>
+            <td align="right">v_omn</td>
+            <td align="right">v_vns</td>
+            <td align="right">v_vex</td>
+            <td align="right">v_vgr</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="right">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="right">suma_v_vns</td>
+            <td align="right">suma_v_vex</td>
+            <td align="right">suma_v_vgr</td>
+          </tr>
+        </tbody>
+    </table>      
+
+    <table class="order-detail" border="1" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 5px;">
+        <tbody>
+          <tr>
+            <td align="right">Suma Total de Operaciones:</td>
+            <td align="right">tot_01</td>
+          </tr>
+          <tr>
+            <td align="right">Monto Global Desc., Rebajas y otros a ventas no sujetas:</td>
+            <td align="right">tot_02</td>
+          </tr>
+          <tr>
+            <td align="right">Monto Global Desc., Rebajas y otros a ventas exentas:</td>
+            <td align="right">tot_03</td>
+          </tr>
+          <tr>
+            <td align="right">Monto Global Desc., Rebajas y otros a ventas gravadas:</td>
+            <td align="right">tot_04</td>
+          </tr>
+          <tr>
+            <td align="right">Nombre del Tributo:</td>
+            <td align="right">tot_05</td>
+          </tr>
+          <tr>
+            <td align="right">Sub-Total:</td>
+            <td align="right">tot_06</td>
+          </tr>
+          <tr>
+            <td align="right">IVA Percibido:</td>
+            <td align="right">tot_07</td>
+          </tr>
+          <tr>
+            <td align="right">IVA Retenido:</td>
+            <td align="right">tot_08</td>
+          </tr>
+          <tr>
+            <td align="right">Retención Renta:</td>
+            <td align="right">tot_09</td>
+          </tr>
+          <tr>
+            <td align="right">Monto Total de la Operación:</td>
+            <td align="right">tot_10</td>
+          </tr>
+          <tr>
+            <td align="right">Total Otros montos no afectados:</td>
+            <td align="right">tot_11</td>
+          </tr>
+          <tr>
+            <td align="right">Total a Pagar:</td>
+            <td align="right">tot_12</td>
+          </tr>
+        </tbody>
+    </table>
+                  
+    <table class="order-detail" border="1" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 5px;">
+        <tbody>
+          <tr>
+            <td style="width: 7%; text-align: center;">No</td>
+            <td style="width: 7%; text-align: center;">Cantidad</td>
+            <td style="width: 7%; text-align: center;">Unidad</td>
+            <td style="width: 19%; text-align: center;">Descripción</td>
+            <td style="width: 10%; text-align: center;"><p>Precio Unitario</p></td>
+            <td style="width: 10%; text-align: center;"><p>Descuento por ítem</p></td>
+            <td style="width: 10%; text-align: center;"><p>Otros Montos no afectados</p></td>
+            <td style="width: 10%; text-align: center;"><p>Ventas no Sujetas</p></td>
+            <td style="width: 10%; text-align: center;">Ventas Excentas</td>
+            <td style="width: 10%; text-align: center;">Ventas Gravadas</td>
+          </tr>
+          <tr>
+            <td align="center">v_num</td>
+            <td align="center">v_can</td>
+            <td align="center">v_uni</td>
+            <td align="left">v_des</td>
+            <td align="right">v_pru</td>
+            <td align="right">v_dpi</td>
+            <td align="right">v_omn</td>
+            <td align="right">v_vns</td>
+            <td align="right">v_vex</td>
+            <td align="right">v_vgr</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="right">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="right">suma_v_vns</td>
+            <td align="right">suma_v_vex</td>
+            <td align="right">suma_v_vgr</td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right">Suma Total de Operaciones:</td>
+            <td align="right">tot_01</td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right">Monto Global Desc., Rebajas y otros a ventas no sujetas:</td>
+            <td align="right">tot_02</td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right">Monto Global Desc., Rebajas y otros a ventas exentas:</td>
+            <td align="right">tot_03</td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right">Monto Global Desc., Rebajas y otros a ventas gravadas:</td>
+            <td align="right">tot_04</td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right">Nombre del Tributo:</td>
+            <td align="right">tot_05</td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right">Sub-Total:</td>
+            <td align="right">tot_06</td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right">IVA Percibido:</td>
+            <td align="right">tot_07</td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right">IVA Retenido:</td>
+            <td align="right">tot_08</td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right">Retención Renta:</td>
+            <td align="right">tot_09</td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right">Monto Total de la Operación:</td>
+            <td align="right">tot_10</td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right">Total Otros montos no afectados:</td>
+            <td align="right">tot_11</td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right">Total a Pagar:</td>
+            <td align="right">tot_12</td>
+          </tr>
+        </tbody>
+    </table>
+    
+    <table class="order-detail" border="1" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 5px;">
+      <tbody>
+        <tr>
+          <td style="width: 25%; text-align: right;">Valor en Letras:</td>
+          <td style="width: 25%; text-align: center;">v_vle</td>
+          <td style="width: 25%; text-align: right;">Condición de la Operación:</td>
+          <td style="width: 25%; text-align: center;">v_cop</td>
+        </tr>
+        <tr>
+          <td style="width: 25%; text-align: right;">Observaciones:</td>
+          <td colspan="3" style="width: 25%; text-align: left;">v_obs</td>
+        </tr>
+        
+      </tbody>
+    </table>
+    
+    <table class="order-detail" border="1" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 5px;">
+      <tbody>
+        <tr>
+          <td style="width: 25%; text-align: right;">Responsable por parte del Emisor:</td>
+          <td style="width: 25%; text-align: center;">v_rem</td>
+          <td style="width: 25%; text-align: right;">No. de Documento:</td>
+          <td style="width: 25%; text-align: center;">v_nde</td>
+        </tr>
+        <tr>
+          <td style="width: 25%; text-align: right;">Responsable por parte del Receptor:</td>
+          <td style="width: 25%; text-align: center;">v_rre</td>
+          <td style="width: 25%; text-align: right;">No. de Documento:</td>
+          <td style="width: 25%; text-align: center;">&nbsp;</td>
+        </tr>
+      </tbody>
+    </table>    
+    
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p></td>
+  </tr>
+</table>
+</body>
+</html>

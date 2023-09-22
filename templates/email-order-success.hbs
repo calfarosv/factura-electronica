@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/images/favicon/1.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/images/favicon/1.png" type="image/x-icon">
+    <title>SISDTE-CEL | Factura </title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+
+
+    <style type="text/css">
+        body {
+            text-align: center;
+            margin: 0 auto;
+            max-width: 950px;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #e2e2e2;
+            display: block;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            display: inline-block;
+            text-decoration: unset;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        p {
+            margin: 2px 0;
+        }
+
+        h5 {
+            color: #444;
+            text-align: left;
+            font-weight: 400;
+        }
+
+p.tamanio_01{
+  font-size:1.8em;
+  line-height:1.2em;
+}
+
+p.tamanio_02{
+  font-size:1.5em;
+  line-height:1.5em;
+}
+
+p.tamanio_03{
+  font-size:0.85em;
+  line-height:1.3em;
+}
+		
+p.tamanio_04{
+  font-size:0.7em;
+  line-height:1.3em;
+}		
+
+
+
+        .text-center {
+            text-align: center
+        }
+
+        .main-bg-light {
+            background-color: #fafafa;
+        }
+
+        .title {
+            color: #444444;
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-bottom: 0;
+            text-transform: uppercase;
+            display: inline-block;
+            line-height: 1;
+        }
+
+        table {
+            margin-top: 10px
+        }
+
+		.headt td {
+		  height: 10px;
+		}
+
+        table.top-0 {
+            margin-top: 0;
+        }
+
+        table.order-detail {
+            border: 1px solid #ddd;
+            border-collapse: collapse;
+        }
+
+        table.order-detail tr:nth-child(even) {
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table.order-detail tr:nth-child(odd) {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .pad-left-right-space {
+            border: unset !important;
+        }
+
+        .pad-left-right-space td {
+            padding: 5px 15px;
+        }
+
+        .pad-left-right-space td p {
+            margin: 0;
+        }
+
+        .pad-left-right-space td b {
+            font-size: 15px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .order-detail th {
+            font-size: 16px;
+            padding: 15px;
+            text-align: center;
+            background: #fafafa;
+        }
+
+        .footer-social-icon tr td img {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body style="margin: 20px auto;">
+    <table border="0" cellpadding="0" cellspacing="0"
+        style="padding: 0 30px;background-color: #fff; -webkit-box-shadow: 0px 0px 14px -4px rgba(0, 0, 0, 0.2705882353);box-shadow: 0px 0px 14px -4px rgba(0, 0, 0, 0.2705882353);width: 100%;">
+        <tbody>
+            <tr>
+                <td>
+              <table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
+
+                        <tr>
+                            <td rowspan="2" style="width: 20%; text-align: center;">
+							<img src="{{url}}assets/images/email-temp/logo-text.png" alt="" style=" max-width: 150px ; max-height: 100px; ">
+                            </td>
+                            <td style="text-align: center; font-weight: bold;">DOCUMENTO TROBUTARIO ELECTRÓNICO</td>
+                            <td rowspan="2" style="width: 20%; text-align: center;"><p class="tamanio_04">Ver. 1.0</p></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-weight: bold;">COMPROBANTE DE CRÉDITO FISCAL</td>
+                        </tr>
+
+                  </table>
+
+<table cellpadding="0" cellspacing="0" border="0" style="width: 100%;margin-top: 5px; margin-bottom: 5px;">
+                                <tbody>
+                                    <tr>
+                              <td align="left" style="background-color: #fafafa; border: 1px solid #ddd; padding: 15px; letter-spacing: 0.3px; width: 40%; font-size: small;">
+							  <p class="tamanio_04"><strong>Código de Generación:</strong><br>
+                                {{identificacion.codigoGeneracion}}<br>
+  <strong>Número de Control:</strong><br>
+                                {{identificacion.numeroControl}}<br>
+  <strong>Sello de Recepción:</strong><br>
+                                789</p>
+								</td>
+                                    <td style="width: 20%; text-align: center;">
+                                  	  <img src="{{url}}assets/images/email-temp/{{codigo_qr}}" alt="" style=" max-width: 150px ; max-height: 100px; ">
+                                   	  </td>
+                                    <td align="left" style="background-color: #fafafa;border: 1px solid #ddd;padding: 15px;letter-spacing: 0.3px; width: 40%; font-size: small;">
+                                             <p class="tamanio_04"><b>Modelo de Facturación:</b><br>
+                                            123<br>
+                                            <b>Tipo de Transmisión:</b><br>
+                                            456<br>
+                                            <b>Fecha y hora de Generación:</b><br>
+                                            {{identificacion.fecEmi}}  {{identificacion.horEmi}}</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                  </table>
+
+<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
+                                <tbody>
+                                    <tr>
+                              <td style="background-color: #fafafa;border: 1px solid #ddd;padding: 15px;letter-spacing: 0.3px;width: 40%; font-size: small;">
+                                <h5 style="font-size: 16px; font-weight: 600;color: #000; line-height: 16px; padding-bottom: 13px; border-bottom: 1px solid #e6e8eb; letter-spacing: -0.65px; margin-top:0; margin-bottom: 13px;">EMISOR</h5>
+                                            <p class="tamanio_04"><b>{{emisor.nombre}}</b><br>
+                                            NIT: <b>{{emisor.nombre}}</b><br>
+                                            NRC: <b>{{emisor.nrc}}</b><br>
+                                            NRC: <b>{{emisor.descActividad}}</b><br>
+                                            <b>{{emisor.direccion.complemento}}</b><br>
+                                            TEL: <b>{{emisor.telefono}}</b><br>
+                                            Correo electrónico: <b>{{emisor.correo}}</b><br>
+                                            Establecimiento: <b>{{emisor.nombreComercial}}</b><br></p>
+                              </td>
+                                    <td style="text-align: center;width: 20%">
+                                      <img src="{{url}}assets/images/email-temp/logo_success.png">
+                                    </td>
+                                    <td style="background-color: #fafafa;border: 1px solid #ddd;padding: 15px;letter-spacing: 0.3px;width: 40%; font-size: small;">
+                                      <h5 style="font-size: 16px;font-weight: 600;color: #000; line-height: 16px; padding-bottom: 13px; border-bottom: 1px solid #e6e8eb; letter-spacing: -0.65px; margin-top:0; margin-bottom: 13px;">RECEPTOR</h5>
+                                            <p class="tamanio_04"><b>{{receptor.nombre}}</b><br>
+                                            NIT: <b>{{receptor.nit}}</b><br>
+                                            NRC: <b>{{receptor.nrc}}</b><br>
+                                            ACTIVIDAD: <b>{{receptor.descActividad}}</b><br>
+                                            <b>{{receptor.direccion.complemento}}</b><br>
+                                            TEL: <b>{{receptor.telefono}}</b><br>
+                                            Correo electrónico: <b>{{receptor.correo}}</b><br>
+                                            Establecimiento: <b>{{receptor.nombreComercial}}</b><br></p>
+									</td>
+                                </tr>
+                            </tbody>
+                        </table>                  
+                        
+                        
+    <table class="order-detail" border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 5px;">
+        <tbody>
+          <tr style="background-color: #fafafa;border: 1px solid #ddd; ">
+			<td width="4%" style="width: 7%; text-align: center;"><p class="tamanio_04"><b>No</b></p></td>
+            <td width="6%" style="width: 7%; text-align: center;"><p class="tamanio_04"><b>Cantidad</b></p></td>
+            <td width="6%" style="width: 7%; text-align: center;"><p class="tamanio_04"><b>Unidad</b></p></td>
+            <td width="18%" style="width: 19%; text-align: center;"><p class="tamanio_04"><b>Descripción</b></p></td>
+            <td width="9%" style="width: 10%; text-align: center;"><p class="tamanio_04"><b>Precio Unitario</b></p></td>
+            <td width="9%" style="width: 10%; text-align: center;"><p class="tamanio_04"><b>Descuento por ítem</b></p></td>
+            <td width="8%" style="width: 10%; text-align: center;"><p class="tamanio_04"><b>Otros Montos no afectados</b></p></td>
+            <td width="11%" style="width: 10%; text-align: center;"><p class="tamanio_04"><b>Ventas no Sujetas</b></p></td>
+            <td width="10%" style="width: 10%; text-align: center;"><p class="tamanio_04"><b>Ventas Exentas</b></p></td>
+            <td width="19%" style="width: 10%; text-align: center;"><p class="tamanio_04"><b>Ventas Gravadas</b></p></td>
+          </tr>
+
+          {{#each cuerpoDocumento as |cuerpodoc|}}
+          <tr style="font-size: small;">
+            <td style="width: 7%; text-align: center;"><p class="tamanio_04">{{cuerpodoc.numItem}}</p></td>
+            <td style="width: 7%; text-align: center;"><p class="tamanio_04">{{cuerpodoc.cantidad}}</p></td>
+            <td style="width: 7%; text-align: center;"><p class="tamanio_04">{{cuerpodoc.uniMedida}}</p></td>
+            <td style="width: 19%; text-align: left;"><p class="tamanio_04">{{cuerpodoc.descripcion}}</p></td>
+            <td style="width: 10%; text-align: right;"><p class="tamanio_04">{{cuerpodoc.precioUni}}</p></td>
+            <td style="width: 10%; text-align: right;"><p class="tamanio_04">v_dpi</p></td>
+            <td style="width: 10%; text-align: right;"><p class="tamanio_04">v_omn</p></td>
+            <td style="width: 10%; text-align: right;"><p class="tamanio_04">{{cuerpodoc.ventaNoSuj}}</p></td>
+            <td style="width: 10%; text-align: right;"><p class="tamanio_04">{{cuerpodoc.ventaExenta}}</p></td>
+            <td style="width: 10%; text-align: right;"><p class="tamanio_04">{{cuerpodoc.ventaGravada}}</p></td>
+          </tr>          
+          {{/each}}
+          
+           <tr style="font-size: small;">
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="right">&nbsp;</td>
+          </tr>
+          <tr style="font-size: small;">
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td colspan="2"><p class="tamanio_04"><b>SUMA DE VENTAS:</b></p></td>
+            <td align="right"><p class="tamanio_04">{{resumen.totalNoSuj}}</p></td>
+            <td align="right"><p class="tamanio_04">{{resumen.totalExenta}}</p></td>
+            <td align="right"><p class="tamanio_04">{{resumen.totalGravada}}</p></td>
+          </tr>
+          <tr>
+            <td colspan="10">&nbsp;</td>
+          </tr>          
+          <tr>
+            <td colspan="9" align="right"><p class="tamanio_04"><b>Suma Total de Operaciones:</b></p></td>
+            <td align="right"><p class="tamanio_04">{{resumen.subTotalVentas}}</p></td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right"><p class="tamanio_04"><b>Monto Global Desc., Rebajas y otros a ventas no sujetas:</b></p></td>
+            <td align="right"><p class="tamanio_04">{{resumen.descuNoSuj}}</p></td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right"><p class="tamanio_04"><b>Monto Global Desc., Rebajas y otros a ventas exentas:</b></p></td>
+            <td align="right"><p class="tamanio_04">{{resumen.descuExenta}}</p></td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right"><p class="tamanio_04"><b>Monto Global Desc., Rebajas y otros a ventas gravadas:</b></p></td>
+            <td align="right"><p class="tamanio_04">{{resumen.descuGravada}}</p></td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right"><p class="tamanio_04"><b>Nombre del Tributo:</b></p></td>
+            <td align="right"><p class="tamanio_04">{{resumen.tributos.descripcion}}</p></td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right"><p class="tamanio_04"><b>Valor del Tributo:</b></p></td>
+            <td align="right"><p class="tamanio_04">{{resumen.tributos.valor}}</p></td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right"><p class="tamanio_04"><b>Sub-Total:</b></p></td>
+            <td align="right"><p class="tamanio_04">{{resumen.subTotal}}</p></td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right"><p class="tamanio_04"><b>IVA Percibido:</b></p></td>
+            <td align="right"><p class="tamanio_04">{{resumen.ivaPerci1}}</p></td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right"><p class="tamanio_04"><b>IVA Retenido:</b></p></td>
+            <td align="right"><p class="tamanio_04">{{resumen.ivaRete1}}</p></td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right"><p class="tamanio_04"><b>Retención Renta:</b></p></td>
+            <td align="right"><p class="tamanio_04">{{resumen.reteRenta}}</p></td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right"><p class="tamanio_04"><b>Monto Total de la Operación:</b></p></td>
+            <td align="right"><p class="tamanio_04">{{resumen.montoTotalOperacion}}</p></td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right"><p class="tamanio_04"><b>Total Otros montos no afectados:</b></p></td>
+            <td align="right"><p class="tamanio_04">{{resumen.totalNoGravado}}</p></td>
+          </tr>
+          <tr>
+            <td colspan="9" align="right"><p class="tamanio_04"><b>Total a Pagar:</b></p></td>
+            <td align="right"><p class="tamanio_04">{{resumen.totalPagar}}</p></td>
+          </tr>
+        </tbody>
+    </table>
+                    
+    <table class="order-detail" border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 5px;">
+      <tbody>
+        <tr style="background-color: #fafafa;border: 1px solid #ddd;">
+          <td style="width: 15%; text-align: right;"><p class="tamanio_04"><b>Valor en Letras:  </b></p></td>
+          <td style="width: 50%; text-align: left;"><p class="tamanio_04">{{resumen.totalLetras}}</p></td>
+          <td style="width: 25%; text-align: right;"><p class="tamanio_04"><b>Condición de la Operación:  </b></p></td>
+          <td style="width: 10%; text-align: center;"><p class="tamanio_04">{{resumen.condicionOperacion}}</p></td>
+        </tr>
+        <tr style="background-color: #fafafa;border: 1px solid #ddd;">
+          <td style="width: 15%; text-align: right;"><p class="tamanio_04"><b>Observaciones:  </b></p></td>
+          <td colspan="3" style="width: 85%; text-align: left;"><p class="tamanio_04">v_obs</p></td>
+        </tr>
+        
+      </tbody>
+    </table>
+    
+    <table class="order-detail" border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 5px;">
+      <tbody>
+        <tr style="background-color: #fafafa;border: 1px solid #ddd;">
+          <td style="width: 35%; text-align: right;"><p class="tamanio_04"><b>Responsable por parte del Emisor:  </b></p></td>
+          <td style="width: 25%; text-align: left;"><p class="tamanio_04">v_rem</p></td>
+          <td style="width: 20%; text-align: right;"><p class="tamanio_04"><b>No. de Documento:  </b></p></td>
+          <td style="width: 20%; text-align: left;"><p class="tamanio_04">v_nde</p></td>
+        </tr>
+        <tr style="background-color: #fafafa;border: 1px solid #ddd;">
+          <td style="width: 35%; text-align: right;"><p class="tamanio_04"><b>Responsable por parte del Receptor:  </b></p></td>
+          <td style="width: 25%; text-align: left;"><p class="tamanio_04">v_rre</p></td>
+			<td style="width: 20%; text-align: right;"><p class="tamanio_04"><b>No. de Documento:  </b></p></td>
+          <td style="width: 20%; text-align: left;"><p class="tamanio_04">v_ndr</p></td>
+        </tr>
+      </tbody>
+    </table>                      
+
+                 
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <table class="order-detail" border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 5px;">
+        <tr>
+            <td style="padding: 0 30px 30px 30px;">
+                <div style="border-top: 1px solid #ddd; margin: 20px auto 0;"></div>
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 20px auto 0;">
+                    <tr>
+                        <td>
+                            <a href="#" style="font-size:13px">Want to change how you receive these emails?</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p style="font-size:13px; margin:0;">2023 - 19 Copy Right by Comisión Ejecutiva
+                                Hidroeléctrica del Rio Lempa</p>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

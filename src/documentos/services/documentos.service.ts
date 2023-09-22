@@ -27,7 +27,9 @@ export class DocumentosService {
     let jsonDte_01;
     let jsonDte_03;
     let jsonDte_05;
-    let jsonDte_07;    
+    let jsonDte_07;
+    let jsonDte_11;
+    let jsonDte_14;    
 
     jsonDte_01 = 
     {
@@ -464,7 +466,198 @@ export class DocumentosService {
       selloRecibido: "2023E7C54C101E784BB6A45568E1F53C25183123"
     }
 
-    this.genera_documento_cel(jsonDte_05);
+
+    jsonDte_11 =
+
+    {
+        identificacion: {
+            fecEmi: "2023-09-19",
+            horEmi: "17:47:19",
+            tipoDte: "11",
+            version: 1,
+            ambiente: "00",
+            tipoModelo: 1,
+            tipoMoneda: "USD",
+            motivoContigencia: null,
+            numeroControl: "DTE-11-00000000-000000000000091",
+            tipoOperacion: 1,
+            codigoGeneracion: "05BAD9AF-54D1-2AB5-E064-00144FFB12D3",
+            tipoContingencia: null
+        },
+        emisor: {
+            nit: "06141809480014",
+            nrc: "81981",
+            nombre: "COMISIÓN EJECUTIVA HIDROELÉCTRICA DEL RÍO LEMPA",
+            codActividad: "35101",
+            descActividad: "Generación de energía eléctrica",
+            nombreComercial: "COMISIÓN EJECUTIVA HIDROELÉCTRICA DEL RÍO LEMPA",
+            tipoEstablecimiento: "01",
+            direccion: {
+                municipio: "14",
+                complemento: "9° CALLE PONIENTE 17° AV. NORTE, CENTRO DE GOBIERNO, # 950, SAN SALVADOR, EL SALVADOR",
+                departamento: "06"
+            },
+            telefono: "22116000",
+            correo: "info@cel.gob.sv",
+            codEstableMH: null,
+            codEstable: null,
+            codPuntoVentaMH: null,
+            codPuntoVenta: null,
+            regimen: null,
+            recintoFiscal: null,
+            tipoItemExpor: 1
+        },
+        receptor: {
+            nombre: "AMERICAN INDUSTRIAL PARK, S.A. DE C.V.",
+            descActividad: null,
+            nombreComercial: "AMERICAN INDUSTRIAL PARK, S.A. DE C.V.",
+            telefono: null,
+            correo: "sisdte@cel.gob.sv",
+            complemento: "KM. 38 1/2 Carretera a Santa Ana",
+            codPais: "9300",
+            nombrePais: "EL SALVADOR",
+            tipoPersona: 2,
+            numDocumento: null,
+            tipoDocumento: null
+        },
+        cuerpoDocumento: [
+            {
+                codigo: null,
+                numItem: 1,
+                cantidad: 1,
+                tributos: [
+                    "C3"
+                ],
+                noGravado: 0,
+                precioUni: 500,
+                uniMedida: 59,
+                montoDescu: 0,
+                descripcion: "ARRENDAMIENTO DE UN CANAL ASINCRONICO DE 64 KBPS, CON INTERFAZ RS-232 DE NUEVE PINES A 9.6 KBPS DEL SISTEMA DE MICROONDAS DE CEL, PARA EJECTUAR EL ENLACE DE LA UNIDAD TERMINAL REMOTA (UTR) UBICADA EN LA SUBESTACION DE ATEOS, CON EL SISTEMA SCADA DE LA U.T., CORRESPONDIENTE AL MES DE MAYO DE 2023, SEGUN MOD. No. 1 AL CONTRATO CEL-4512-C",
+                ventaGravada: 500
+            }
+        ],
+        resumen: {
+            flete: 0,
+            pagos: [
+                {
+                    "plazo": "01",
+                    "codigo": "04",
+                    "periodo": 7,
+                    "montoPago": 500,
+                    "referencia": null
+                }
+            ],
+            seguro: 0,
+            descuento: 0,
+            totalDescu: 0,
+            totalPagar: 500,
+            totalLetras: "QUINIENTOS  DÓLARES CON 00/100",
+            codIncoterms: null,
+            totalGravada: 500,
+            descIncoterms: null,
+            observaciones: null,
+            totalNoGravado: 0,
+            condicionOperacion: 2,
+            numPagoElectronico: null,
+            montoTotalOperacion: 500,
+            porcentajeDescuento: 0
+        },
+        otrosDocumentos: null,
+        ventaTercero: null,
+        apendice: null,
+        firmaElectronica: "eyJhbGciOiJSUzUxMiJ9.ewogICJpZGVudGlmaWNhY2lvbiIgOiB7CiAgICAiZmVjRW1pIiA6ICIyMDIzLTA5LTE5IiwKICAgICJob3JFbWkiIDogIjE3OjQ3OjE5IiwKICAgICJ0aXBvRHRlIiA6ICIxMSIsCiAgICAidmVyc2lvbiIgOiAxLAogICAgImFtYmllbnRlIiA6ICIwMCIsCiAgICAidGlwb01vZGVsbyIgOiAxLAogICAgInRpcG9Nb25lZGEiIDogIlVTRCIsCiAgICAibW90aXZvQ29udGlnZW5jaWEiIDogbnVsbCwKICAgICJudW1lcm9Db250cm9sIiA6ICJEVEUtMTEtMDAwMDAwMDAtMDAwMDAwMDAwMDAwMDkxIiwKICAgICJ0aXBvT3BlcmFjaW9uIiA6IDEsCiAgICAiY29kaWdvR2VuZXJhY2lvbiIgOiAiMDVCQUQ5QUYtNTREMS0yQUI1LUUwNjQtMDAxNDRGRkIxMkQzIiwKICAgICJ0aXBvQ29udGluZ2VuY2lhIiA6IG51bGwKICB9LAogICJlbWlzb3IiIDogewogICAgIm5pdCIgOiAiMDYxNDE4MDk0ODAwMTQiLAogICAgIm5yYyIgOiAiODE5ODEiLAogICAgIm5vbWJyZSIgOiAiQ09NSVNJw5NOIEVKRUNVVElWQSBISURST0VMw4lDVFJJQ0EgREVMIFLDjU8gTEVNUEEiLAogICAgImNvZEFjdGl2aWRhZCIgOiAiMzUxMDEiLAogICAgImRlc2NBY3RpdmlkYWQiIDogIkdlbmVyYWNpw7NuIGRlIGVuZXJnw61hIGVsw6ljdHJpY2EiLAogICAgIm5vbWJyZUNvbWVyY2lhbCIgOiAiQ09NSVNJw5NOIEVKRUNVVElWQSBISURST0VMw4lDVFJJQ0EgREVMIFLDjU8gTEVNUEEiLAogICAgInRpcG9Fc3RhYmxlY2ltaWVudG8iIDogIjAxIiwKICAgICJkaXJlY2Npb24iIDogewogICAgICAibXVuaWNpcGlvIiA6ICIxNCIsCiAgICAgICJjb21wbGVtZW50byIgOiAiOcKwIENBTExFIFBPTklFTlRFIDE3wrAgQVYuIE5PUlRFLCBDRU5UUk8gREUgR09CSUVSTk8sICMgOTUwLCBTQU4gU0FMVkFET1IsIEVMIFNBTFZBRE9SIiwKICAgICAgImRlcGFydGFtZW50byIgOiAiMDYiCiAgICB9LAogICAgInRlbGVmb25vIiA6ICIyMjExNjAwMCIsCiAgICAiY29ycmVvIiA6ICJpbmZvQGNlbC5nb2Iuc3YiLAogICAgImNvZEVzdGFibGVNSCIgOiBudWxsLAogICAgImNvZEVzdGFibGUiIDogbnVsbCwKICAgICJjb2RQdW50b1ZlbnRhTUgiIDogbnVsbCwKICAgICJjb2RQdW50b1ZlbnRhIiA6IG51bGwsCiAgICAicmVnaW1lbiIgOiBudWxsLAogICAgInJlY2ludG9GaXNjYWwiIDogbnVsbCwKICAgICJ0aXBvSXRlbUV4cG9yIiA6IDEKICB9LAogICJyZWNlcHRvciIgOiB7CiAgICAibm9tYnJlIiA6ICJBTUVSSUNBTiBJTkRVU1RSSUFMIFBBUkssIFMuQS4gREUgQy5WLiIsCiAgICAiZGVzY0FjdGl2aWRhZCIgOiBudWxsLAogICAgIm5vbWJyZUNvbWVyY2lhbCIgOiAiQU1FUklDQU4gSU5EVVNUUklBTCBQQVJLLCBTLkEuIERFIEMuVi4iLAogICAgInRlbGVmb25vIiA6IG51bGwsCiAgICAiY29ycmVvIiA6ICJzaXNkdGVAY2VsLmdvYi5zdiIsCiAgICAiY29tcGxlbWVudG8iIDogIktNLiAzOCAxLzIgQ2FycmV0ZXJhIGEgU2FudGEgQW5hIiwKICAgICJjb2RQYWlzIiA6ICI5MzAwIiwKICAgICJub21icmVQYWlzIiA6ICJFTCBTQUxWQURPUiIsCiAgICAidGlwb1BlcnNvbmEiIDogMiwKICAgICJudW1Eb2N1bWVudG8iIDogbnVsbCwKICAgICJ0aXBvRG9jdW1lbnRvIiA6IG51bGwKICB9LAogICJjdWVycG9Eb2N1bWVudG8iIDogWyB7CiAgICAiY29kaWdvIiA6IG51bGwsCiAgICAibnVtSXRlbSIgOiAxLAogICAgImNhbnRpZGFkIiA6IDEsCiAgICAidHJpYnV0b3MiIDogWyAiQzMiIF0sCiAgICAibm9HcmF2YWRvIiA6IDAsCiAgICAicHJlY2lvVW5pIiA6IDUwMCwKICAgICJ1bmlNZWRpZGEiIDogNTksCiAgICAibW9udG9EZXNjdSIgOiAwLAogICAgImRlc2NyaXBjaW9uIiA6ICJBUlJFTkRBTUlFTlRPIERFIFVOIENBTkFMIEFTSU5DUk9OSUNPIERFIDY0IEtCUFMsIENPTiBJTlRFUkZBWiBSUy0yMzIgREUgTlVFVkUgUElORVMgQSA5LjYgS0JQUyBERUwgU0lTVEVNQSBERSBNSUNST09OREFTIERFIENFTCwgUEFSQSBFSkVDVFVBUiBFTCBFTkxBQ0UgREUgTEEgVU5JREFEIFRFUk1JTkFMIFJFTU9UQSAoVVRSKSBVQklDQURBIEVOIExBIFNVQkVTVEFDSU9OIERFIEFURU9TLCBDT04gRUwgU0lTVEVNQSBTQ0FEQSBERSBMQSBVLlQuLCBDT1JSRVNQT05ESUVOVEUgQUwgTUVTIERFIE1BWU8gREUgMjAyMywgU0VHVU4gTU9ELiBOby4gMSBBTCBDT05UUkFUTyBDRUwtNDUxMi1DIiwKICAgICJ2ZW50YUdyYXZhZGEiIDogNTAwCiAgfSBdLAogICJyZXN1bWVuIiA6IHsKICAgICJmbGV0ZSIgOiAwLAogICAgInBhZ29zIiA6IFsgewogICAgICAicGxhem8iIDogIjAxIiwKICAgICAgImNvZGlnbyIgOiAiMDQiLAogICAgICAicGVyaW9kbyIgOiA3LAogICAgICAibW9udG9QYWdvIiA6IDUwMCwKICAgICAgInJlZmVyZW5jaWEiIDogbnVsbAogICAgfSBdLAogICAgInNlZ3VybyIgOiAwLAogICAgImRlc2N1ZW50byIgOiAwLAogICAgInRvdGFsRGVzY3UiIDogMCwKICAgICJ0b3RhbFBhZ2FyIiA6IDUwMCwKICAgICJ0b3RhbExldHJhcyIgOiAiUVVJTklFTlRPUyAgRMOTTEFSRVMgQ09OIDAwLzEwMCIsCiAgICAiY29kSW5jb3Rlcm1zIiA6IG51bGwsCiAgICAidG90YWxHcmF2YWRhIiA6IDUwMCwKICAgICJkZXNjSW5jb3Rlcm1zIiA6IG51bGwsCiAgICAib2JzZXJ2YWNpb25lcyIgOiBudWxsLAogICAgInRvdGFsTm9HcmF2YWRvIiA6IDAsCiAgICAiY29uZGljaW9uT3BlcmFjaW9uIiA6IDIsCiAgICAibnVtUGFnb0VsZWN0cm9uaWNvIiA6IG51bGwsCiAgICAibW9udG9Ub3RhbE9wZXJhY2lvbiIgOiA1MDAsCiAgICAicG9yY2VudGFqZURlc2N1ZW50byIgOiAwCiAgfSwKICAib3Ryb3NEb2N1bWVudG9zIiA6IG51bGwsCiAgInZlbnRhVGVyY2VybyIgOiBudWxsLAogICJhcGVuZGljZSIgOiBudWxsCn0.dEx93mdDYvFY0AN2JJxMJvu6iAN9aSV4hC_yrKFv76TnrBCHHG8V6d4Sa7T91-0S1hG3YwIe_Bli6ek8h_pAhLySCp2-O_X7wovzlzQOpz3muxqSqjF6qLiYLMtNlOWoVI6TuTaF4_P2P8Yurl2iXE6b97KYC-bXnO_VcOKQOloybD3U_A_6nKGoflpI_MXBggCukOsfr4pCtfiza6JyASvyOHUjsf91wWAUXZL2tBolu_egf89isHPWoy13v1ca04C7OsaPwUYlLPcSjozzxqtbCNXNJWYEmEVMgnjUN0pXDAJMRtiQ0MUzgv5ZpCJKNWVGCbOFlF5i55aGBxOcxg",
+        selloRecibido: null
+    }
+
+    jsonDte_14 =
+
+    {
+        identificacion: {
+            fecEmi: "2023-09-20",
+            horEmi: "08:40:51",
+            tipoDte: "14",
+            version: 1,
+            ambiente: "00",
+            tipoModelo: 1,
+            tipoMoneda: "USD",
+            motivoContin: null,
+            numeroControl: "DTE-14-00000000-000000000000026",
+            tipoOperacion: 1,
+            codigoGeneracion: "05CC1957-F10D-6670-E064-00144FFB12D3",
+            tipoContingencia: null
+        },
+        emisor: {
+            nit: "06141809480014",
+            nrc: "81981",
+            nombre: "COMISIÓN EJECUTIVA HIDROELÉCTRICA DEL RÍO LEMPA",
+            codActividad: "35101",
+            descActividad: "Generación de energía eléctrica",
+            direccion: {
+                municipio: "14",
+                complemento: "9° CALLE PONIENTE 17° AV. NORTE, CENTRO DE GOBIERNO, # 950, SAN SALVADOR, EL SALVADOR",
+                departamento: "06"
+            },
+            telefono: "22116000",
+            correo: "info@cel.gob.sv",
+            codEstableMH: null,
+            codEstable: null,
+            codPuntoVentaMH: null,
+            codPuntoVenta: null
+        },
+        sujetoExcluido: {
+            nombre: "SILVIA NOY",
+            codActividad: "68109",
+            descActividad: "Actividades inmobiliarias realizadas con bienes propios o arrendados n.c.p.",
+            direccion: {
+                municipio: "16",
+                complemento: "Barrio El Centro, San Luis De La Reina",
+                departamento: "12"
+            },
+            telefono: "79414423",
+            correo: "sisdte@Cel.Gob.Sv",
+            numDocumento: "12142506641017",
+            tipoDocumento: "36"
+        },
+        cuerpoDocumento: [
+            {
+                codigo: null,
+                numItem: 1,
+                cantidad: 1,
+                tipoItem: 1,
+                precioUni: 1225,
+                uniMedida: 59,
+                montoDescu: 0,
+                descripcion: "ARRENDAMIENTO DE UN INMUEBLE DE NATURALEZA URBANA, UBICADO EN LA PRIMERA CALLE PONIENTE, BARRIO EL CENTRO, SAN LUIS DE LA REINA, DEPARTAMENTO DE SAN MIGUEL CORRESPONDIENTE AL MES DE MAYO 2023 SEGUN CONTRATO CEL-5495-S.",
+                compra: 1225
+            }
+        ],
+        resumen: {
+            pagos: [
+                {
+                    plazo: null,
+                    codigo: "01",
+                    periodo: null,
+                    montoPago: 1102.5,
+                    referencia: null
+                }
+            ],
+            ivaRete1: 0,
+            subTotal: 1225,
+            reteRenta: 122.5,
+            totalDescu: null,
+            totalPagar: 1102.5,
+            totalLetras: "UN MIL CIENTO DOS  DÓLARES CON 50/100",
+            condicionOperacion: 1,
+            observaciones: null,
+            totalCompra: 1225,
+            descu: 0
+        },
+        apendice: null,
+        firmaElectronica: "eyJhbGciOiJSUzUxMiJ9.ewogICJpZGVudGlmaWNhY2lvbiIgOiB7CiAgICAiZmVjRW1pIiA6ICIyMDIzLTA5LTIwIiwKICAgICJob3JFbWkiIDogIjA4OjQwOjUxIiwKICAgICJ0aXBvRHRlIiA6ICIxNCIsCiAgICAidmVyc2lvbiIgOiAxLAogICAgImFtYmllbnRlIiA6ICIwMCIsCiAgICAidGlwb01vZGVsbyIgOiAxLAogICAgInRpcG9Nb25lZGEiIDogIlVTRCIsCiAgICAibW90aXZvQ29udGluIiA6IG51bGwsCiAgICAibnVtZXJvQ29udHJvbCIgOiAiRFRFLTE0LTAwMDAwMDAwLTAwMDAwMDAwMDAwMDAyNiIsCiAgICAidGlwb09wZXJhY2lvbiIgOiAxLAogICAgImNvZGlnb0dlbmVyYWNpb24iIDogIjA1Q0MxOTU3LUYxMEQtNjY3MC1FMDY0LTAwMTQ0RkZCMTJEMyIsCiAgICAidGlwb0NvbnRpbmdlbmNpYSIgOiBudWxsCiAgfSwKICAiZW1pc29yIiA6IHsKICAgICJuaXQiIDogIjA2MTQxODA5NDgwMDE0IiwKICAgICJucmMiIDogIjgxOTgxIiwKICAgICJub21icmUiIDogIkNPTUlTScOTTiBFSkVDVVRJVkEgSElEUk9FTMOJQ1RSSUNBIERFTCBSw41PIExFTVBBIiwKICAgICJjb2RBY3RpdmlkYWQiIDogIjM1MTAxIiwKICAgICJkZXNjQWN0aXZpZGFkIiA6ICJHZW5lcmFjacOzbiBkZSBlbmVyZ8OtYSBlbMOpY3RyaWNhIiwKICAgICJkaXJlY2Npb24iIDogewogICAgICAibXVuaWNpcGlvIiA6ICIxNCIsCiAgICAgICJjb21wbGVtZW50byIgOiAiOcKwIENBTExFIFBPTklFTlRFIDE3wrAgQVYuIE5PUlRFLCBDRU5UUk8gREUgR09CSUVSTk8sICMgOTUwLCBTQU4gU0FMVkFET1IsIEVMIFNBTFZBRE9SIiwKICAgICAgImRlcGFydGFtZW50byIgOiAiMDYiCiAgICB9LAogICAgInRlbGVmb25vIiA6ICIyMjExNjAwMCIsCiAgICAiY29ycmVvIiA6ICJpbmZvQGNlbC5nb2Iuc3YiLAogICAgImNvZEVzdGFibGVNSCIgOiBudWxsLAogICAgImNvZEVzdGFibGUiIDogbnVsbCwKICAgICJjb2RQdW50b1ZlbnRhTUgiIDogbnVsbCwKICAgICJjb2RQdW50b1ZlbnRhIiA6IG51bGwKICB9LAogICJzdWpldG9FeGNsdWlkbyIgOiB7CiAgICAibm9tYnJlIiA6ICJTSUxWSUEgTk9ZIiwKICAgICJjb2RBY3RpdmlkYWQiIDogIjY4MTA5IiwKICAgICJkZXNjQWN0aXZpZGFkIiA6ICJBY3RpdmlkYWRlcyBpbm1vYmlsaWFyaWFzIHJlYWxpemFkYXMgY29uIGJpZW5lcyBwcm9waW9zIG8gYXJyZW5kYWRvcyBuLmMucC4iLAogICAgImRpcmVjY2lvbiIgOiB7CiAgICAgICJtdW5pY2lwaW8iIDogIjE2IiwKICAgICAgImNvbXBsZW1lbnRvIiA6ICJCYXJyaW8gRWwgQ2VudHJvLCBTYW4gTHVpcyBEZSBMYSBSZWluYSIsCiAgICAgICJkZXBhcnRhbWVudG8iIDogIjEyIgogICAgfSwKICAgICJ0ZWxlZm9ubyIgOiAiNzk0MTQ0MjMiLAogICAgImNvcnJlbyIgOiAic2lzZHRlQENlbC5Hb2IuU3YiLAogICAgIm51bURvY3VtZW50byIgOiAiMTIxNDI1MDY2NDEwMTciLAogICAgInRpcG9Eb2N1bWVudG8iIDogIjM2IgogIH0sCiAgImN1ZXJwb0RvY3VtZW50byIgOiBbIHsKICAgICJjb2RpZ28iIDogbnVsbCwKICAgICJudW1JdGVtIiA6IDEsCiAgICAiY2FudGlkYWQiIDogMSwKICAgICJ0aXBvSXRlbSIgOiAxLAogICAgInByZWNpb1VuaSIgOiAxMjI1LAogICAgInVuaU1lZGlkYSIgOiA1OSwKICAgICJtb250b0Rlc2N1IiA6IDAsCiAgICAiZGVzY3JpcGNpb24iIDogIkFSUkVOREFNSUVOVE8gREUgVU4gSU5NVUVCTEUgREUgTkFUVVJBTEVaQSBVUkJBTkEsIFVCSUNBRE8gRU4gTEEgUFJJTUVSQSBDQUxMRSBQT05JRU5URSwgQkFSUklPIEVMIENFTlRSTywgU0FOIExVSVMgREUgTEEgUkVJTkEsIERFUEFSVEFNRU5UTyBERSBTQU4gTUlHVUVMIENPUlJFU1BPTkRJRU5URSBBTCBNRVMgREUgTUFZTyAyMDIzIFNFR1VOIENPTlRSQVRPIENFTC01NDk1LVMuIiwKICAgICJjb21wcmEiIDogMTIyNQogIH0gXSwKICAicmVzdW1lbiIgOiB7CiAgICAicGFnb3MiIDogWyB7CiAgICAgICJwbGF6byIgOiBudWxsLAogICAgICAiY29kaWdvIiA6ICIwMSIsCiAgICAgICJwZXJpb2RvIiA6IG51bGwsCiAgICAgICJtb250b1BhZ28iIDogMTEwMi41LAogICAgICAicmVmZXJlbmNpYSIgOiBudWxsCiAgICB9IF0sCiAgICAiaXZhUmV0ZTEiIDogMCwKICAgICJzdWJUb3RhbCIgOiAxMjI1LAogICAgInJldGVSZW50YSIgOiAxMjIuNSwKICAgICJ0b3RhbERlc2N1IiA6IG51bGwsCiAgICAidG90YWxQYWdhciIgOiAxMTAyLjUsCiAgICAidG90YWxMZXRyYXMiIDogIlVOIE1JTCBDSUVOVE8gRE9TICBEw5NMQVJFUyBDT04gNTAvMTAwIiwKICAgICJjb25kaWNpb25PcGVyYWNpb24iIDogMSwKICAgICJvYnNlcnZhY2lvbmVzIiA6IG51bGwsCiAgICAidG90YWxDb21wcmEiIDogMTIyNSwKICAgICJkZXNjdSIgOiAwCiAgfSwKICAiYXBlbmRpY2UiIDogbnVsbAp9.T3kM3R0qu5Qd-9tBgLlXcBNdaxFIbu6tLrwzIkDiq_wLHVxQ0vrTEWoteZJn6W_-rOVrbVU-IqYSfaHMn3do0WYmVEVH4Au5sQXKTQ-tMGp4EEg-4x7KpAXWOUIku4vQnMgWwbwIUJZH6BwhelSb5L_i0JCWIy0gxB4tCmLo15poVkiWJhY3xNzGvNShD3VXZaPlx7RImP-cR1YxV_kuLgp-Rq25NvQp4x1Iqt2KMMQoEyogd9V9sd29dtgmXZYiZPRMYDa47w1hXID5YjPGAel6wHEm7GoIIP76BhztAvFLWcuo9qWMQcBsHvhFuLAFU8BZ--NPWsyPwwy9TfidxA",
+        selloRecibido: "2023655396125D304EA29EF77E542F343CC4LKRO"
+    }
+    
+    this.genera_documento_cel(jsonDte_07);
     return 'Proceso Finalizado';
   }
 
@@ -485,6 +678,17 @@ export class DocumentosService {
     let currentDate = moment_hora().format('DD/MM/YYYY');
     let currentTime = moment_hora().format('hh:mm:ss');
     const Fecha_hora = currentDate + '   ' + currentTime;
+
+
+    hbs.registerHelper('compareDTE', function (value, options) {
+      const valuesToCompare = options.hash.values.split(',');
+    
+      if (valuesToCompare.includes(value)) {
+        return options.fn(this);
+      } else {
+        return options.inverse(this);
+      }
+    });
 
     // FORMATO MONEDA UTILIZADO DENTRO DE LA PLANTILLA HBS
     // Se establece  minimumFractionDigits y maximumFractionDigits en 2 para mostrar exactamente 2 decimales. 
@@ -592,19 +796,19 @@ export class DocumentosService {
     let v_plantilla = ``;
 
     if (ide_TDT == '01') {
-      v_plantilla = 'cel_documento_01';
+      v_plantilla = 'plantilla_01';
     }
     else if (ide_TDT == '03') {
-      v_plantilla = 'cel_documento_01';
+      v_plantilla = 'plantilla_01';
     }
     else if (ide_TDT == '05') {
-      v_plantilla = 'cel_documento_01';
+      v_plantilla = 'plantilla_01';
     }
     else if (ide_TDT == '06') {
-      v_plantilla = 'cel_documento_01';
+      v_plantilla = 'plantilla_01';
     }
     else if (ide_TDT == '07') {
-      v_plantilla = 'cel_documento_02';
+      v_plantilla = 'plantilla_02';
     }
 
     //DEFINO NOMBRE DEL ARCHIVO PDF
@@ -656,7 +860,7 @@ export class DocumentosService {
 
 
         //console.log(datosJson);
-        const content = await compile(v_plantilla, fixedPlusJson);
+        const content = await compile(`cel_documento_01`, fixedPlusJson);
 
         // Definir el contenido del encabezado y el pie de página como plantillas HTML
         const v_headerTemplate = ``;
@@ -757,9 +961,9 @@ export class DocumentosService {
           url: `${serverUrl}/static/`,
           name: 'Cesar Alfaro',
           asunto: '',
-          codgen: ide_CGE,
-          numcon: ide_NCO,
-          nomrec: rec_NOM,
+          v_codgen: ide_CGE,
+          v_numcon: ide_NCO,
+          v_nomrec: rec_NOM,
           //people: ['Yehuda Katz', 'Alan Johnson', 'Charles Jolley'],
         },
         attachments: [
