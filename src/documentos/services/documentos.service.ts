@@ -26,10 +26,15 @@ export class DocumentosService {
   genera_documento() {
     let jsonDte_01;
     let jsonDte_03;
+    let jsonDte_04;
     let jsonDte_05;
+    let jsonDte_06;
     let jsonDte_07;
+    let jsonDte_08;
+    let jsonDte_09;
     let jsonDte_11;
-    let jsonDte_14;    
+    let jsonDte_14;
+    let jsonDte_15;
 
     jsonDte_01 = 
     {
@@ -285,6 +290,106 @@ export class DocumentosService {
         selloRecibido: "20239E4C3C42E9BD41B8B5CCB24DF3A66C32GHHE"
       }
 
+      jsonDte_04 =
+      {
+          identificacion: {
+              fecEmi: "2023-09-21",
+              horEmi: "20:36:39",
+              tipoDte: "04",
+              version: 3,
+              ambiente: "00",
+              tipoModelo: 1,
+              tipoMoneda: "USD",
+              motivoContin: null,
+              numeroControl: "DTE-06-00000000-000000000000003",
+              tipoOperacion: 1,
+              codigoGeneracion: "05E56768-3D7F-71FB-0000-00144FFB12D3",
+              tipoContingencia: null
+          },
+          documentoRelacionado: null,
+          emisor: {
+              nit: "06141809480014",
+              nrc: "81981",
+              nombre: "COMISIÓN EJECUTIVA HIDROELÉCTRICA DEL RÍO LEMPA",
+              codActividad: "35101",
+              descActividad: "Generación de energía eléctrica",
+              nombreComercial: "COMISIÓN EJECUTIVA HIDROELÉCTRICA DEL RÍO LEMPA",
+              tipoEstablecimiento: "01",
+              direccion: {
+                  municipio: "14",
+                  complemento: "9° CALLE PONIENTE 17° AV. NORTE, CENTRO DE GOBIERNO, # 950, SAN SALVADOR, EL SALVADOR",
+                  departamento: "06"
+              },
+              telefono: "22116000",
+              correo: "info@cel.gob.sv"
+          },
+          receptor: {
+              nit: "06142601061016",
+              nrc: "1699575",
+              nombre: "EMPRESA DISTRIBUIDORA ELECTRICA SALVADOREÑA, S.A. DE C.V.",
+              codActividad: "35103",
+              descActividad: "Distribución de energía eléctrica",
+              nombreComercial: "EDESAL, S.A. DE C.V.",
+              direccion: {
+                  municipio: "12",
+                  complemento: "C. Paris y Prolong Polig. 1 Psj 2 Res. Villa Paris, Cdad Versalles, Edif EDESAL",
+                  departamento: "05"
+              },
+              telefono: "23263030",
+              correo: "amurillo@edesal.com"
+          },
+          cuerpoDocumento: [
+              {
+                  codigo: null,
+                  numItem: 1,
+                  cantidad: 1,
+                  tipoItem: 3,
+                  tributos: [
+                      "20"
+                  ],
+                  precioUni: 17.6,
+                  uniMedida: 59,
+                  codTributo: null,
+                  montoDescu: 0,
+                  ventaNoSuj: 0,
+                  descripcion: "AJUSTE CARGOS POR POTENCIA CONTRATADA (CPC(M)) 0.88 MW (0.02 US$/ KWH-MES) FEBRERO 2014",
+                  ventaExenta: 0,
+                  ventaGravada: 17.6,
+                  numeroDocumento: null
+              }
+          ],
+          resumen: {
+              ivaRete1: 0,
+              subTotal: 17.6,
+              tributos: [
+                  {
+                      codigo: "20",
+                      descripcion: "Impuesto al Valor Agregado 13%",
+                      valor: 2.28
+                  }
+              ],
+              ivaPerci1: 0,
+              reteRenta: 0,
+              descuNoSuj: 0,
+              totalDescu: 0,
+              totalNoSuj: 0,
+              descuExenta: 0,
+              totalExenta: 0,
+              totalLetras: "DIECINUEVE  DÓLARES CON 88/100",
+              descuGravada: 0,
+              totalGravada: 17.6,
+              subTotalVentas: 17.6,
+              condicionOperacion: 2,
+              numPagoElectronico: null,
+              montoTotalOperacion: 19.88
+          },
+          ventaTercero: null,
+          extension: null,
+          apendice: null,
+          firmaElectronica: "eyJhbGciOiJSUzUxMiJ9.ewogICJpZGVudGlmaWNhY2lvbiIgOiB7CiAgICAiZmVjRW1pIiA6ICIyMDIzLTA5LTIxIiwKICAgICJob3JFbWkiIDogIjIwOjM2OjM5IiwKICAgICJ0aXBvRHRlIiA6ICIwNiIsCiAgICAidmVyc2lvbiIgOiAzLAogICAgImFtYmllbnRlIiA6ICIwMCIsCiAgICAidGlwb01vZGVsbyIgOiAxLAogICAgInRpcG9Nb25lZGEiIDogIlVTRCIsCiAgICAibW90aXZvQ29udGluIiA6IG51bGwsCiAgICAibnVtZXJvQ29udHJvbCIgOiAiRFRFLTA2LTAwMDAwMDAwLTAwMDAwMDAwMDAwMDAwMyIsCiAgICAidGlwb09wZXJhY2lvbiIgOiAxLAogICAgImNvZGlnb0dlbmVyYWNpb24iIDogIjA1RTU2NzY4LTNEN0YtNzFGQi1FMDY0LTAwMTQ0RkZCMTJEMyIsCiAgICAidGlwb0NvbnRpbmdlbmNpYSIgOiBudWxsCiAgfSwKICAiZG9jdW1lbnRvUmVsYWNpb25hZG8iIDogbnVsbCwKICAiZW1pc29yIiA6IHsKICAgICJuaXQiIDogIjA2MTQxODA5NDgwMDE0IiwKICAgICJucmMiIDogIjgxOTgxIiwKICAgICJub21icmUiIDogIkNPTUlTScOTTiBFSkVDVVRJVkEgSElEUk9FTMOJQ1RSSUNBIERFTCBSw41PIExFTVBBIiwKICAgICJjb2RBY3RpdmlkYWQiIDogIjM1MTAxIiwKICAgICJkZXNjQWN0aXZpZGFkIiA6ICJHZW5lcmFjacOzbiBkZSBlbmVyZ8OtYSBlbMOpY3RyaWNhIiwKICAgICJub21icmVDb21lcmNpYWwiIDogIkNPTUlTScOTTiBFSkVDVVRJVkEgSElEUk9FTMOJQ1RSSUNBIERFTCBSw41PIExFTVBBIiwKICAgICJ0aXBvRXN0YWJsZWNpbWllbnRvIiA6ICIwMSIsCiAgICAiZGlyZWNjaW9uIiA6IHsKICAgICAgIm11bmljaXBpbyIgOiAiMTQiLAogICAgICAiY29tcGxlbWVudG8iIDogIjnCsCBDQUxMRSBQT05JRU5URSAxN8KwIEFWLiBOT1JURSwgQ0VOVFJPIERFIEdPQklFUk5PLCAjIDk1MCwgU0FOIFNBTFZBRE9SLCBFTCBTQUxWQURPUiIsCiAgICAgICJkZXBhcnRhbWVudG8iIDogIjA2IgogICAgfSwKICAgICJ0ZWxlZm9ubyIgOiAiMjIxMTYwMDAiLAogICAgImNvcnJlbyIgOiAiaW5mb0BjZWwuZ29iLnN2IgogIH0sCiAgInJlY2VwdG9yIiA6IHsKICAgICJuaXQiIDogIjA2MTQyNjAxMDYxMDE2IiwKICAgICJucmMiIDogIjE2OTk1NzUiLAogICAgIm5vbWJyZSIgOiAiRU1QUkVTQSBESVNUUklCVUlET1JBIEVMRUNUUklDQSBTQUxWQURPUkXDkUEsIFMuQS4gREUgQy5WLiIsCiAgICAiY29kQWN0aXZpZGFkIiA6ICIzNTEwMyIsCiAgICAiZGVzY0FjdGl2aWRhZCIgOiAiRGlzdHJpYnVjacOzbiBkZSBlbmVyZ8OtYSBlbMOpY3RyaWNhIiwKICAgICJub21icmVDb21lcmNpYWwiIDogIkVERVNBTCwgUy5BLiBERSBDLlYuIiwKICAgICJkaXJlY2Npb24iIDogewogICAgICAibXVuaWNpcGlvIiA6ICIxMiIsCiAgICAgICJjb21wbGVtZW50byIgOiAiQy4gUGFyaXMgeSBQcm9sb25nIFBvbGlnLiAxIFBzaiAyIFJlcy4gVmlsbGEgUGFyaXMsIENkYWQgVmVyc2FsbGVzLCBFZGlmIEVERVNBTCIsCiAgICAgICJkZXBhcnRhbWVudG8iIDogIjA1IgogICAgfSwKICAgICJ0ZWxlZm9ubyIgOiAiMjMyNjMwMzAiLAogICAgImNvcnJlbyIgOiAiYW11cmlsbG9AZWRlc2FsLmNvbSIKICB9LAogICJjdWVycG9Eb2N1bWVudG8iIDogWyB7CiAgICAiY29kaWdvIiA6IG51bGwsCiAgICAibnVtSXRlbSIgOiAxLAogICAgImNhbnRpZGFkIiA6IDEsCiAgICAidGlwb0l0ZW0iIDogMywKICAgICJ0cmlidXRvcyIgOiBbICIyMCIgXSwKICAgICJwcmVjaW9VbmkiIDogMTcuNiwKICAgICJ1bmlNZWRpZGEiIDogNTksCiAgICAiY29kVHJpYnV0byIgOiBudWxsLAogICAgIm1vbnRvRGVzY3UiIDogMCwKICAgICJ2ZW50YU5vU3VqIiA6IDAsCiAgICAiZGVzY3JpcGNpb24iIDogIkFKVVNURSBDQVJHT1MgUE9SIFBPVEVOQ0lBIENPTlRSQVRBREEgKENQQyhNKSkgMC44OCBNVyAoMC4wMiBVUyQvIEtXSC1NRVMpIEZFQlJFUk8gMjAxNCIsCiAgICAidmVudGFFeGVudGEiIDogMCwKICAgICJ2ZW50YUdyYXZhZGEiIDogMTcuNiwKICAgICJudW1lcm9Eb2N1bWVudG8iIDogbnVsbAogIH0gXSwKICAicmVzdW1lbiIgOiB7CiAgICAiaXZhUmV0ZTEiIDogMCwKICAgICJzdWJUb3RhbCIgOiAxNy42LAogICAgInRyaWJ1dG9zIiA6IFsgewogICAgICAiY29kaWdvIiA6ICIyMCIsCiAgICAgICJkZXNjcmlwY2lvbiIgOiAiSW1wdWVzdG8gYWwgVmFsb3IgQWdyZWdhZG8gMTMlIiwKICAgICAgInZhbG9yIiA6IDIuMjgKICAgIH0gXSwKICAgICJpdmFQZXJjaTEiIDogMCwKICAgICJyZXRlUmVudGEiIDogMCwKICAgICJkZXNjdU5vU3VqIiA6IDAsCiAgICAidG90YWxEZXNjdSIgOiAwLAogICAgInRvdGFsTm9TdWoiIDogMCwKICAgICJkZXNjdUV4ZW50YSIgOiAwLAogICAgInRvdGFsRXhlbnRhIiA6IDAsCiAgICAidG90YWxMZXRyYXMiIDogIkRJRUNJTlVFVkUgIETDk0xBUkVTIENPTiA4OC8xMDAiLAogICAgImRlc2N1R3JhdmFkYSIgOiAwLAogICAgInRvdGFsR3JhdmFkYSIgOiAxNy42LAogICAgInN1YlRvdGFsVmVudGFzIiA6IDE3LjYsCiAgICAiY29uZGljaW9uT3BlcmFjaW9uIiA6IDIsCiAgICAibnVtUGFnb0VsZWN0cm9uaWNvIiA6IG51bGwsCiAgICAibW9udG9Ub3RhbE9wZXJhY2lvbiIgOiAxOS44OAogIH0sCiAgInZlbnRhVGVyY2VybyIgOiBudWxsLAogICJleHRlbnNpb24iIDogbnVsbCwKICAiYXBlbmRpY2UiIDogbnVsbAp9.L1q5lyYY-DCyS60gOPJ-Bc8iLXY8ZeoC63fl4hPTuAL6cZEbECci4oxL60nMRJxg6iDI4LglUNXve_1SsHpluSwAqBGi_GQ5aWWUWoqKNtJ2wIvrggrYWD4xu_TLSXchm1K9ZxxfCpZWFNfg_F1wRUrbADlzwyoLYPb1ehuv1bRhRSs2uOcUS8DhbxAP1N_JsnZzJap6Kcvrypiz7i9DjvtX6PTEB1-ageDgM1FWdyoZ8DOkREIXe_rho2pvp_U1UyIl2bXmGYe35VofmBYh3dEeL6OAXXfQ6I-UISYu3C5REAmGjdKoc0DH-SKeWDKRaHQDv0aO6xAGML6Sda3NWA",
+          selloRecibido: null
+      }
+
     jsonDte_05 =
     {
       identificacion: {
@@ -391,6 +496,106 @@ export class DocumentosService {
       selloRecibido: "2023E7C54C101E784BB6A45568E1F53C25183Z9W"
     }
 
+    jsonDte_06 =
+    {
+        identificacion: {
+            fecEmi: "2023-09-21",
+            horEmi: "20:36:39",
+            tipoDte: "06",
+            version: 3,
+            ambiente: "00",
+            tipoModelo: 1,
+            tipoMoneda: "USD",
+            motivoContin: null,
+            numeroControl: "DTE-06-00000000-000000000000003",
+            tipoOperacion: 1,
+            codigoGeneracion: "05E56768-3D7F-71FB-E064-00144FFB12D3",
+            tipoContingencia: null
+        },
+        documentoRelacionado: null,
+        emisor: {
+            nit: "06141809480014",
+            nrc: "81981",
+            nombre: "COMISIÓN EJECUTIVA HIDROELÉCTRICA DEL RÍO LEMPA",
+            codActividad: "35101",
+            descActividad: "Generación de energía eléctrica",
+            nombreComercial: "COMISIÓN EJECUTIVA HIDROELÉCTRICA DEL RÍO LEMPA",
+            tipoEstablecimiento: "01",
+            direccion: {
+                municipio: "14",
+                complemento: "9° CALLE PONIENTE 17° AV. NORTE, CENTRO DE GOBIERNO, # 950, SAN SALVADOR, EL SALVADOR",
+                departamento: "06"
+            },
+            telefono: "22116000",
+            correo: "info@cel.gob.sv"
+        },
+        receptor: {
+            nit: "06142601061016",
+            nrc: "1699575",
+            nombre: "EMPRESA DISTRIBUIDORA ELECTRICA SALVADOREÑA, S.A. DE C.V.",
+            codActividad: "35103",
+            descActividad: "Distribución de energía eléctrica",
+            nombreComercial: "EDESAL, S.A. DE C.V.",
+            direccion: {
+                municipio: "12",
+                complemento: "C. Paris y Prolong Polig. 1 Psj 2 Res. Villa Paris, Cdad Versalles, Edif EDESAL",
+                departamento: "05"
+            },
+            telefono: "23263030",
+            correo: "amurillo@edesal.com"
+        },
+        cuerpoDocumento: [
+            {
+                codigo: null,
+                numItem: 1,
+                cantidad: 1,
+                tipoItem: 3,
+                tributos: [
+                    "20"
+                ],
+                precioUni: 17.6,
+                uniMedida: 59,
+                codTributo: null,
+                montoDescu: 0,
+                ventaNoSuj: 0,
+                descripcion: "AJUSTE CARGOS POR POTENCIA CONTRATADA (CPC(M)) 0.88 MW (0.02 US$/ KWH-MES) FEBRERO 2014",
+                ventaExenta: 0,
+                ventaGravada: 17.6,
+                numeroDocumento: null
+            }
+        ],
+        resumen: {
+            ivaRete1: 0,
+            subTotal: 17.6,
+            tributos: [
+                {
+                    codigo: "20",
+                    descripcion: "Impuesto al Valor Agregado 13%",
+                    valor: 2.28
+                }
+            ],
+            ivaPerci1: 0,
+            reteRenta: 0,
+            descuNoSuj: 0,
+            totalDescu: 0,
+            totalNoSuj: 0,
+            descuExenta: 0,
+            totalExenta: 0,
+            totalLetras: "DIECINUEVE  DÓLARES CON 88/100",
+            descuGravada: 0,
+            totalGravada: 17.6,
+            subTotalVentas: 17.6,
+            condicionOperacion: 2,
+            numPagoElectronico: null,
+            montoTotalOperacion: 19.88
+        },
+        ventaTercero: null,
+        extension: null,
+        apendice: null,
+        firmaElectronica: "eyJhbGciOiJSUzUxMiJ9.ewogICJpZGVudGlmaWNhY2lvbiIgOiB7CiAgICAiZmVjRW1pIiA6ICIyMDIzLTA5LTIxIiwKICAgICJob3JFbWkiIDogIjIwOjM2OjM5IiwKICAgICJ0aXBvRHRlIiA6ICIwNiIsCiAgICAidmVyc2lvbiIgOiAzLAogICAgImFtYmllbnRlIiA6ICIwMCIsCiAgICAidGlwb01vZGVsbyIgOiAxLAogICAgInRpcG9Nb25lZGEiIDogIlVTRCIsCiAgICAibW90aXZvQ29udGluIiA6IG51bGwsCiAgICAibnVtZXJvQ29udHJvbCIgOiAiRFRFLTA2LTAwMDAwMDAwLTAwMDAwMDAwMDAwMDAwMyIsCiAgICAidGlwb09wZXJhY2lvbiIgOiAxLAogICAgImNvZGlnb0dlbmVyYWNpb24iIDogIjA1RTU2NzY4LTNEN0YtNzFGQi1FMDY0LTAwMTQ0RkZCMTJEMyIsCiAgICAidGlwb0NvbnRpbmdlbmNpYSIgOiBudWxsCiAgfSwKICAiZG9jdW1lbnRvUmVsYWNpb25hZG8iIDogbnVsbCwKICAiZW1pc29yIiA6IHsKICAgICJuaXQiIDogIjA2MTQxODA5NDgwMDE0IiwKICAgICJucmMiIDogIjgxOTgxIiwKICAgICJub21icmUiIDogIkNPTUlTScOTTiBFSkVDVVRJVkEgSElEUk9FTMOJQ1RSSUNBIERFTCBSw41PIExFTVBBIiwKICAgICJjb2RBY3RpdmlkYWQiIDogIjM1MTAxIiwKICAgICJkZXNjQWN0aXZpZGFkIiA6ICJHZW5lcmFjacOzbiBkZSBlbmVyZ8OtYSBlbMOpY3RyaWNhIiwKICAgICJub21icmVDb21lcmNpYWwiIDogIkNPTUlTScOTTiBFSkVDVVRJVkEgSElEUk9FTMOJQ1RSSUNBIERFTCBSw41PIExFTVBBIiwKICAgICJ0aXBvRXN0YWJsZWNpbWllbnRvIiA6ICIwMSIsCiAgICAiZGlyZWNjaW9uIiA6IHsKICAgICAgIm11bmljaXBpbyIgOiAiMTQiLAogICAgICAiY29tcGxlbWVudG8iIDogIjnCsCBDQUxMRSBQT05JRU5URSAxN8KwIEFWLiBOT1JURSwgQ0VOVFJPIERFIEdPQklFUk5PLCAjIDk1MCwgU0FOIFNBTFZBRE9SLCBFTCBTQUxWQURPUiIsCiAgICAgICJkZXBhcnRhbWVudG8iIDogIjA2IgogICAgfSwKICAgICJ0ZWxlZm9ubyIgOiAiMjIxMTYwMDAiLAogICAgImNvcnJlbyIgOiAiaW5mb0BjZWwuZ29iLnN2IgogIH0sCiAgInJlY2VwdG9yIiA6IHsKICAgICJuaXQiIDogIjA2MTQyNjAxMDYxMDE2IiwKICAgICJucmMiIDogIjE2OTk1NzUiLAogICAgIm5vbWJyZSIgOiAiRU1QUkVTQSBESVNUUklCVUlET1JBIEVMRUNUUklDQSBTQUxWQURPUkXDkUEsIFMuQS4gREUgQy5WLiIsCiAgICAiY29kQWN0aXZpZGFkIiA6ICIzNTEwMyIsCiAgICAiZGVzY0FjdGl2aWRhZCIgOiAiRGlzdHJpYnVjacOzbiBkZSBlbmVyZ8OtYSBlbMOpY3RyaWNhIiwKICAgICJub21icmVDb21lcmNpYWwiIDogIkVERVNBTCwgUy5BLiBERSBDLlYuIiwKICAgICJkaXJlY2Npb24iIDogewogICAgICAibXVuaWNpcGlvIiA6ICIxMiIsCiAgICAgICJjb21wbGVtZW50byIgOiAiQy4gUGFyaXMgeSBQcm9sb25nIFBvbGlnLiAxIFBzaiAyIFJlcy4gVmlsbGEgUGFyaXMsIENkYWQgVmVyc2FsbGVzLCBFZGlmIEVERVNBTCIsCiAgICAgICJkZXBhcnRhbWVudG8iIDogIjA1IgogICAgfSwKICAgICJ0ZWxlZm9ubyIgOiAiMjMyNjMwMzAiLAogICAgImNvcnJlbyIgOiAiYW11cmlsbG9AZWRlc2FsLmNvbSIKICB9LAogICJjdWVycG9Eb2N1bWVudG8iIDogWyB7CiAgICAiY29kaWdvIiA6IG51bGwsCiAgICAibnVtSXRlbSIgOiAxLAogICAgImNhbnRpZGFkIiA6IDEsCiAgICAidGlwb0l0ZW0iIDogMywKICAgICJ0cmlidXRvcyIgOiBbICIyMCIgXSwKICAgICJwcmVjaW9VbmkiIDogMTcuNiwKICAgICJ1bmlNZWRpZGEiIDogNTksCiAgICAiY29kVHJpYnV0byIgOiBudWxsLAogICAgIm1vbnRvRGVzY3UiIDogMCwKICAgICJ2ZW50YU5vU3VqIiA6IDAsCiAgICAiZGVzY3JpcGNpb24iIDogIkFKVVNURSBDQVJHT1MgUE9SIFBPVEVOQ0lBIENPTlRSQVRBREEgKENQQyhNKSkgMC44OCBNVyAoMC4wMiBVUyQvIEtXSC1NRVMpIEZFQlJFUk8gMjAxNCIsCiAgICAidmVudGFFeGVudGEiIDogMCwKICAgICJ2ZW50YUdyYXZhZGEiIDogMTcuNiwKICAgICJudW1lcm9Eb2N1bWVudG8iIDogbnVsbAogIH0gXSwKICAicmVzdW1lbiIgOiB7CiAgICAiaXZhUmV0ZTEiIDogMCwKICAgICJzdWJUb3RhbCIgOiAxNy42LAogICAgInRyaWJ1dG9zIiA6IFsgewogICAgICAiY29kaWdvIiA6ICIyMCIsCiAgICAgICJkZXNjcmlwY2lvbiIgOiAiSW1wdWVzdG8gYWwgVmFsb3IgQWdyZWdhZG8gMTMlIiwKICAgICAgInZhbG9yIiA6IDIuMjgKICAgIH0gXSwKICAgICJpdmFQZXJjaTEiIDogMCwKICAgICJyZXRlUmVudGEiIDogMCwKICAgICJkZXNjdU5vU3VqIiA6IDAsCiAgICAidG90YWxEZXNjdSIgOiAwLAogICAgInRvdGFsTm9TdWoiIDogMCwKICAgICJkZXNjdUV4ZW50YSIgOiAwLAogICAgInRvdGFsRXhlbnRhIiA6IDAsCiAgICAidG90YWxMZXRyYXMiIDogIkRJRUNJTlVFVkUgIETDk0xBUkVTIENPTiA4OC8xMDAiLAogICAgImRlc2N1R3JhdmFkYSIgOiAwLAogICAgInRvdGFsR3JhdmFkYSIgOiAxNy42LAogICAgInN1YlRvdGFsVmVudGFzIiA6IDE3LjYsCiAgICAiY29uZGljaW9uT3BlcmFjaW9uIiA6IDIsCiAgICAibnVtUGFnb0VsZWN0cm9uaWNvIiA6IG51bGwsCiAgICAibW9udG9Ub3RhbE9wZXJhY2lvbiIgOiAxOS44OAogIH0sCiAgInZlbnRhVGVyY2VybyIgOiBudWxsLAogICJleHRlbnNpb24iIDogbnVsbCwKICAiYXBlbmRpY2UiIDogbnVsbAp9.L1q5lyYY-DCyS60gOPJ-Bc8iLXY8ZeoC63fl4hPTuAL6cZEbECci4oxL60nMRJxg6iDI4LglUNXve_1SsHpluSwAqBGi_GQ5aWWUWoqKNtJ2wIvrggrYWD4xu_TLSXchm1K9ZxxfCpZWFNfg_F1wRUrbADlzwyoLYPb1ehuv1bRhRSs2uOcUS8DhbxAP1N_JsnZzJap6Kcvrypiz7i9DjvtX6PTEB1-ageDgM1FWdyoZ8DOkREIXe_rho2pvp_U1UyIl2bXmGYe35VofmBYh3dEeL6OAXXfQ6I-UISYu3C5REAmGjdKoc0DH-SKeWDKRaHQDv0aO6xAGML6Sda3NWA",
+        selloRecibido: null
+    }
+
     jsonDte_07 = 
     {
       identificacion: {
@@ -466,9 +671,182 @@ export class DocumentosService {
       selloRecibido: "2023E7C54C101E784BB6A45568E1F53C25183123"
     }
 
+    jsonDte_08 =
+    {
+        identificacion: {
+            fecEmi: "2023-09-21",
+            horEmi: "20:36:39",
+            tipoDte: "08",
+            version: 1,
+            ambiente: "00",
+            tipoModelo: 1,
+            tipoMoneda: "USD",
+            motivoContin: null,
+            numeroControl: "DTE-06-00000000-000000000000003",
+            tipoOperacion: 1,
+            codigoGeneracion: "05E56768-3D7F-71FB-8888-00144FFB12D3",
+            tipoContingencia: null
+        },
+        documentoRelacionado: null,
+        emisor: {
+            nit: "06141809480014",
+            nrc: "81981",
+            nombre: "COMISIÓN EJECUTIVA HIDROELÉCTRICA DEL RÍO LEMPA",
+            codActividad: "35101",
+            descActividad: "Generación de energía eléctrica",
+            nombreComercial: "COMISIÓN EJECUTIVA HIDROELÉCTRICA DEL RÍO LEMPA",
+            tipoEstablecimiento: "01",
+            direccion: {
+                municipio: "14",
+                complemento: "9° CALLE PONIENTE 17° AV. NORTE, CENTRO DE GOBIERNO, # 950, SAN SALVADOR, EL SALVADOR",
+                departamento: "06"
+            },
+            telefono: "22116000",
+            correo: "info@cel.gob.sv"
+        },
+        receptor: {
+            nit: "06142601061016",
+            nrc: "1699575",
+            nombre: "EMPRESA DISTRIBUIDORA ELECTRICA SALVADOREÑA, S.A. DE C.V.",
+            codActividad: "35103",
+            descActividad: "Distribución de energía eléctrica",
+            nombreComercial: "EDESAL, S.A. DE C.V.",
+            direccion: {
+                municipio: "12",
+                complemento: "C. Paris y Prolong Polig. 1 Psj 2 Res. Villa Paris, Cdad Versalles, Edif EDESAL",
+                departamento: "05"
+            },
+            telefono: "23263030",
+            correo: "amurillo@edesal.com"
+        },
+        cuerpoDocumento: [
+            {
+                codigo: null,
+                numItem: 1,
+                cantidad: 1,
+                tipoItem: 3,
+                tributos: [
+                    "20"
+                ],
+                precioUni: 17.6,
+                uniMedida: 59,
+                codTributo: null,
+                montoDescu: 0,
+                ventaNoSuj: 0,
+                descripcion: "AJUSTE CARGOS POR POTENCIA CONTRATADA (CPC(M)) 0.88 MW (0.02 US$/ KWH-MES) FEBRERO 2014",
+                ventaExenta: 0,
+                ventaGravada: 17.6,
+                numeroDocumento: null
+            }
+        ],
+        resumen: {
+            ivaRete1: 0,
+            subTotal: 17.6,
+            tributos: [
+                {
+                    codigo: "20",
+                    descripcion: "Impuesto al Valor Agregado 13%",
+                    valor: 2.28
+                }
+            ],
+            ivaPerci1: 0,
+            reteRenta: 0,
+            descuNoSuj: 0,
+            totalDescu: 0,
+            totalNoSuj: 0,
+            descuExenta: 0,
+            totalExenta: 0,
+            totalLetras: "DIECINUEVE  DÓLARES CON 88/100",
+            descuGravada: 0,
+            totalGravada: 17.6,
+            subTotalVentas: 17.6,
+            condicionOperacion: 2,
+            numPagoElectronico: null,
+            montoTotalOperacion: 19.88
+        },
+        ventaTercero: null,
+        extension: null,
+        apendice: null,
+        firmaElectronica: "eyJhbGciOiJSUzUxMiJ9.ewogICJpZGVudGlmaWNhY2lvbiIgOiB7CiAgICAiZmVjRW1pIiA6ICIyMDIzLTA5LTIxIiwKICAgICJob3JFbWkiIDogIjIwOjM2OjM5IiwKICAgICJ0aXBvRHRlIiA6ICIwNiIsCiAgICAidmVyc2lvbiIgOiAzLAogICAgImFtYmllbnRlIiA6ICIwMCIsCiAgICAidGlwb01vZGVsbyIgOiAxLAogICAgInRpcG9Nb25lZGEiIDogIlVTRCIsCiAgICAibW90aXZvQ29udGluIiA6IG51bGwsCiAgICAibnVtZXJvQ29udHJvbCIgOiAiRFRFLTA2LTAwMDAwMDAwLTAwMDAwMDAwMDAwMDAwMyIsCiAgICAidGlwb09wZXJhY2lvbiIgOiAxLAogICAgImNvZGlnb0dlbmVyYWNpb24iIDogIjA1RTU2NzY4LTNEN0YtNzFGQi1FMDY0LTAwMTQ0RkZCMTJEMyIsCiAgICAidGlwb0NvbnRpbmdlbmNpYSIgOiBudWxsCiAgfSwKICAiZG9jdW1lbnRvUmVsYWNpb25hZG8iIDogbnVsbCwKICAiZW1pc29yIiA6IHsKICAgICJuaXQiIDogIjA2MTQxODA5NDgwMDE0IiwKICAgICJucmMiIDogIjgxOTgxIiwKICAgICJub21icmUiIDogIkNPTUlTScOTTiBFSkVDVVRJVkEgSElEUk9FTMOJQ1RSSUNBIERFTCBSw41PIExFTVBBIiwKICAgICJjb2RBY3RpdmlkYWQiIDogIjM1MTAxIiwKICAgICJkZXNjQWN0aXZpZGFkIiA6ICJHZW5lcmFjacOzbiBkZSBlbmVyZ8OtYSBlbMOpY3RyaWNhIiwKICAgICJub21icmVDb21lcmNpYWwiIDogIkNPTUlTScOTTiBFSkVDVVRJVkEgSElEUk9FTMOJQ1RSSUNBIERFTCBSw41PIExFTVBBIiwKICAgICJ0aXBvRXN0YWJsZWNpbWllbnRvIiA6ICIwMSIsCiAgICAiZGlyZWNjaW9uIiA6IHsKICAgICAgIm11bmljaXBpbyIgOiAiMTQiLAogICAgICAiY29tcGxlbWVudG8iIDogIjnCsCBDQUxMRSBQT05JRU5URSAxN8KwIEFWLiBOT1JURSwgQ0VOVFJPIERFIEdPQklFUk5PLCAjIDk1MCwgU0FOIFNBTFZBRE9SLCBFTCBTQUxWQURPUiIsCiAgICAgICJkZXBhcnRhbWVudG8iIDogIjA2IgogICAgfSwKICAgICJ0ZWxlZm9ubyIgOiAiMjIxMTYwMDAiLAogICAgImNvcnJlbyIgOiAiaW5mb0BjZWwuZ29iLnN2IgogIH0sCiAgInJlY2VwdG9yIiA6IHsKICAgICJuaXQiIDogIjA2MTQyNjAxMDYxMDE2IiwKICAgICJucmMiIDogIjE2OTk1NzUiLAogICAgIm5vbWJyZSIgOiAiRU1QUkVTQSBESVNUUklCVUlET1JBIEVMRUNUUklDQSBTQUxWQURPUkXDkUEsIFMuQS4gREUgQy5WLiIsCiAgICAiY29kQWN0aXZpZGFkIiA6ICIzNTEwMyIsCiAgICAiZGVzY0FjdGl2aWRhZCIgOiAiRGlzdHJpYnVjacOzbiBkZSBlbmVyZ8OtYSBlbMOpY3RyaWNhIiwKICAgICJub21icmVDb21lcmNpYWwiIDogIkVERVNBTCwgUy5BLiBERSBDLlYuIiwKICAgICJkaXJlY2Npb24iIDogewogICAgICAibXVuaWNpcGlvIiA6ICIxMiIsCiAgICAgICJjb21wbGVtZW50byIgOiAiQy4gUGFyaXMgeSBQcm9sb25nIFBvbGlnLiAxIFBzaiAyIFJlcy4gVmlsbGEgUGFyaXMsIENkYWQgVmVyc2FsbGVzLCBFZGlmIEVERVNBTCIsCiAgICAgICJkZXBhcnRhbWVudG8iIDogIjA1IgogICAgfSwKICAgICJ0ZWxlZm9ubyIgOiAiMjMyNjMwMzAiLAogICAgImNvcnJlbyIgOiAiYW11cmlsbG9AZWRlc2FsLmNvbSIKICB9LAogICJjdWVycG9Eb2N1bWVudG8iIDogWyB7CiAgICAiY29kaWdvIiA6IG51bGwsCiAgICAibnVtSXRlbSIgOiAxLAogICAgImNhbnRpZGFkIiA6IDEsCiAgICAidGlwb0l0ZW0iIDogMywKICAgICJ0cmlidXRvcyIgOiBbICIyMCIgXSwKICAgICJwcmVjaW9VbmkiIDogMTcuNiwKICAgICJ1bmlNZWRpZGEiIDogNTksCiAgICAiY29kVHJpYnV0byIgOiBudWxsLAogICAgIm1vbnRvRGVzY3UiIDogMCwKICAgICJ2ZW50YU5vU3VqIiA6IDAsCiAgICAiZGVzY3JpcGNpb24iIDogIkFKVVNURSBDQVJHT1MgUE9SIFBPVEVOQ0lBIENPTlRSQVRBREEgKENQQyhNKSkgMC44OCBNVyAoMC4wMiBVUyQvIEtXSC1NRVMpIEZFQlJFUk8gMjAxNCIsCiAgICAidmVudGFFeGVudGEiIDogMCwKICAgICJ2ZW50YUdyYXZhZGEiIDogMTcuNiwKICAgICJudW1lcm9Eb2N1bWVudG8iIDogbnVsbAogIH0gXSwKICAicmVzdW1lbiIgOiB7CiAgICAiaXZhUmV0ZTEiIDogMCwKICAgICJzdWJUb3RhbCIgOiAxNy42LAogICAgInRyaWJ1dG9zIiA6IFsgewogICAgICAiY29kaWdvIiA6ICIyMCIsCiAgICAgICJkZXNjcmlwY2lvbiIgOiAiSW1wdWVzdG8gYWwgVmFsb3IgQWdyZWdhZG8gMTMlIiwKICAgICAgInZhbG9yIiA6IDIuMjgKICAgIH0gXSwKICAgICJpdmFQZXJjaTEiIDogMCwKICAgICJyZXRlUmVudGEiIDogMCwKICAgICJkZXNjdU5vU3VqIiA6IDAsCiAgICAidG90YWxEZXNjdSIgOiAwLAogICAgInRvdGFsTm9TdWoiIDogMCwKICAgICJkZXNjdUV4ZW50YSIgOiAwLAogICAgInRvdGFsRXhlbnRhIiA6IDAsCiAgICAidG90YWxMZXRyYXMiIDogIkRJRUNJTlVFVkUgIETDk0xBUkVTIENPTiA4OC8xMDAiLAogICAgImRlc2N1R3JhdmFkYSIgOiAwLAogICAgInRvdGFsR3JhdmFkYSIgOiAxNy42LAogICAgInN1YlRvdGFsVmVudGFzIiA6IDE3LjYsCiAgICAiY29uZGljaW9uT3BlcmFjaW9uIiA6IDIsCiAgICAibnVtUGFnb0VsZWN0cm9uaWNvIiA6IG51bGwsCiAgICAibW9udG9Ub3RhbE9wZXJhY2lvbiIgOiAxOS44OAogIH0sCiAgInZlbnRhVGVyY2VybyIgOiBudWxsLAogICJleHRlbnNpb24iIDogbnVsbCwKICAiYXBlbmRpY2UiIDogbnVsbAp9.L1q5lyYY-DCyS60gOPJ-Bc8iLXY8ZeoC63fl4hPTuAL6cZEbECci4oxL60nMRJxg6iDI4LglUNXve_1SsHpluSwAqBGi_GQ5aWWUWoqKNtJ2wIvrggrYWD4xu_TLSXchm1K9ZxxfCpZWFNfg_F1wRUrbADlzwyoLYPb1ehuv1bRhRSs2uOcUS8DhbxAP1N_JsnZzJap6Kcvrypiz7i9DjvtX6PTEB1-ageDgM1FWdyoZ8DOkREIXe_rho2pvp_U1UyIl2bXmGYe35VofmBYh3dEeL6OAXXfQ6I-UISYu3C5REAmGjdKoc0DH-SKeWDKRaHQDv0aO6xAGML6Sda3NWA",
+        selloRecibido: null
+    }
+
+    jsonDte_09 = 
+    {
+      identificacion: {
+        fecEmi: "2023-09-20",
+        horEmi: "08:28:11",
+        tipoDte: "09",
+        version: 1,
+        ambiente: "00",
+        tipoModelo: 1,
+        tipoMoneda: "USD",
+        motivoContin: null,
+        numeroControl: "DTE-07-00000000-000000000000051",
+        tipoOperacion: 1,
+        codigoGeneracion: "05CC1957-F10C-6670-11111-00144FFB12D3",
+        tipoContingencia: null
+      },
+      emisor: {
+        nit: "06141809480014",
+        nrc: "81981",
+        nombre: "COMISIÓN EJECUTIVA HIDROELÉCTRICA DEL RÍO LEMPA",
+        codActividad: "35101",
+        descActividad: "Generación de energía eléctrica",
+        nombreComercial: "COMISIÓN EJECUTIVA HIDROELÉCTRICA DEL RÍO LEMPA",
+        tipoEstablecimiento: "01",
+        direccion: {
+          municipio: "14",
+          complemento: "9° CALLE PONIENTE 17° AV. NORTE, CENTRO DE GOBIERNO, # 950, SAN SALVADOR, EL SALVADOR",
+          departamento: "06"
+        },
+        telefono: "22116000",
+        correo: "info@cel.gob.sv",
+        codigoMH: null,
+        codigo: null,
+        puntoVentaMH: null,
+        puntoVenta: null
+      },
+      receptor: {
+        nit: "06142402912345",
+        nrc: "1112345",
+        nombre: "EMPRESA 12345",
+        codActividad: "12345",
+        descActividad: "Transmisión de 12345",
+        nombreComercial: "12345 S.A. DE C.V.",
+        direccion: {
+          municipio: "10",
+          complemento: "CALLE 12345, RES.12345, # 12345, SANTA TECLA, LA LIBERTAD",
+          departamento: "05"
+        },
+        telefono: "2512-34560",
+        correo: "sisdte@cel.gob.sv"
+      },
+      "cuerpoDocumento": [
+        {
+          numItem: 1,
+          tipoDoc: 1,
+          tipoDte: "14",
+          descripcion: "AJUSTE AL SUMINISTRO DE ENERGIA ELECTRICA EN SUBESTACIONES CORRESPONDIENTE AL MES DE JUNIO DE 2022 POR 421,474.642 KWH SEGUN MODIFICACION NO. 1 AL CONTRATO CEL-3688-S APLICADO AL CCF 190 DEL  11072022",
+          ivaRetenido: 57.78,
+          fechaEmision: "2023-09-20",
+          numDocumento: "2730",
+          montoSujetoGrav: 444.44,
+          codigoRetencionMH: "C4"
+        }
+      ],
+      resumen: {
+        totalSujetoRetencion: 444.44,
+        totalIVAretenido: 57.78,
+        totalIVAretenidoLetras: "CINCUENTA Y SIETE  DÓLARES CON 78/100"
+      },
+      extension: null,
+      apendice: null,
+      firmaElectronica: "eyJhbGciOiJSUzUxMiJ9.ewogICJpZGVudGlmaWNhY2lvbiIgOiB7CiAgICAiZmVjRW1pIiA6ICIyMDIzLTA5LTIwIiwKICAgICJob3JFbWkiIDogIjA4OjI4OjExIiwKICAgICJ0aXBvRHRlIiA6ICIwNyIsCiAgICAidmVyc2lvbiIgOiAxLAogICAgImFtYmllbnRlIiA6ICIwMCIsCiAgICAidGlwb01vZGVsbyIgOiAxLAogICAgInRpcG9Nb25lZGEiIDogIlVTRCIsCiAgICAibW90aXZvQ29udGluIiA6IG51bGwsCiAgICAibnVtZXJvQ29udHJvbCIgOiAiRFRFLTA3LTAwMDAwMDAwLTAwMDAwMDAwMDAwMDA1MSIsCiAgICAidGlwb09wZXJhY2lvbiIgOiAxLAogICAgImNvZGlnb0dlbmVyYWNpb24iIDogIjA1Q0MxOTU3LUYxMEMtNjY3MC1FMDY0LTAwMTQ0RkZCMTJEMyIsCiAgICAidGlwb0NvbnRpbmdlbmNpYSIgOiBudWxsCiAgfSwKICAiZW1pc29yIiA6IHsKICAgICJuaXQiIDogIjA2MTQxODA5NDgwMDE0IiwKICAgICJucmMiIDogIjgxOTgxIiwKICAgICJub21icmUiIDogIkNPTUlTScOTTiBFSkVDVVRJVkEgSElEUk9FTMOJQ1RSSUNBIERFTCBSw41PIExFTVBBIiwKICAgICJjb2RBY3RpdmlkYWQiIDogIjM1MTAxIiwKICAgICJkZXNjQWN0aXZpZGFkIiA6ICJHZW5lcmFjacOzbiBkZSBlbmVyZ8OtYSBlbMOpY3RyaWNhIiwKICAgICJub21icmVDb21lcmNpYWwiIDogIkNPTUlTScOTTiBFSkVDVVRJVkEgSElEUk9FTMOJQ1RSSUNBIERFTCBSw41PIExFTVBBIiwKICAgICJ0aXBvRXN0YWJsZWNpbWllbnRvIiA6ICIwMSIsCiAgICAiZGlyZWNjaW9uIiA6IHsKICAgICAgIm11bmljaXBpbyIgOiAiMTQiLAogICAgICAiY29tcGxlbWVudG8iIDogIjnCsCBDQUxMRSBQT05JRU5URSAxN8KwIEFWLiBOT1JURSwgQ0VOVFJPIERFIEdPQklFUk5PLCAjIDk1MCwgU0FOIFNBTFZBRE9SLCBFTCBTQUxWQURPUiIsCiAgICAgICJkZXBhcnRhbWVudG8iIDogIjA2IgogICAgfSwKICAgICJ0ZWxlZm9ubyIgOiAiMjIxMTYwMDAiLAogICAgImNvcnJlbyIgOiAiaW5mb0BjZWwuZ29iLnN2IiwKICAgICJjb2RpZ29NSCIgOiBudWxsLAogICAgImNvZGlnbyIgOiBudWxsLAogICAgInB1bnRvVmVudGFNSCIgOiBudWxsLAogICAgInB1bnRvVmVudGEiIDogbnVsbAogIH0sCiAgInJlY2VwdG9yIiA6IHsKICAgICJkaXJlY2Npb24iIDogeyB9CiAgfSwKICAiY3VlcnBvRG9jdW1lbnRvIiA6IFsgewogICAgIm51bUl0ZW0iIDogMSwKICAgICJ0aXBvRG9jIiA6IDEsCiAgICAidGlwb0R0ZSIgOiAiMTQiLAogICAgImRlc2NyaXBjaW9uIiA6IG51bGwsCiAgICAiaXZhUmV0ZW5pZG8iIDogNTcuNzgsCiAgICAiZmVjaGFFbWlzaW9uIiA6ICIyMDIzLTA5LTIwIiwKICAgICJudW1Eb2N1bWVudG8iIDogIjI3MzAiLAogICAgIm1vbnRvU3VqZXRvR3JhdiIgOiA0NDQuNDQsCiAgICAiY29kaWdvUmV0ZW5jaW9uTUgiIDogIkM0IgogIH0gXSwKICAicmVzdW1lbiIgOiB7CiAgICAidG90YWxTdWpldG9SZXRlbmNpb24iIDogNDQ0LjQ0LAogICAgInRvdGFsSVZBcmV0ZW5pZG8iIDogNTcuNzgsCiAgICAidG90YWxJVkFyZXRlbmlkb0xldHJhcyIgOiAiQ0lOQ1VFTlRBIFkgU0lFVEUgIETDk0xBUkVTIENPTiA3OC8xMDAiCiAgfSwKICAiZXh0ZW5zaW9uIiA6IG51bGwsCiAgImFwZW5kaWNlIiA6IG51bGwKfQ.V4SWOkZtEz9ePtvhkNYQiLgUl6tO9uvChmBM9m_yyt7mAMoXwRNOWYk4wJUpgkBR9jPkYsCkFgI1oqjsbsfaoHq6J3Om8jHQ1_0piMxXFcaH567-jDwoDPgtERPbQYxhaA-xp9IsOj_DOfIiE20YoncaNHEtxM0sY0T8xAYDmhbDKqzycLKt3kCt-PMCEdrdqRNojpl3VKls3GcKgB_KpXE0pcdoTdH8SMBmclyPKKFNzwWS4BNuNKyrhkXZMLCMikF52-di2UY0aoufLf_cvCJe1QL4NsvKC6S6jL5Yjcjf2bVVaB_-Vm4xkFp4rgc920hpqbCr5GITfU9JeWy-cA",
+      selloRecibido: "2023E7C54C101E784BB6A45568E1F53C25183123"
+    }
 
     jsonDte_11 =
-
     {
         identificacion: {
             fecEmi: "2023-09-19",
@@ -657,7 +1035,108 @@ export class DocumentosService {
         selloRecibido: "2023655396125D304EA29EF77E542F343CC4LKRO"
     }
     
-    this.genera_documento_cel(jsonDte_07);
+    jsonDte_15 =
+    {
+        identificacion: {
+            fecEmi: "2023-09-21",
+            horEmi: "20:36:39",
+            tipoDte: "15",
+            version: 1,
+            ambiente: "00",
+            tipoModelo: 1,
+            tipoMoneda: "USD",
+            motivoContin: null,
+            numeroControl: "DTE-06-00000000-000000000000003",
+            tipoOperacion: 1,
+            codigoGeneracion: "05E56768-3D7F-71FB-5555-00144FFB12D3",
+            tipoContingencia: null
+        },
+        documentoRelacionado: null,
+        emisor: {
+            nit: "06141809480014",
+            nrc: "81981",
+            nombre: "COMISIÓN EJECUTIVA HIDROELÉCTRICA DEL RÍO LEMPA",
+            codActividad: "35101",
+            descActividad: "Generación de energía eléctrica",
+            nombreComercial: "COMISIÓN EJECUTIVA HIDROELÉCTRICA DEL RÍO LEMPA",
+            tipoEstablecimiento: "01",
+            direccion: {
+                municipio: "14",
+                complemento: "9° CALLE PONIENTE 17° AV. NORTE, CENTRO DE GOBIERNO, # 950, SAN SALVADOR, EL SALVADOR",
+                departamento: "06"
+            },
+            telefono: "22116000",
+            correo: "info@cel.gob.sv"
+        },
+        receptor: {
+            nit: "06142601061016",
+            nrc: "1699575",
+            nombre: "EMPRESA DISTRIBUIDORA ELECTRICA SALVADOREÑA, S.A. DE C.V.",
+            codActividad: "35103",
+            descActividad: "Distribución de energía eléctrica",
+            nombreComercial: "EDESAL, S.A. DE C.V.",
+            direccion: {
+                municipio: "12",
+                complemento: "C. Paris y Prolong Polig. 1 Psj 2 Res. Villa Paris, Cdad Versalles, Edif EDESAL",
+                departamento: "05"
+            },
+            telefono: "23263030",
+            correo: "amurillo@edesal.com"
+        },
+        cuerpoDocumento: [
+            {
+                codigo: null,
+                numItem: 1,
+                cantidad: 1,
+                tipoItem: 3,
+                tributos: [
+                    "20"
+                ],
+                precioUni: 17.6,
+                uniMedida: 59,
+                codTributo: null,
+                montoDescu: 0,
+                ventaNoSuj: 0,
+                descripcion: "AJUSTE CARGOS POR POTENCIA CONTRATADA (CPC(M)) 0.88 MW (0.02 US$/ KWH-MES) FEBRERO 2014",
+                ventaExenta: 0,
+                ventaGravada: 17.6,
+                numeroDocumento: null
+            }
+        ],
+        resumen: {
+            ivaRete1: 0,
+            subTotal: 17.6,
+            tributos: [
+                {
+                    codigo: "20",
+                    descripcion: "Impuesto al Valor Agregado 13%",
+                    valor: 2.28
+                }
+            ],
+            ivaPerci1: 0,
+            reteRenta: 0,
+            descuNoSuj: 0,
+            totalDescu: 0,
+            totalNoSuj: 0,
+            descuExenta: 0,
+            totalExenta: 0,
+            totalLetras: "DIECINUEVE  DÓLARES CON 88/100",
+            descuGravada: 0,
+            totalGravada: 17.6,
+            subTotalVentas: 17.6,
+            condicionOperacion: 2,
+            numPagoElectronico: null,
+            montoTotalOperacion: 19.88
+        },
+        ventaTercero: null,
+        extension: null,
+        apendice: null,
+        firmaElectronica: "eyJhbGciOiJSUzUxMiJ9.ewogICJpZGVudGlmaWNhY2lvbiIgOiB7CiAgICAiZmVjRW1pIiA6ICIyMDIzLTA5LTIxIiwKICAgICJob3JFbWkiIDogIjIwOjM2OjM5IiwKICAgICJ0aXBvRHRlIiA6ICIwNiIsCiAgICAidmVyc2lvbiIgOiAzLAogICAgImFtYmllbnRlIiA6ICIwMCIsCiAgICAidGlwb01vZGVsbyIgOiAxLAogICAgInRpcG9Nb25lZGEiIDogIlVTRCIsCiAgICAibW90aXZvQ29udGluIiA6IG51bGwsCiAgICAibnVtZXJvQ29udHJvbCIgOiAiRFRFLTA2LTAwMDAwMDAwLTAwMDAwMDAwMDAwMDAwMyIsCiAgICAidGlwb09wZXJhY2lvbiIgOiAxLAogICAgImNvZGlnb0dlbmVyYWNpb24iIDogIjA1RTU2NzY4LTNEN0YtNzFGQi1FMDY0LTAwMTQ0RkZCMTJEMyIsCiAgICAidGlwb0NvbnRpbmdlbmNpYSIgOiBudWxsCiAgfSwKICAiZG9jdW1lbnRvUmVsYWNpb25hZG8iIDogbnVsbCwKICAiZW1pc29yIiA6IHsKICAgICJuaXQiIDogIjA2MTQxODA5NDgwMDE0IiwKICAgICJucmMiIDogIjgxOTgxIiwKICAgICJub21icmUiIDogIkNPTUlTScOTTiBFSkVDVVRJVkEgSElEUk9FTMOJQ1RSSUNBIERFTCBSw41PIExFTVBBIiwKICAgICJjb2RBY3RpdmlkYWQiIDogIjM1MTAxIiwKICAgICJkZXNjQWN0aXZpZGFkIiA6ICJHZW5lcmFjacOzbiBkZSBlbmVyZ8OtYSBlbMOpY3RyaWNhIiwKICAgICJub21icmVDb21lcmNpYWwiIDogIkNPTUlTScOTTiBFSkVDVVRJVkEgSElEUk9FTMOJQ1RSSUNBIERFTCBSw41PIExFTVBBIiwKICAgICJ0aXBvRXN0YWJsZWNpbWllbnRvIiA6ICIwMSIsCiAgICAiZGlyZWNjaW9uIiA6IHsKICAgICAgIm11bmljaXBpbyIgOiAiMTQiLAogICAgICAiY29tcGxlbWVudG8iIDogIjnCsCBDQUxMRSBQT05JRU5URSAxN8KwIEFWLiBOT1JURSwgQ0VOVFJPIERFIEdPQklFUk5PLCAjIDk1MCwgU0FOIFNBTFZBRE9SLCBFTCBTQUxWQURPUiIsCiAgICAgICJkZXBhcnRhbWVudG8iIDogIjA2IgogICAgfSwKICAgICJ0ZWxlZm9ubyIgOiAiMjIxMTYwMDAiLAogICAgImNvcnJlbyIgOiAiaW5mb0BjZWwuZ29iLnN2IgogIH0sCiAgInJlY2VwdG9yIiA6IHsKICAgICJuaXQiIDogIjA2MTQyNjAxMDYxMDE2IiwKICAgICJucmMiIDogIjE2OTk1NzUiLAogICAgIm5vbWJyZSIgOiAiRU1QUkVTQSBESVNUUklCVUlET1JBIEVMRUNUUklDQSBTQUxWQURPUkXDkUEsIFMuQS4gREUgQy5WLiIsCiAgICAiY29kQWN0aXZpZGFkIiA6ICIzNTEwMyIsCiAgICAiZGVzY0FjdGl2aWRhZCIgOiAiRGlzdHJpYnVjacOzbiBkZSBlbmVyZ8OtYSBlbMOpY3RyaWNhIiwKICAgICJub21icmVDb21lcmNpYWwiIDogIkVERVNBTCwgUy5BLiBERSBDLlYuIiwKICAgICJkaXJlY2Npb24iIDogewogICAgICAibXVuaWNpcGlvIiA6ICIxMiIsCiAgICAgICJjb21wbGVtZW50byIgOiAiQy4gUGFyaXMgeSBQcm9sb25nIFBvbGlnLiAxIFBzaiAyIFJlcy4gVmlsbGEgUGFyaXMsIENkYWQgVmVyc2FsbGVzLCBFZGlmIEVERVNBTCIsCiAgICAgICJkZXBhcnRhbWVudG8iIDogIjA1IgogICAgfSwKICAgICJ0ZWxlZm9ubyIgOiAiMjMyNjMwMzAiLAogICAgImNvcnJlbyIgOiAiYW11cmlsbG9AZWRlc2FsLmNvbSIKICB9LAogICJjdWVycG9Eb2N1bWVudG8iIDogWyB7CiAgICAiY29kaWdvIiA6IG51bGwsCiAgICAibnVtSXRlbSIgOiAxLAogICAgImNhbnRpZGFkIiA6IDEsCiAgICAidGlwb0l0ZW0iIDogMywKICAgICJ0cmlidXRvcyIgOiBbICIyMCIgXSwKICAgICJwcmVjaW9VbmkiIDogMTcuNiwKICAgICJ1bmlNZWRpZGEiIDogNTksCiAgICAiY29kVHJpYnV0byIgOiBudWxsLAogICAgIm1vbnRvRGVzY3UiIDogMCwKICAgICJ2ZW50YU5vU3VqIiA6IDAsCiAgICAiZGVzY3JpcGNpb24iIDogIkFKVVNURSBDQVJHT1MgUE9SIFBPVEVOQ0lBIENPTlRSQVRBREEgKENQQyhNKSkgMC44OCBNVyAoMC4wMiBVUyQvIEtXSC1NRVMpIEZFQlJFUk8gMjAxNCIsCiAgICAidmVudGFFeGVudGEiIDogMCwKICAgICJ2ZW50YUdyYXZhZGEiIDogMTcuNiwKICAgICJudW1lcm9Eb2N1bWVudG8iIDogbnVsbAogIH0gXSwKICAicmVzdW1lbiIgOiB7CiAgICAiaXZhUmV0ZTEiIDogMCwKICAgICJzdWJUb3RhbCIgOiAxNy42LAogICAgInRyaWJ1dG9zIiA6IFsgewogICAgICAiY29kaWdvIiA6ICIyMCIsCiAgICAgICJkZXNjcmlwY2lvbiIgOiAiSW1wdWVzdG8gYWwgVmFsb3IgQWdyZWdhZG8gMTMlIiwKICAgICAgInZhbG9yIiA6IDIuMjgKICAgIH0gXSwKICAgICJpdmFQZXJjaTEiIDogMCwKICAgICJyZXRlUmVudGEiIDogMCwKICAgICJkZXNjdU5vU3VqIiA6IDAsCiAgICAidG90YWxEZXNjdSIgOiAwLAogICAgInRvdGFsTm9TdWoiIDogMCwKICAgICJkZXNjdUV4ZW50YSIgOiAwLAogICAgInRvdGFsRXhlbnRhIiA6IDAsCiAgICAidG90YWxMZXRyYXMiIDogIkRJRUNJTlVFVkUgIETDk0xBUkVTIENPTiA4OC8xMDAiLAogICAgImRlc2N1R3JhdmFkYSIgOiAwLAogICAgInRvdGFsR3JhdmFkYSIgOiAxNy42LAogICAgInN1YlRvdGFsVmVudGFzIiA6IDE3LjYsCiAgICAiY29uZGljaW9uT3BlcmFjaW9uIiA6IDIsCiAgICAibnVtUGFnb0VsZWN0cm9uaWNvIiA6IG51bGwsCiAgICAibW9udG9Ub3RhbE9wZXJhY2lvbiIgOiAxOS44OAogIH0sCiAgInZlbnRhVGVyY2VybyIgOiBudWxsLAogICJleHRlbnNpb24iIDogbnVsbCwKICAiYXBlbmRpY2UiIDogbnVsbAp9.L1q5lyYY-DCyS60gOPJ-Bc8iLXY8ZeoC63fl4hPTuAL6cZEbECci4oxL60nMRJxg6iDI4LglUNXve_1SsHpluSwAqBGi_GQ5aWWUWoqKNtJ2wIvrggrYWD4xu_TLSXchm1K9ZxxfCpZWFNfg_F1wRUrbADlzwyoLYPb1ehuv1bRhRSs2uOcUS8DhbxAP1N_JsnZzJap6Kcvrypiz7i9DjvtX6PTEB1-ageDgM1FWdyoZ8DOkREIXe_rho2pvp_U1UyIl2bXmGYe35VofmBYh3dEeL6OAXXfQ6I-UISYu3C5REAmGjdKoc0DH-SKeWDKRaHQDv0aO6xAGML6Sda3NWA",
+        selloRecibido: null
+    }
+
+
+    this.genera_documento_cel(jsonDte_09);
     return 'Proceso Finalizado';
   }
 
@@ -787,29 +1266,25 @@ export class DocumentosService {
     const ide_CGE = data.identificacion.codigoGeneracion;
     const ide_NCO = data.identificacion.numeroControl;
     const ide_FEC = data.identificacion.fecEmi;
-    const rec_NOM = data.receptor.nombre;
+    let rec_NOM = ``;
+    let v_plantilla = ``;
     const nombre_archivo = `${ide_CGE}`;
 
     /////////////////////////////////////////////////
     //---- SELECCIÓN DE PLANTILLA 
     /////////////////////////////////////////////////
-    let v_plantilla = ``;
+    const usa_plantilla_01 = ['01', '03', '04', '05', '06', '08', '11', '14', '15'];
+    const usa_plantilla_02 = ['07', '09'];
+    
+    if (usa_plantilla_01.includes(ide_TDT)) {
+      v_plantilla = 'cel_documento_01';
+      rec_NOM = data?.receptor?.nombre;
+    } else if (usa_plantilla_02.includes(ide_TDT)) {
+      v_plantilla = 'cel_documento_02';
+      rec_NOM = data?.sujetoExcluido?.nombre;
+    }
 
-    if (ide_TDT == '01') {
-      v_plantilla = 'plantilla_01';
-    }
-    else if (ide_TDT == '03') {
-      v_plantilla = 'plantilla_01';
-    }
-    else if (ide_TDT == '05') {
-      v_plantilla = 'plantilla_01';
-    }
-    else if (ide_TDT == '06') {
-      v_plantilla = 'plantilla_01';
-    }
-    else if (ide_TDT == '07') {
-      v_plantilla = 'plantilla_02';
-    }
+  
 
     //DEFINO NOMBRE DEL ARCHIVO PDF
     const filePdfDocumento = join(__dirname, '..', '..', 'public', `${nombre_archivo}.pdf`);
@@ -860,7 +1335,7 @@ export class DocumentosService {
 
 
         //console.log(datosJson);
-        const content = await compile(`cel_documento_01`, fixedPlusJson);
+        const content = await compile(v_plantilla, fixedPlusJson);
 
         // Definir el contenido del encabezado y el pie de página como plantillas HTML
         const v_headerTemplate = ``;
