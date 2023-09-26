@@ -1032,7 +1032,7 @@
 								<!--  -->
 								
 								<!--  PRECIO UNITARIO / OBSERVACION POR ITEM - ETIQUETA -->
-								{{#compareDTE identificacion.tipoDte values="01,03,04,05,06,11,14,15"}}
+								{{#compareDTE identificacion.tipoDte values="01,03,04,05,06,11,14"}}
 									<td class="col5" style="text-align: center;">
 										<p class="tamanio_05"><b>Precio Unitario</b></p>
 									</td>
@@ -1046,7 +1046,7 @@
 								<!--  -->	
 
 								<!--  DESCUENTO POR ÍTEM / EXPORTACIONES - ETIQUETA -->
-								{{#compareDTE identificacion.tipoDte values="01,03,04,05,06,11,14,15"}}
+								{{#compareDTE identificacion.tipoDte values="01,03,04,05,06,11,14"}}
 									<td class="col6" style="text-align: center;">
 										<p class="tamanio_05"><b>Descuento por ítem</b></p>
 									</td>
@@ -1113,7 +1113,19 @@
 								{{/compareDTE}}
 								<!--  -->							
 																					
-
+								<!--  DEPRECIACIÓN / VALOR UNITARIO / VALOR DONADO - ETIQUETA -->
+								{{#compareDTE identificacion.tipoDte values="15"}}
+									<td class="col10" style="text-align: center;">
+										<p class="tamanio_05"><b>Depreciación</b></p>
+									</td>
+									<td class="col10" style="text-align: center;">
+										<p class="tamanio_05"><b>Valor Unitario</b></p>
+									</td>
+									<td class="col10" style="text-align: center;">
+										<p class="tamanio_05"><b>Valor Donado</b></p>
+									</td>								
+								{{/compareDTE}}
+								<!--  -->	
 
 							</tr>
 
@@ -1204,7 +1216,7 @@
 								<!--  -->
 
 								<!--  PRECIO UNITARIO / OBSERVACIÓN POR ÍTEM - VALOR -->
-								{{#compareDTE ../identificacion.tipoDte values="01,03,04,05,06,11,14,15"}}
+								{{#compareDTE ../identificacion.tipoDte values="01,03,04,05,06,11,14"}}
 									<td style="text-align: right;">
 										<p class="tamanio_05">
 											{{#existe cuerpodoc.precioUni 0}}
@@ -1229,7 +1241,7 @@
 								<!--  -->
 
 								<!--  DESCUENTO POR ÍTEM / EXPORTACIONES - VALOR -->
-								{{#compareDTE ../identificacion.tipoDte values="01,03,04,05,06,11,14,15"}}
+								{{#compareDTE ../identificacion.tipoDte values="01,03,04,05,06,11,14"}}
 									<td style="text-align: right;">
 										<p class="tamanio_05">
 											{{#existe cuerpodoc.montoDescu 0}}
@@ -1325,7 +1337,40 @@
 								{{/compareDTE}}
 								<!--  -->
 																												
-
+								<!--  DEPRECIACIÓN / VALOR UNITARIO / VALOR DONADO - VALOR -->
+								{{#compareDTE ../identificacion.tipoDte values="15"}}
+									<td style="text-align: right; padding-right: 0.5em;">
+										<p class="tamanio_05">
+											<!--
+											{{#existe cuerpodoc.ventaGravada 0}}
+											{{formatNumber_Moneda cuerpodoc.ventaGravada}}
+											{{/existe}}
+											-->
+											<p>&nbsp;</p>
+										</p>
+									</td>
+									<td style="text-align: right; padding-right: 0.5em;">
+										<p class="tamanio_05">
+											<!--
+											{{#existe cuerpodoc.ventaGravada 0}}
+											{{formatNumber_Moneda cuerpodoc.ventaGravada}}
+											{{/existe}}
+											-->
+											<p>&nbsp;</p>
+										</p>
+									</td>
+									<td style="text-align: right; padding-right: 0.5em;">
+										<p class="tamanio_05">
+											<!--
+											{{#existe cuerpodoc.compra 0}}
+											{{formatNumber_Moneda cuerpodoc.compra}}
+											{{/existe}}
+											-->
+											<p>&nbsp;</p>
+										</p>
+									</td>
+								{{/compareDTE}}
+								<!--  -->
 							
 
 							</tr>

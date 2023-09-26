@@ -8,12 +8,7 @@
     <title>Notificación de consentimiento de entrega de información</title>
     <style>
 
-    /* -------------------------------------
-        INLINED WITH htmlemail.io/inline
-    ------------------------------------- */
-    /* -------------------------------------
-        RESPONSIVE AND MOBILE FRIENDLY STYLES
-    ------------------------------------- */
+
     @media only screen and (max-width: 620px) {
       table[class=body] h1 {
         font-size: 28px !important;
@@ -56,9 +51,6 @@
       }
     }
 
-    /* -------------------------------------
-        PRESERVE THESE STYLES IN THE HEAD
-    ------------------------------------- */
     @media all {
       .ExternalClass {
         width: 100%;
@@ -127,13 +119,13 @@ p.tamanio_04{
 
         
            
-            <!-- START CENTERED WHITE CONTAINER -->
+
             <table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;">
 
-              <!-- START MAIN CONTENT AREA -->
+
               <tr>
                 <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 0px;">
-                      <img src="{{url}}assets/images/email-temp/barra_cel_01.png" style="max-width: 600px ; max-height: 77px; ">
+                	<img src="{{url}}assets/images/email-temp/barra_cel_01.png" style="max-width: 600px ; max-height: 77px; ">
                 </td>
               </tr>
               <tr>
@@ -146,7 +138,7 @@ p.tamanio_04{
                   <p class="tamanio_01"><b>Documento Tributario Electrónico</b></p>
                 </td>
                 <td align="center">
-                  <img src="{{url}}assets/images/email-temp/doc_barra.png" style="max-width: 80px ; max-height: 80px; ">
+                	<img src="{{url}}assets/images/email-temp/doc_barra.png" style="max-width: 80px ; max-height: 80px; ">
                 </td>
 					</tr>
 				  </tbody>
@@ -160,19 +152,18 @@ p.tamanio_04{
                     <br>
                   Por este medio se adjunta Representación gráfica de Factura Electrónica, con:                   
                   <p class="tamanio_03">Número de control <strong>{{v_numcon}}</strong>                  
-                  <p class="tamanio_03">Código de Generación: <strong>{{v_codgen}}</strong>               
-                   
-                   
+                  <p class="tamanio_03">Código de Generación: <strong>{{v_codgen}}</strong>
+                  
                   <table width="100%" border="0">
 					  <tbody>
 						<tr align="center">
 						  <td>
 						  	<img src="{{url}}assets/images/email-temp/{{codigo_qr}}" alt="" style=" max-width: 150px ; max-height: 100px; ">
-						  	<p class="tamanio_03"><a href="{{v_url_qr}}">AQUI</a></p>
+						  	<p class="tamanio_05"><a href="{{v_url_qr}}">Consulta DTE - Ministerio de Hacienda</a></p>
 						  </td>
 						</tr>
 					  </tbody>
-				  </table>                      
+				  </table>                     
                    
                    <br>
                     <br>
@@ -209,24 +200,23 @@ p.tamanio_04{
                 <p class="tamanio_03">CEL nunca le solicitará datos financieros como usuarios, claves, números de tarjetas de crédito con sus códigos de seguridad y fechas de vencimiento mediante vínculos de correo electrónico o llamadas telefónicas. Para verificar la autenticidad de este correo electrónico puede reenviarlo a: <a href="mailto:corre@cel.gob.sv" target="_blank">correo@cel.gob.sv</a></p></td>
               </tr>
 
-            <!-- END MAIN CONTENT AREA -->
+
             </table>
 
-            <!-- START FOOTER -->
+
             <div class="footer" style="clear: both; Margin-top: 10px; text-align: center; width: 100%;">
               <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
                 <tr>
                   <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: center;">
                     <span class="apple-link" style="color: #999999; font-size: 12px; text-align: center;">Comisión Ejecutiva Hidroeléctrica del Río Lempa</span>
                     <br>9a calle Poniente No 950. Entre 15 y 17 av. Norte, Centro de Gobierno, San Salvador. C.A
-                    <br><a href="http://htmlemail.io" style="color: #999999; font-size: 12px; text-align: center; text-decoration: none;">Oficina de Información y Respuesta - OIR</a>.
                   </td>
                 </tr>
               </table>
             </div>
-            <!-- END FOOTER -->
 
-          <!-- END CENTERED WHITE CONTAINER -->
+
+
           </div>
         </td>
         <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">&nbsp;</td>
