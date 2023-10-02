@@ -110,7 +110,7 @@
 		}
 
 		.col4 {
-			width: 31%;
+			width: 45%;
 		}
 
 		.col5,
@@ -298,9 +298,25 @@
 									style="background-color: #fafafa; border: 1px solid #ddd; padding: 1px; padding-left: 0.5em; letter-spacing: 0.3px; width: 42%; font-size: small;">
 									<p class="tamanio_04">
 										<b>Modelo de Facturación:</b><br>
-										-MODELO DE FACTURACIÓN-<br>
+										
+										<!-- MODELO DE FACTURACIÓN -->
+										{{#ifCond identificacion.tipoModelo "===" 1}}
+										  Previo
+										{{else ifCond identificacion.tipoModelo "===" 2}}
+										  Diferido
+										{{/ifCond}}
+										<br>
+
 										<b>Tipo de Transmisión:</b><br>
-										-MODELO DE TRANSMISIÓN-<br>
+										
+										<!-- MODELO DE TRANSMISIÓN -->
+										{{#ifCond identificacion.tipoOperacion "===" 1}}
+										  Normal
+										{{else ifCond identificacion.tipoOperacion "===" 2}}
+										  Contingencia
+										{{/ifCond}}
+										<br>									
+										
 										<b>Fecha y hora de Generación:</b><br>
 										{{#if identificacion.fecEmi}}
 										{{formatDate identificacion.fecEmi}}
@@ -314,12 +330,10 @@
 						</tbody>
 					</table>
 
-					<table cellpadding="0" cellspacing="0" border="0"
-						style="width: 100%; margin-top: 10px; margin-bottom: 2px;">
+					<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin-top: 10px; margin-bottom: 2px;">
 						<tbody>
 							<tr>
-								<td align="left" valign="top"
-									style="background-color: #fafafa; border: 1px solid #ddd; padding: 1px; padding-left: 0.5em; letter-spacing: 0.3px; width: 42%; font-size: small;">
+								<td align="left" valign="top" style="background-color: #fafafa; border: 1px solid #ddd; padding: 1px; padding-left: 0.5em; letter-spacing: 0.3px; width: 42%; font-size: small;">
 									<p class="tamanio_02"><strong>EMISOR</strong></p>
 
 
@@ -368,15 +382,30 @@
 												{{emisor.correo}}
 												{{/if}}
 											</b><br>
+											<!--
 											Nombre Comercial:
 											<b>
 												{{#if emisor.nombreComercial}}
 												{{emisor.nombreComercial}}
 												{{/if}}
 											</b><br>
+											-->
 											Tipo Establecimiento:
 											<b>
-												{{#if tipoEstablecimiento}}
+												{{#if emisor.tipoEstablecimiento}}
+
+													{{#ifCond emisor.tipoEstablecimiento "===" "01"}}
+													  Sucursal / Agencia
+													{{else ifCond emisor.tipoEstablecimiento "===" "02"}}
+													  Casa matriz
+													{{else ifCond emisor.tipoEstablecimiento "===" "04"}}
+													  Bodega
+													{{else ifCond emisor.tipoEstablecimiento "===" "07"}}
+													  Predio y/o patio
+													{{else ifCond emisor.tipoEstablecimiento "===" "20"}}
+													  Otro
+													{{/ifCond}}												
+												
 												{{tipoEstablecimiento}}
 												{{/if}}
 											</b><br>
@@ -426,15 +455,30 @@
 											{{emisor.correo}}
 											{{/if}}
 										</b><br>
+										<!--
 										Nombre Comercial:
 										<b>
 											{{#if emisor.nombreComercial}}
 											{{emisor.nombreComercial}}
 											{{/if}}
 										</b><br>
+										-->
 										Tipo Establecimiento:
 										<b>
-											{{#if tipoEstablecimiento}}
+											{{#if emisor.tipoEstablecimiento}}
+
+												{{#ifCond emisor.tipoEstablecimiento "===" "01"}}
+												  Sucursal / Agencia
+												{{else ifCond emisor.tipoEstablecimiento "===" "02"}}
+												  Casa matriz
+												{{else ifCond emisor.tipoEstablecimiento "===" "04"}}
+												  Bodega
+												{{else ifCond emisor.tipoEstablecimiento "===" "07"}}
+												  Predio y/o patio
+												{{else ifCond emisor.tipoEstablecimiento "===" "20"}}
+												  Otro
+												{{/ifCond}}												
+
 											{{tipoEstablecimiento}}
 											{{/if}}
 										</b><br>
@@ -490,15 +534,30 @@
 											{{emisor.correo}}
 											{{/if}}
 										</b><br>
+										<!--
 										Nombre Comercial:
 										<b>
 											{{#if emisor.nombreComercial}}
 											{{emisor.nombreComercial}}
 											{{/if}}
 										</b><br>
+										-->
 										Tipo Establecimiento:
 										<b>
-											{{#if tipoEstablecimiento}}
+											{{#if emisor.tipoEstablecimiento}}
+
+												{{#ifCond emisor.tipoEstablecimiento "===" "01"}}
+												  Sucursal / Agencia
+												{{else ifCond emisor.tipoEstablecimiento "===" "02"}}
+												  Casa matriz
+												{{else ifCond emisor.tipoEstablecimiento "===" "04"}}
+												  Bodega
+												{{else ifCond emisor.tipoEstablecimiento "===" "07"}}
+												  Predio y/o patio
+												{{else ifCond emisor.tipoEstablecimiento "===" "20"}}
+												  Otro
+												{{/ifCond}}												
+
 											{{tipoEstablecimiento}}
 											{{/if}}
 										</b><br>
@@ -508,38 +567,51 @@
 									<p class="tamanio_04">
 										Nombre o razón social:
 										<b>
-											{{#if emisor.nombre}}
-											{{emisor.nombre}}
+											{{#if donatario.nombre}}
+											{{donatario.nombre}}
 											{{/if}}
 										</b><br>
 										Actividad económica:
 										<b>
-											{{#if emisor.descActividad}}
-											{{emisor.descActividad}}
+											{{#if donatario.descActividad}}
+											{{donatario.descActividad}}
 											{{/if}}
 										</b><br>
 										Tipo Establecimiento:
 										<b>
-											{{#if tipoEstablecimiento}}
+											{{#if donatario.tipoEstablecimiento}}
+
+												{{#ifCond donatario.tipoEstablecimiento "===" "01"}}
+												  Sucursal / Agencia
+												{{else ifCond donatario.tipoEstablecimiento "===" "02"}}
+												  Casa matriz
+												{{else ifCond donatario.tipoEstablecimiento "===" "04"}}
+												  Bodega
+												{{else ifCond donatario.tipoEstablecimiento "===" "07"}}
+												  Predio y/o patio
+												{{else ifCond donatario.tipoEstablecimiento "===" "20"}}
+												  Otro
+												{{/ifCond}}												
+
 											{{tipoEstablecimiento}}
 											{{/if}}
 										</b><br>
 										Dirección:
 										<b>
-											{{#if emisor.direccion.complemento}}
-											{{emisor.direccion.complemento}}
+											{{#if donatario.direccion.complemento}}
+											{{donatario.direccion.complemento}}
 											{{/if}}
 										</b><br>
 										Número de Teléfono:
 										<b>
-											{{#if emisor.telefono}}
-											{{emisor.telefono}}
+											{{#if donatario.telefono}}
+											{{donatario.telefono}}
 											{{/if}}
 										</b><br>
 										Correo electrónico:
 										<b>
-											{{#if emisor.correo}}
-											{{emisor.correo}}
+											{{#if donatario.correo}}
+											{{donatario.correo}}
 											{{/if}}
 										</b><br>
 									</p>									
@@ -568,9 +640,19 @@
 											</b><br>
 											Tipo de Doc. de Ide.:
 											<b>
-												{{#if receptor.tipoDocumento}}
-												{{receptor.tipoDocumento}}
-												{{/if}}
+											{{#if receptor.tipoDocumento}}
+												{{#ifCond receptor.tipoDocumento "===" "36"}}
+												  NIT
+												{{else ifCond receptor.tipoDocumento "===" "13"}}
+												  DUI
+												{{else ifCond receptor.tipoDocumento "===" "37"}}
+												  Otro
+												{{else ifCond receptor.tipoDocumento "===" "03"}}
+												  Pasaporte
+												{{else ifCond receptor.tipoDocumento "===" "02"}}
+												  Carnet de Residente
+												{{/ifCond}}												
+											{{/if}}									
 											</b><br>
 											No. Doc. de Ide.:
 											<b>
@@ -602,9 +684,19 @@
 											</b><br>
 											Tipo de Doc. de Ide.:
 											<b>
-												{{#if receptor.tipoDocumento}}
-												{{receptor.tipoDocumento}}
-												{{/if}}
+											{{#if receptor.tipoDocumento}}
+												{{#ifCond receptor.tipoDocumento "===" "36"}}
+												  NIT
+												{{else ifCond receptor.tipoDocumento "===" "13"}}
+												  DUI
+												{{else ifCond receptor.tipoDocumento "===" "37"}}
+												  Otro
+												{{else ifCond receptor.tipoDocumento "===" "03"}}
+												  Pasaporte
+												{{else ifCond receptor.tipoDocumento "===" "02"}}
+												  Carnet de Residente
+												{{/ifCond}}												
+											{{/if}}									
 											</b><br>
 											No. Doc. de Ide.:
 											<b>
@@ -744,11 +836,30 @@
 												{{sujetoExcluido.nombre}}
 												{{/if}}
 											</b><br>
+											<!--
+											NIT:
+											<b>
+												{{#if sujetoExcluido.nit}}
+												{{sujetoExcluido.nit}}
+												{{/if}}
+											</b><br>
+											-->
+
 											Tipo de Doc. de Ide.:
 											<b>
-												{{#if sujetoExcluido.tipoDocumento}}
-												{{sujetoExcluido.tipoDocumento}}
-												{{/if}}
+											{{#if sujetoExcluido.tipoDocumento}}
+												{{#ifCond sujetoExcluido.tipoDocumento "===" "36"}}
+												  NIT
+												{{else ifCond sujetoExcluido.tipoDocumento "===" "13"}}
+												  DUI
+												{{else ifCond sujetoExcluido.tipoDocumento "===" "37"}}
+												  Otro
+												{{else ifCond sujetoExcluido.tipoDocumento "===" "03"}}
+												  Pasaporte
+												{{else ifCond sujetoExcluido.tipoDocumento "===" "02"}}
+												  Carnet de Residente
+												{{/ifCond}}												
+											{{/if}}									
 											</b><br>
 											No. Doc. de Ide.:
 											<b>
@@ -756,6 +867,7 @@
 												{{sujetoExcluido.numDocumento}}
 												{{/if}}
 											</b><br>
+
 											No. Teléfono:
 											<b>
 												{{#if sujetoExcluido.correo}}
@@ -768,44 +880,60 @@
 												{{sujetoExcluido.direccion.complemento}}
 												{{/if}}
 											</b><br>
+											Correo electrónico:
+											<b>
+												{{#if sujetoExcluido.correo}}
+												{{sujetoExcluido.correo}}
+												{{/if}}
+											</b><br>
 										</p>
 									{{else}}
 									{{#compareDTE identificacion.tipoDte values="15"}}
 										<p class="tamanio_04">
 											Tipo de Doc. de Ide.:
 											<b>
-												{{#if receptor.tipoDocumento}}
-												{{receptor.tipoDocumento}}
-												{{/if}}
+											{{#if donante.tipoDocumento}}
+												{{#ifCond donante.tipoDocumento "===" "36"}}
+												  NIT
+												{{else ifCond donante.tipoDocumento "===" "13"}}
+												  DUI
+												{{else ifCond donante.tipoDocumento "===" "37"}}
+												  Otro
+												{{else ifCond donante.tipoDocumento "===" "03"}}
+												  Pasaporte
+												{{else ifCond donante.tipoDocumento "===" "02"}}
+												  Carnet de Residente
+												{{/ifCond}}												
+											{{/if}}									
 											</b><br>
 											No. Doc. de Ide.:
 											<b>
-												{{#if receptor.numDocumento}}
-												{{receptor.numDocumento}}
+												{{#if donante.numDocumento}}
+												{{donante.numDocumento}}
 												{{/if}}
 											</b><br>
 											Nombre o razón social:
 											<b>
-												{{#if receptor.nombre}}
-												{{receptor.nombre}}
+												{{#if donante.nombre}}
+												{{donante.nombre}}
 												{{/if}}
 											</b><br>
 											Dirección:
 											<b>
-												{{#if receptor.direccion.complemento}}
-												{{receptor.direccion.complemento}}
+												{{#if donante.direccion.complemento}}
+												{{donante.direccion.complemento}}
 												{{/if}}
 											</b><br>
 											No. Teléfono:
 											<b>
-												{{#if receptor.correo}}
-												{{receptor.correo}}
+												{{#if donante.correo}}
+												{{donante.correo}}
 												{{/if}}
 											</b><br>
 											Correo electrónico:
 											<b>
-												{{#if receptor.correo}}
-												{{receptor.correo}}
+												{{#if donante.correo}}
+												{{donante.correo}}
 												{{/if}}
 											</b><br>
 										</p>										
@@ -830,7 +958,7 @@
 						style="width: 100%; margin-bottom: 2px; font-size: small;">
 						<tbody>
 							<tr>
-							  <td colspan="6" style="text-align: center">
+							  <td colspan="6" style="text-align: center; background-color: #fafafa">
 									<p class="tamanio_04"><b>VENTA A CUENTA DE TERCEROS</b></p>
 								</td>
 							</tr>
@@ -875,7 +1003,7 @@
 								</td>																
 							</tr>
 					  </tbody>
-</table>
+					</table>
 					{{/if}}					
 					
 
@@ -884,7 +1012,7 @@
 						style="width: 100%; margin-bottom: 2px; font-size: small;">
 						<tbody>
 							<tr>
-								<td colspan="4" style="text-align: center">
+								<td colspan="4" style="text-align: center; background-color: #fafafa">
 									<p class="tamanio_04"><b>VENTA A CUENTA DE TERCEROS</b></p>
 								</td>
 							</tr>
@@ -906,77 +1034,188 @@
 					</table>
 					{{/if}}
 
+					<!--  DOCUMENTOS RELACIONADOS -->
+					{{#compareDTE identificacion.tipoDte values="00"}}
+					<!--
+						{{#if documentoRelacionado}}
+						<table class="order-detail" border="0" cellpadding="0" cellspacing="0"
+							style="width: 100%; margin-bottom: 2px; font-size: small;">
+							<tbody>
+								<tr>
+									<td colspan="6" style="text-align: center; background-color: #fafafa">
+										<p class="tamanio_04"><b>DOCUMENTOS RELACIONADOS</b></p>
+									</td>
+								</tr>
+								<tr style="background-color: #fafafa;border: 1px solid #ddd;">
+									<td style="width: 15%; text-align: right; padding-right: 0.5em;">
+										<p class="tamanio_04"><b>Tipo de documento:</b></p>
+									</td>
+									<td style="width: 15%; text-align: left; padding-left: 0.5em;">
+										<p class="tamanio_04">
 
-					{{#if documentoRelacionado}}
-					<table class="order-detail" border="0" cellpadding="0" cellspacing="0"
-						style="width: 100%; margin-bottom: 2px; font-size: small;">
-						<tbody>
-							<tr>
-								<td colspan="6" style="text-align: center">
-									<p class="tamanio_04"><b>DOCUMENTOS RELACIONADOS</b></p>
+
+											{{#if documentoRelacionado.[0].tipoDocumento}}
+												{{tipo_documento documentoRelacionado.[0].tipoDocumento}}
+											{{/if}}										
+
+										</p>
+									</td>
+									<td style="width: 20%; text-align: right; padding-right: 0.5em;">
+										<p class="tamanio_04"><b>No. de documento:</b></p>
+									</td>
+									<td style="width: 20%; text-align: left; padding-left: 0.5em;">
+										<p class="tamanio_04">
+											{{#if documentoRelacionado.[0].numeroDocumento}}
+											{{documentoRelacionado.[0].numeroDocumento}}
+											{{/if}}
+										</p>
+									</td>
+									<td style="width: 15%; text-align: right; padding-right: 0.5em;">
+										<p class="tamanio_04"><b>Fecha del documento:</b></p>
+									</td>
+									<td style="width: 15%; text-align: left; padding-left: 0.5em;">
+										<p class="tamanio_04">
+											{{#if documentoRelacionado.[0].fechaEmision}}
+											{{formatDate documentoRelacionado.[0].fechaEmision}}
+											{{/if}}
+										</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						{{/if}}
+					-->
+					{{else}}
+					{{#compareDTE identificacion.tipoDte values="01,03,04,08,11,14,05,06"}}
+						{{#if documentoRelacionado}}
+						<table class="order-detail" border="0" cellpadding="0" cellspacing="0"
+							style="width: 100%; margin-bottom: 2px; font-size: small;">
+							<tbody>
+								<tr>
+									<td colspan="3" style="text-align: center; padding-right: 0.5em; background-color: #fafafa;border: 1px solid #ddd;">
+										<p class="tamanio_04"><b>DOCUMENTOS RELACIONADOS</b></p>
+									</td>
+								</tr>
+								<td style="width: 30%; text-align: center; padding-right: 0.5em; background-color: #fafafa;border: 1px solid #ddd;">
+									<p class="tamanio_04"><b>Tipo de Documento</b></p>
 								</td>
-							</tr>
-							<tr style="background-color: #fafafa;border: 1px solid #ddd;">
+								<td style="width: 35%; text-align: center; padding-right: 0.5em; background-color: #fafafa;border: 1px solid #ddd;">
+									<p class="tamanio_04"><b>No. de Documento</b></p>
+								</td>
+								<td style="width: 35%; text-align: center; padding-right: 0.5em; background-color: #fafafa;border: 1px solid #ddd;">
+									<p class="tamanio_04"><b>Fecha del Documento</b></p>
+								</td>
+								{{#each documentoRelacionado}}
+									<tr>
+										<td style="width: 30%; text-align: center; padding-right: 0.5em; border: 1px solid #ddd;">
+											<p class="tamanio_04">
+												{{#if this.tipoDocumento}}
+												{{tipo_documento this.tipoDocumento}}
+												{{/if}}
+											</p>
+										</td>
+										<td style="width: 35%; text-align: center; padding-right: 0.5em; border: 1px solid #ddd;">
+											<p class="tamanio_04">
+												{{#if this.numeroDocumento}}
+												{{this.numeroDocumento}}
+												{{/if}}
+											</p>
+										</td>
+										<td style="width: 35%; text-align: center; padding-right: 0.5em; border: 1px solid #ddd;">
+											<p class="tamanio_04">
+												{{#if this.fechaEmision}}
+												{{formatDate this.fechaEmision}}
+												{{/if}}
+											</p>
+										</td>									
+									</tr>
+								{{/each}}
+							</tbody>
+						</table>
+						{{/if}}
+					{{/compareDTE}}
+					{{/compareDTE}}							
+					<!--      -->						
+					
+					<!--  OTROS DOCUMENTOS  -->
+					{{#compareDTE identificacion.tipoDte values="01,03,04,05,06,08,11,14"}}
+						{{#if otrosDocumentos}}
+						<table class="order-detail" border="0" cellpadding="0" cellspacing="0"
+							style="width: 100%; margin-bottom: 2px; font-size: small;">
+							<tbody>
+								<tr>
+									<td colspan="4" style="text-align: center; background-color: #fafafa">
+										<p class="tamanio_04"><b>OTROS DOCUMENTOS ASOCIADOS</b></p>
+									</td>
+								</tr>
 								<td style="width: 15%; text-align: right; padding-right: 0.5em;">
-									<p class="tamanio_04"><b>Tipo de documento:</b></p>
+									<p class="tamanio_04"><b>Identificación documento:</b></p>
 								</td>
-								<td style="width: 15%; text-align: left; padding-left: 0.5em;">
-									<p class="tamanio_04">
-										{{#if documentoRelacionado.[0].tipoDocumento}}
-										{{documentoRelacionado.[0].tipoDocumento}}
-										{{/if}}
-									</p>
-								</td>
-								<td style="width: 20%; text-align: right; padding-right: 0.5em;">
-									<p class="tamanio_04"><b>No. de documento:</b></p>
-								</td>
-								<td style="width: 20%; text-align: left; padding-left: 0.5em;">
-									<p class="tamanio_04">
-										{{#if documentoRelacionado.[0].numeroDocumento}}
-										{{documentoRelacionado.[0].numeroDocumento}}
-										{{/if}}
-									</p>
+								<td style="width: 25%; text-align: left; padding-left: 0.5em;">
+									<p class="tamanio_04">&nbsp;</p>
 								</td>
 								<td style="width: 15%; text-align: right; padding-right: 0.5em;">
-									<p class="tamanio_04"><b>Fecha del documento:</b></p>
+									<p class="tamanio_04"><b>Descripción:</b></p>
 								</td>
-								<td style="width: 15%; text-align: left; padding-left: 0.5em;">
-									<p class="tamanio_04">
-										{{#if documentoRelacionado.[0].fechaEmision}}
-										{{formatDate documentoRelacionado.[0].fechaEmision}}
-										{{/if}}
-									</p>
+								<td style="width: 45%; text-align: left; padding-left: 0.5em;">
+									<p class="tamanio_04">&nbsp;</p>
 								</td>
-							</tr>
-						</tbody>
-					</table>
-					{{/if}}
+							</tbody>
+						</table>
+						{{/if}}
+					{{else}}
+					{{#compareDTE identificacion.tipoDte values="15"}}
+						{{#if otrosDocumentos}}
+						<table class="order-detail" border="0" cellpadding="0" cellspacing="0"
+							style="width: 100%; margin-bottom: 2px; font-size: small;">
+							<tbody>
+								<tr>
+									<td colspan="3" style="text-align: center; padding-right: 0.5em; background-color: #fafafa;border: 1px solid #ddd;">
+										<p class="tamanio_04"><b>OTROS DOCUMENTOS ASOCIADOS</b></p>
+									</td>
+								</tr>
+								<td style="width: 30%; text-align: center; padding-right: 0.5em; background-color: #fafafa;border: 1px solid #ddd;">
+									<p class="tamanio_04"><b>Documento Asociado</b></p>
+								</td>
+								<td style="width: 35%; text-align: center; padding-right: 0.5em; background-color: #fafafa;border: 1px solid #ddd;">
+									<p class="tamanio_04"><b>Descripción doc. Asociado</b></p>
+								</td>
+								<td style="width: 35%; text-align: center; padding-right: 0.5em; background-color: #fafafa;border: 1px solid #ddd;">
+									<p class="tamanio_04"><b>Detalle doc. Asocaiado</b></p>
+								</td>
+								{{#each otrosDocumentos}}
+									<tr>
+										<td style="width: 30%; text-align: center; padding-right: 0.5em; border: 1px solid #ddd;">
+											<p class="tamanio_04">
+												{{#if this.codDocAsociado}}
+												{{this.codDocAsociado}}
+												{{/if}}
+											</p>
+										</td>
+										<td style="width: 35%; text-align: center; padding-right: 0.5em; border: 1px solid #ddd;">
+											<p class="tamanio_04">
+												{{#if this.descDocumento}}
+												{{this.descDocumento}}
+												{{/if}}
+											</p>
+										</td>
+										<td style="width: 35%; text-align: center; padding-right: 0.5em; border: 1px solid #ddd;">
+											<p class="tamanio_04">
+												{{#if this.detalleDocumento}}
+												{{this.detalleDocumento}}
+												{{/if}}
+											</p>
+										</td>									
+									</tr>
+								{{/each}}
+							</tbody>
+						</table>
+						{{/if}}
+					{{/compareDTE}}
+					{{/compareDTE}}							
+					<!--      -->					
+					
 
-
-					{{#if otrosDocumentos}}
-					<table class="order-detail" border="0" cellpadding="0" cellspacing="0"
-						style="width: 100%; margin-bottom: 2px; font-size: small;">
-						<tbody>
-							<tr>
-								<td colspan="4" style="text-align: center">
-									<p class="tamanio_04"><b>OTROS DOCUMENTOS ASOCIADOS</b></p>
-								</td>
-							</tr>
-							<td style="width: 15%; text-align: right; padding-right: 0.5em;">
-								<p class="tamanio_04"><b>Identificación documento:</b></p>
-							</td>
-							<td style="width: 25%; text-align: left; padding-left: 0.5em;">
-								<p class="tamanio_04">&nbsp;</p>
-							</td>
-							<td style="width: 15%; text-align: right; padding-right: 0.5em;">
-								<p class="tamanio_04"><b>Descripción:</b></p>
-							</td>
-							<td style="width: 45%; text-align: left; padding-left: 0.5em;">
-								<p class="tamanio_04">&nbsp;</p>
-							</td>
-						</tbody>
-					</table>
-					{{/if}}
 
 
 					<table class="table-cuerpo-factura" border="0" cellpadding="0" cellspacing="0"
@@ -984,18 +1223,18 @@
 						<tbody>
 							<tr style="background-color: #fafafa;border: 1px solid #ddd; font-size: small;">
 								<!--  ITEM - ETIQUETA -->
-								<td class="col1" style="text-align: center;">
+								<td class="col1" style="text-align: center; border: 1px solid #ddd">
 									<p class="tamanio_05"><strong>No.</strong></p>
 								</td>
 								
 								<!--  CANTIDAD / TIPO DOC. RELACIONADO - ETIQUETA -->
 								{{#compareDTE identificacion.tipoDte values="01,03,04,05,06,11,14,15"}}
-									<td class="col2" style="text-align: center;">
+									<td class="col2" style="text-align: center; border: 1px solid #ddd">
 										<p class="tamanio_05"><b>Cantidad</b></p>
 									</td>
 								{{else}}
 								{{#compareDTE identificacion.tipoDte values="08"}}
-									<td class="col2" style="text-align: center;">
+									<td class="col2" style="text-align: center; border: 1px solid #ddd">
 										<p class="tamanio_05"><b>Tipo Doc. Relacionado</b></p>
 									</td>
 								{{/compareDTE}}
@@ -1004,12 +1243,12 @@
 								
 								<!--  UNIDAD / NO. DOC. RELACIONADO - ETIQUETA -->
 								{{#compareDTE identificacion.tipoDte values="01,03,04,05,06,11,14,15"}}
-									<td class="col3" style="text-align: center;">
+									<td class="col3" style="text-align: center; border: 1px solid #ddd">
 										<p class="tamanio_05"><strong>Unidad</strong></p>
 									</td>
 								{{else}}
 								{{#compareDTE identificacion.tipoDte values="08"}}
-									<td class="col2" style="text-align: center;">
+									<td class="col2" style="text-align: center; border: 1px solid #ddd">
 										<p class="tamanio_05"><b>No. Doc. Relacionado</b></p>
 									</td>
 								{{/compareDTE}}
@@ -1018,12 +1257,12 @@
 
 								<!--  DESCRIPCIÓN / FECHA - ETIQUETA -->
 								{{#compareDTE identificacion.tipoDte values="01,03,04,05,06,11,14,15"}}
-									<td class="col4" style="text-align: center;">
+									<td class="col4" style="text-align: center; border: 1px solid #ddd">
 										<p class="tamanio_05"><b>Descripción</b></p>
 									</td>
 								{{else}}
 								{{#compareDTE identificacion.tipoDte values="08"}}
-									<td class="col2" style="text-align: center;">
+									<td class="col2" style="text-align: center; border: 1px solid #ddd">
 										<p class="tamanio_05"><b>Fecha</b></p>
 									</td>
 								{{/compareDTE}}
@@ -1032,12 +1271,12 @@
 								
 								<!--  PRECIO UNITARIO / OBSERVACION POR ITEM - ETIQUETA -->
 								{{#compareDTE identificacion.tipoDte values="01,03,04,05,06,11,14"}}
-									<td class="col5" style="text-align: center;">
+									<td class="col5" style="text-align: center; border: 1px solid #ddd">
 										<p class="tamanio_05"><b>Precio Unitario</b></p>
 									</td>
 								{{else}}
 								{{#compareDTE identificacion.tipoDte values="08"}}
-									<td class="col2" style="text-align: center;">
+									<td class="col2" style="text-align: center; border: 1px solid #ddd">
 										<p class="tamanio_05"><b>Observacion por Ítem</b></p>
 									</td>
 								{{/compareDTE}}
@@ -1045,13 +1284,13 @@
 								<!--  -->	
 
 								<!--  DESCUENTO POR ÍTEM / EXPORTACIONES - ETIQUETA -->
-								{{#compareDTE identificacion.tipoDte values="01,03,04,05,06,11,14"}}
-									<td class="col6" style="text-align: center;">
+								{{#compareDTE identificacion.tipoDte values="14"}}
+									<td class="col6" style="text-align: center; border: 1px solid #ddd">
 										<p class="tamanio_05"><b>Descuento por ítem</b></p>
 									</td>
 								{{else}}
 								{{#compareDTE identificacion.tipoDte values="08"}}
-									<td class="col2" style="text-align: center;">
+									<td class="col2" style="text-align: center; border: 1px solid #ddd">
 										<p class="tamanio_05"><b>Exportaciones</b></p>
 									</td>
 								{{/compareDTE}}
@@ -1064,9 +1303,11 @@
 							
 								<!--  OTROS MONTOS NO AFECTOS - ETIQUETA -->
 								{{#compareDTE identificacion.tipoDte values="01,03,11"}}
-									<td class="col7" style="text-align: center;">
+								    <!--
+									<td class="col7" style="text-align: center; border: 1px solid #ddd">
 										<p class="tamanio_05"><b>Otros Montos no afectos</b></p>
 									</td>
+									-->
 								{{else}}
 
 								{{/compareDTE}}								
@@ -1074,7 +1315,7 @@
 
 								<!--  VENTAS NO SUJETAS - ETIQUETA -->
 								{{#compareDTE identificacion.tipoDte values="01,03,04,05,06,08"}}
-									<td class="col8" style="text-align: center;">
+									<td class="col8" style="text-align: center; border: 1px solid #ddd">
 										<p class="tamanio_05"><b>Ventas no Sujetas</b></p>
 									</td>
 								{{else}}
@@ -1084,7 +1325,7 @@
 																								
 								<!--  VENTAS EXENTAS - ETIQUETA -->
 								{{#compareDTE identificacion.tipoDte values="01,03,04,05,06,08"}}
-									<td class="col9" style="text-align: center;">
+									<td class="col9" style="text-align: center; border: 1px solid #ddd">
 										<p class="tamanio_05"><b>Ventas Exentas</b></p>
 									</td>
 								{{else}}
@@ -1094,17 +1335,17 @@
 						
 								<!--  VENTAS GRAVADAS / VENTAS AFECTAS / VENTAS - ETIQUETA -->
 								{{#compareDTE identificacion.tipoDte values="01,03,04,05,06,08"}}
-									<td class="col10" style="text-align: center;">
+									<td class="col10" style="text-align: center; border: 1px solid #ddd">
 										<p class="tamanio_05"><b>Ventas Gravadas</b></p>
 									</td>
 								{{else}}
 								{{#compareDTE identificacion.tipoDte values="11"}}
-									<td class="col10" style="text-align: center;">
+									<td class="col10" style="text-align: center; border: 1px solid #ddd">
 										<p class="tamanio_05"><b>Ventas Afectas</b></p>
 									</td>
 								{{else}}
 								{{#compareDTE identificacion.tipoDte values="14"}}
-									<td class="col10" style="text-align: center;">
+									<td class="col10" style="text-align: center; border: 1px solid #ddd">
 										<p class="tamanio_05"><b>Ventas</b></p>
 									</td>								
 								{{/compareDTE}}
@@ -1114,13 +1355,13 @@
 																					
 								<!--  DEPRECIACIÓN / VALOR UNITARIO / VALOR DONADO - ETIQUETA -->
 								{{#compareDTE identificacion.tipoDte values="15"}}
-									<td class="col10" style="text-align: center;">
+									<td class="col10" style="text-align: center; border: 1px solid #ddd">
 										<p class="tamanio_05"><b>Depreciación</b></p>
 									</td>
-									<td class="col10" style="text-align: center;">
+									<td class="col10" style="text-align: center; border: 1px solid #ddd">
 										<p class="tamanio_05"><b>Valor Unitario</b></p>
 									</td>
-									<td class="col10" style="text-align: center;">
+									<td class="col10" style="text-align: center; border: 1px solid #ddd">
 										<p class="tamanio_05"><b>Valor Donado</b></p>
 									</td>								
 								{{/compareDTE}}
@@ -1128,251 +1369,252 @@
 
 							</tr>
 
-							{{#each cuerpoDocumento as |cuerpodoc|}}
-							<tr class="table-cuerpo-factura" style="font-size: small; font-size: small;">
-								<!--  ITEM - VALOR -->
-								<td class="col1" style="text-align: center;">
-									<p class="tamanio_05">
-										{{#if cuerpodoc.numItem}}
-										{{cuerpodoc.numItem}}
-										{{/if}}
-									</p>
-								</td>
-								
-								<!--  CANTIDAD / TIPO DOC. RELACIONADO - VALOR -->
-								{{#compareDTE ../identificacion.tipoDte values="01,03,04,05,06,11,14,15"}}
-									<td class="col2" style="text-align: center;">
-										<p class="tamanio_05">
-											{{#existe cuerpodoc.cantidad 0}}
-											{{formatNumber_Cantidad cuerpodoc.cantidad}}
-											{{/existe}}
-										</p>
-									</td>
-								{{else}}
-								{{#compareDTE ../identificacion.tipoDte values="08"}}
-									<td class="col2" style="text-align: center;">
-										<p class="tamanio_05">
-											<!--
-											{{#existe cuerpodoc.cantidad 0}}
-											{{formatNumber_Cantidad cuerpodoc.cantidad}}
-											{{/existe}} 
-											-->
-											<p>&nbsp;</p>
-										</p>
-									</td>
-								{{/compareDTE}}
-								{{/compareDTE}}
-								<!--  -->								
-								
-								<!--  UNIDAD DE MEDIDA / NO. DOC. RELACIONADO - VALOR -->
-								{{#compareDTE ../identificacion.tipoDte values="01,03,04,05,06,11,14,15"}}
-									<td class="col3" style="text-align: center;">
-										<p class="tamanio_05">
-											{{#if cuerpodoc.uniMedida}}
-											{{cuerpodoc.uniMedida}}
-											{{/if}}
-										</p>
-									</td>
-								{{else}}
-								{{#compareDTE ../identificacion.tipoDte values="08"}}
-									<td class="col2" style="text-align: center;">
-										<p class="tamanio_05">
-											<!--
-											{{#existe cuerpodoc.cantidad 0}}
-											{{formatNumber_Cantidad cuerpodoc.cantidad}}
-											{{/existe}} 
-											-->
-											<p>&nbsp;</p>
-										</p>
-									</td>
-								{{/compareDTE}}
-								{{/compareDTE}}
-								<!--  -->
 
-								<!--  DESCRIPCIÓN / FECHA - VALOR -->
-								{{#compareDTE ../identificacion.tipoDte values="01,03,04,05,06,11,14,15"}}
-									<td class="col4" style="text-align: left;">
-										<p class="tamanio_05">
-											{{#if cuerpodoc.descripcion}}
-											{{cuerpodoc.descripcion}}
-											{{/if}}
-										</p>
-									</td>
-								{{else}}
-								{{#compareDTE ../identificacion.tipoDte values="08"}}
-									<td class="col2" style="text-align: center;">
-										<p class="tamanio_05">
-											<!--
-											{{#existe cuerpodoc.cantidad 0}}
-											{{formatNumber_Cantidad cuerpodoc.cantidad}}
-											{{/existe}} 
-											-->
-											<p>&nbsp;</p>
-										</p>
-									</td>
-								{{/compareDTE}}
-								{{/compareDTE}}
-								<!--  -->
-
-								<!--  PRECIO UNITARIO / OBSERVACIÓN POR ÍTEM - VALOR -->
-								{{#compareDTE ../identificacion.tipoDte values="01,03,04,05,06,11,14"}}
-									<td style="text-align: right;">
-										<p class="tamanio_05">
-											{{#existe cuerpodoc.precioUni 0}}
-											{{formatNumber_Moneda cuerpodoc.precioUni}}
-											{{/existe}}
-										</p>
-									</td>
-								{{else}}
-								{{#compareDTE ../identificacion.tipoDte values="08"}}
-									<td class="col2" style="text-align: center;">
-										<p class="tamanio_05">
-											<!--
-											{{#existe cuerpodoc.cantidad 0}}
-											{{formatNumber_Cantidad cuerpodoc.cantidad}}
-											{{/existe}} 
-											-->
-											<p>&nbsp;</p>
-										</p>
-									</td>
-								{{/compareDTE}}
-								{{/compareDTE}}
-								<!--  -->
-
-								<!--  DESCUENTO POR ÍTEM / EXPORTACIONES - VALOR -->
-								{{#compareDTE ../identificacion.tipoDte values="01,03,04,05,06,11,14"}}
-									<td style="text-align: right;">
-										<p class="tamanio_05">
-											{{#existe cuerpodoc.montoDescu 0}}
-											{{formatNumber_Moneda cuerpodoc.montoDescu}}
-											{{/existe}}
-										</p>
-									</td>
-								{{else}}
-								{{#compareDTE ../identificacion.tipoDte values="08"}}
-									<td class="col2" style="text-align: center;">
-										<p class="tamanio_05">
-											<!--
-											{{#existe cuerpodoc.cantidad 0}}
-											{{formatNumber_Cantidad cuerpodoc.cantidad}}
-											{{/existe}} 
-											-->
-											<p>&nbsp;</p>
-										</p>
-									</td>
-								{{/compareDTE}}
-								{{/compareDTE}}
-								<!--  -->
 							
-								<!--  OTROS MONTOS NO AFECTOS - VALOR -->
-								{{#compareDTE ../identificacion.tipoDte values="01,03,11"}}
-									<td style="text-align: right;">
-										<p class="tamanio_05">
-											{{#existe cuerpodoc.noGravado 0}}
-											{{formatNumber_Moneda cuerpodoc.noGravado}}
-											{{/existe}}
+							{{#each (sortCuerpoDocumento cuerpoDocumento) as |cuerpodoc|}}
 
-										</p>
-									</td>
-								{{else}}
-								{{/compareDTE}}
-								<!--  -->
-							
-								<!--  VENTAS NO SUJETAS - VALOR -->
-								{{#compareDTE ../identificacion.tipoDte values="01,03,04,05,06,08"}}
-									<td style="text-align: right;">
-										<p class="tamanio_05">
-											{{#existe cuerpodoc.ventaNoSuj 0}}
-											{{formatNumber_Moneda cuerpodoc.ventaNoSuj}}
-											{{/existe}}
-										</p>
-									</td>
-								{{else}}
-								{{/compareDTE}}
-								<!--  -->
+    
+										<tr class="table-cuerpo-factura" style="font-size: small; font-size: small;">
+											<!--  ITEM - VALOR -->
+											<td class="col1" style="text-align: center; border: 1px solid #ddd">
+												<p class="tamanio_05">
+													{{#if cuerpodoc.numItem}}
+													{{cuerpodoc.numItem}}
+													{{/if}}
+												</p>
+											</td>
 
-								<!--  VENTAS EXENTAS - VALOR -->
-								{{#compareDTE ../identificacion.tipoDte values="01,03,04,05,06,08"}}
-									<td style="text-align: right;">
-										<p class="tamanio_05">
-											{{#existe cuerpodoc.ventaExenta 0}}
-											{{formatNumber_Moneda cuerpodoc.ventaExenta}}
-											{{/existe}}
-										</p>
-									</td>
-								{{else}}
+											<!--  CANTIDAD / TIPO DOC. RELACIONADO - VALOR -->
+											{{#compareDTE ../identificacion.tipoDte values="01,03,04,05,06,11,14,15"}}
+												<td class="col2" style="text-align: center; border: 1px solid #ddd">
+													<p class="tamanio_05">
+														{{#existe cuerpodoc.cantidad 0}}
+														{{formatNumber_Cantidad cuerpodoc.cantidad}}
+														{{/existe}}
+													</p>
+												</td>
+											{{else}}
+											{{#compareDTE ../identificacion.tipoDte values="08"}}
+												<td class="col2" style="text-align: center; border: 1px solid #ddd">
+													<p class="tamanio_05">
+														<!--
+														{{#existe cuerpodoc.cantidad 0}}
+														{{formatNumber_Cantidad cuerpodoc.cantidad}}
+														{{/existe}} 
+														-->
+														<p>&nbsp;</p>
+													</p>
+												</td>
+											{{/compareDTE}}
+											{{/compareDTE}}
+											<!--  -->								
 
-								{{/compareDTE}}							
+											<!--  UNIDAD DE MEDIDA / NO. DOC. RELACIONADO - VALOR -->
+											{{#compareDTE ../identificacion.tipoDte values="01,03,04,05,06,11,14,15"}}
+												<td class="col3" style="text-align: center; border: 1px solid #ddd">
+													<p class="tamanio_05">
+														{{#if cuerpodoc.uniMedida}}
+														<!-- {{cuerpodoc.uniMedida}} -->
+															{{unimed cuerpodoc.uniMedida}}
+														{{/if}}
+													</p>
+												</td>
+											{{else}}
+											{{#compareDTE ../identificacion.tipoDte values="08"}}
+												<td class="col2" style="text-align: center; border: 1px solid #ddd">
+													<p class="tamanio_05">
+														<!--
+														{{#existe cuerpodoc.cantidad 0}}
+														{{formatNumber_Cantidad cuerpodoc.cantidad}}
+														{{/existe}} 
+														-->
+														<p>&nbsp;</p>
+													</p>
+												</td>
+											{{/compareDTE}}
+											{{/compareDTE}}
+											<!--  -->
 
-								<!--  VENTAS GRAVADAS / VENTAS AFECTAS / VENTAS - VALOR -->
-								{{#compareDTE ../identificacion.tipoDte values="01,03,04,05,06,08"}}
-									<td style="text-align: right; padding-right: 0.5em;">
-										<p class="tamanio_05">
-											{{#existe cuerpodoc.ventaGravada 0}}
-											{{formatNumber_Moneda cuerpodoc.ventaGravada}}
-											{{/existe}}
-										</p>
-									</td>
-								{{else}}
-								{{#compareDTE ../identificacion.tipoDte values="11"}}
-									<td style="text-align: right; padding-right: 0.5em;">
-										<p class="tamanio_05">
-											{{#existe cuerpodoc.ventaGravada 0}}
-											{{formatNumber_Moneda cuerpodoc.ventaGravada}}
-											{{/existe}}
-										</p>
-									</td>
-								{{else}}
-								{{#compareDTE ../identificacion.tipoDte values="14"}}
-									<td style="text-align: right; padding-right: 0.5em;">
-										<p class="tamanio_05">
-											{{#existe cuerpodoc.compra 0}}
-											{{formatNumber_Moneda cuerpodoc.compra}}
-											{{/existe}}
-										</p>
-									</td>
-								{{/compareDTE}}
-								{{/compareDTE}}
-								{{/compareDTE}}
-								<!--  -->
-																												
-								<!--  DEPRECIACIÓN / VALOR UNITARIO / VALOR DONADO - VALOR -->
-								{{#compareDTE ../identificacion.tipoDte values="15"}}
-									<td style="text-align: right; padding-right: 0.5em;">
-										<p class="tamanio_05">
-											<!--
-											{{#existe cuerpodoc.ventaGravada 0}}
-											{{formatNumber_Moneda cuerpodoc.ventaGravada}}
-											{{/existe}}
-											-->
-											<p>&nbsp;</p>
-										</p>
-									</td>
-									<td style="text-align: right; padding-right: 0.5em;">
-										<p class="tamanio_05">
-											<!--
-											{{#existe cuerpodoc.ventaGravada 0}}
-											{{formatNumber_Moneda cuerpodoc.ventaGravada}}
-											{{/existe}}
-											-->
-											<p>&nbsp;</p>
-										</p>
-									</td>
-									<td style="text-align: right; padding-right: 0.5em;">
-										<p class="tamanio_05">
-											<!--
-											{{#existe cuerpodoc.compra 0}}
-											{{formatNumber_Moneda cuerpodoc.compra}}
-											{{/existe}}
-											-->
-											<p>&nbsp;</p>
-										</p>
-									</td>
-								{{/compareDTE}}
-								<!--  -->
-							
+											<!--  DESCRIPCIÓN / FECHA - VALOR -->
+											{{#compareDTE ../identificacion.tipoDte values="01,03,04,05,06,11,14,15"}}
+												<td class="col4" style="text-align: left; border: 1px solid #ddd; padding-left: 0.5em">
+													<p class="tamanio_05">
+														{{#if cuerpodoc.descripcion}}
+														{{cuerpodoc.descripcion}}
+														{{/if}}
+													</p>
+												</td>
+											{{else}}
+											{{#compareDTE ../identificacion.tipoDte values="08"}}
+												<td class="col2" style="text-align: center; border: 1px solid #ddd">
+													<p class="tamanio_05">
+														<!--
+														{{#existe cuerpodoc.cantidad 0}}
+														{{formatNumber_Cantidad cuerpodoc.cantidad}}
+														{{/existe}} 
+														-->
+														<p>&nbsp;</p>
+													</p>
+												</td>
+											{{/compareDTE}}
+											{{/compareDTE}}
+											<!--  -->
 
-							</tr>
+											<!--  PRECIO UNITARIO / OBSERVACIÓN POR ÍTEM - VALOR -->
+											{{#compareDTE ../identificacion.tipoDte values="01,03,04,05,06,11,14"}}
+												<td style="text-align: right; border: 1px solid #ddd; padding-right: 0.5em">
+													<p class="tamanio_05">
+														{{#existe cuerpodoc.precioUni 0}}
+														{{formatNumber_Moneda cuerpodoc.precioUni}}
+														{{/existe}}
+													</p>
+												</td>
+											{{else}}
+											{{#compareDTE ../identificacion.tipoDte values="08"}}
+												<td class="col2" style="text-align: center; border: 1px solid #ddd">
+													<p class="tamanio_05">
+														<!--
+														{{#existe cuerpodoc.cantidad 0}}
+														{{formatNumber_Cantidad cuerpodoc.cantidad}}
+														{{/existe}} 
+														-->
+														<p>&nbsp;</p>
+													</p>
+												</td>
+											{{/compareDTE}}
+											{{/compareDTE}}
+											<!--  -->
+
+											<!--  DESCUENTO POR ÍTEM / EXPORTACIONES - VALOR -->
+											{{#compareDTE ../identificacion.tipoDte values="14"}}
+												<td style="text-align: right; border: 1px solid #ddd">
+													<p class="tamanio_05">
+														{{#existe cuerpodoc.montoDescu 0}}
+														{{formatNumber_Moneda cuerpodoc.montoDescu}}
+														{{/existe}}
+													</p>
+												</td>
+											{{else}}
+											{{#compareDTE ../identificacion.tipoDte values="08"}}
+												<td class="col2" style="text-align: center; border: 1px solid #ddd">
+													<p class="tamanio_05">
+														<!--
+														{{#existe cuerpodoc.cantidad 0}}
+														{{formatNumber_Cantidad cuerpodoc.cantidad}}
+														{{/existe}} 
+														-->
+														<p>&nbsp;</p>
+													</p>
+												</td>
+											{{/compareDTE}}
+											{{/compareDTE}}
+											<!--  -->
+
+											<!--  OTROS MONTOS NO AFECTOS - VALOR -->
+											{{#compareDTE ../identificacion.tipoDte values="01,03,11"}}
+											    <!--
+												<td style="text-align: right; border: 1px solid #ddd">
+													<p class="tamanio_05">
+														{{#existe cuerpodoc.noGravado 0}}
+														{{formatNumber_Moneda cuerpodoc.noGravado}}
+														{{/existe}}
+
+													</p>
+												</td>
+												-->
+											{{else}}
+											{{/compareDTE}}
+											<!--  -->
+
+											<!--  VENTAS NO SUJETAS - VALOR -->
+											{{#compareDTE ../identificacion.tipoDte values="01,03,04,05,06,08"}}
+												<td class="col8" style="text-align: right; border: 1px solid #ddd; padding-right: 0.5em">
+													<p class="tamanio_05">
+														{{#existe cuerpodoc.ventaNoSuj 0}}
+														{{formatNumber_Moneda cuerpodoc.ventaNoSuj}}
+														{{/existe}}
+													</p>
+												</td>
+											{{else}}
+											{{/compareDTE}}
+											<!--  -->
+
+											<!--  VENTAS EXENTAS - VALOR -->
+											{{#compareDTE ../identificacion.tipoDte values="01,03,04,05,06,08"}}
+												<td class="col9" style="text-align: right; border: 1px solid #ddd; padding-right: 0.5em">
+													<p class="tamanio_05">
+														{{#existe cuerpodoc.ventaExenta 0}}
+														{{formatNumber_Moneda cuerpodoc.ventaExenta}}
+														{{/existe}}
+													</p>
+												</td>
+											{{else}}
+
+											{{/compareDTE}}							
+
+											<!--  VENTAS GRAVADAS / VENTAS AFECTAS / VENTAS - VALOR -->
+											{{#compareDTE ../identificacion.tipoDte values="01,03,04,05,06,08"}}
+												<td class="col10" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
+													<p class="tamanio_05">
+														{{#existe cuerpodoc.ventaGravada 0}}
+														{{formatNumber_Moneda cuerpodoc.ventaGravada}}
+														{{/existe}}
+													</p>
+												</td>
+											{{else}}
+											{{#compareDTE ../identificacion.tipoDte values="11"}}
+												<td class="col10" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
+													<p class="tamanio_05">
+														{{#existe cuerpodoc.ventaGravada 0}}
+														{{formatNumber_Moneda cuerpodoc.ventaGravada}}
+														{{/existe}}
+													</p>
+												</td>
+											{{else}}
+											{{#compareDTE ../identificacion.tipoDte values="14"}}
+												<td class="col10" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
+													<p class="tamanio_05">
+														{{#existe cuerpodoc.compra 0}}
+														{{formatNumber_Moneda cuerpodoc.compra}}
+														{{/existe}}
+													</p>
+												</td>
+											{{/compareDTE}}
+											{{/compareDTE}}
+											{{/compareDTE}}
+											<!--  -->
+
+											<!--  DEPRECIACIÓN / VALOR UNITARIO / VALOR DONADO - VALOR -->
+											{{#compareDTE ../identificacion.tipoDte values="15"}}
+												<td style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
+													<p class="tamanio_05">
+														{{#existe cuerpodoc.depreciacion 0}}
+														{{formatNumber_Moneda cuerpodoc.depreciacion}}
+														{{/existe}}
+													</p>
+												</td>
+												<td style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
+													<p class="tamanio_05">
+														{{#existe cuerpodoc.valorUni 0}}
+														{{formatNumber_Moneda cuerpodoc.valorUni}}
+														{{/existe}}													
+													</p>
+												</td>
+												<td style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
+													<p class="tamanio_05">
+														{{#existe cuerpodoc.valor 0}}
+														{{formatNumber_Moneda cuerpodoc.valor}}
+														{{/existe}}
+													</p>
+												</td>
+											{{/compareDTE}}
+											<!--  -->
+
+
+										</tr>
+										
+ 	
+										
 							{{/each}}
 
 						</tbody>
@@ -1384,24 +1626,24 @@
 							style="width: 100%; margin-bottom: 0px; font-size: small;">
 							<tbody>
 								<tr style="font-size: small">
-									<td class="colXL" style="text-align: right; padding-right: 0.5em;">
+									<td class="colXL" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
 										<p class="tamanio_05"><strong>SUMA DE VENTAS:</strong></p>
 									</td>
-									<td class="col8" style="text-align: right;">
+									<td class="col8" style="text-align: right; border: 1px solid #ddd; padding-right: 0.5em">
 										<p class="tamanio_05">
 											{{#existe resumen.totalNoSuj 0}}
 											{{formatNumber_Moneda resumen.totalNoSuj}}
 											{{/existe}}
 										</p>
 									</td>
-									<td class="col9" style="text-align: right;">
+									<td class="col9" style="text-align: right; border: 1px solid #ddd; padding-right: 0.5em">
 										<p class="tamanio_05">
 											{{#existe resumen.totalExenta 0}}
 											{{formatNumber_Moneda resumen.totalExenta}}
 											{{/existe}}
 										</p>
 									</td>
-									<td class="col10" style="text-align: right; padding-right: 0.5em;">
+									<td class="col10" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
 										<p class="tamanio_05">
 											{{#existe resumen.totalGravada 0}}
 											{{formatNumber_Moneda resumen.totalGravada}}
@@ -1428,7 +1670,7 @@
 						style="width: 100%; margin-bottom: 5px; font-size: small;">
 						<tbody>
 							<tr>
-								<td class="colxxx1" align="right">
+								<td class="colxxx1" align="right" style="border: 1px solid #ddd; padding-right: 0.5em">
 									<p class="tamanio_04">
 										<strong>
 
@@ -1454,7 +1696,7 @@
 								
 								
 								<!--  TOTAL  -->
-								<td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
+								<td class="colxxx2" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
 									<p class="tamanio_04">
 									
 											{{#compareDTE identificacion.tipoDte values="01"}}
@@ -1478,12 +1720,9 @@
 												{{/existe}}
 											{{else}}
 											{{#compareDTE identificacion.tipoDte values="15"}}
-												<!--
-													{{#existe resumen.totalCompra 0}}
-													{{formatNumber_Moneda resumen.totalCompra}}
+													{{#existe resumen.valorTotal 0}}
+													{{formatNumber_Moneda resumen.valorTotal}}
 													{{/existe}}
-												-->
-												<p>&nbsp;</p>
 											{{/compareDTE}}
 											{{/compareDTE}}
 											{{/compareDTE}}
@@ -1498,11 +1737,11 @@
 							<!-- MONTO GLOBAL DESCUENTO / SUJETAS - EXENTAS - GRAVADAS  -->
 							{{#compareDTE identificacion.tipoDte values="01,03,04,05,06"}}
 								<tr>
-									<td class="colxxx1" align="right">
+									<td class="colxxx1" align="right" style="border: 1px solid #ddd; padding-right: 0.5em">
 										<p class="tamanio_04"><b>Monto Global Desc., Rebajas y otros a ventas no
 												sujetas:</b></p>
 									</td>
-									<td class="colxx2" style="text-align: right; padding-right: 0.5em;">
+									<td class="colxx2" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
 										<p class="tamanio_04">
 											{{#existe resumen.descuNoSuj 0}}
 											{{formatNumber_Moneda resumen.descuNoSuj}}
@@ -1511,11 +1750,11 @@
 									</td>
 								</tr>
 								<tr>
-									<td class="colxxx1" align="right">
+									<td class="colxxx1" align="right" style="border: 1px solid #ddd; padding-right: 0.5em">
 										<p class="tamanio_04"><b>Monto Global Desc., Rebajas y otros a ventas exentas:</b>
 										</p>
 									</td>
-									<td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
+									<td class="colxxx2" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
 										<p class="tamanio_04">
 											{{#existe resumen.descuExenta 0}}
 											{{formatNumber_Moneda resumen.descuExenta}}
@@ -1524,11 +1763,11 @@
 									</td>
 								</tr>
 								<tr>
-									<td class="colxxx1" align="right">
+									<td class="colxxx1" align="right" style="border: 1px solid #ddd; padding-right: 0.5em">
 										<p class="tamanio_04"><b>Monto Global Desc., Rebajas y otros a ventas gravadas:</b>
 										</p>
 									</td>
-									<td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
+									<td class="colxxx2" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
 										<p class="tamanio_04">
 											{{#existe resumen.descuGravada 0}}
 											{{formatNumber_Moneda resumen.descuGravada}}
@@ -1539,11 +1778,11 @@
 							{{else}}
 							{{#compareDTE identificacion.tipoDte values="11"}}
 								<tr>
-									<td class="colxxx1" align="right">
+									<td class="colxxx1" align="right" style="border: 1px solid #ddd; padding-right: 0.5em">
 										<p class="tamanio_04"><b>Monto Global Desc., Rebajas de operaciones afectas:</b>
 										</p>
 									</td>
-									<td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
+									<td class="colxxx2" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
 										<p class="tamanio_04">
 											{{#existe resumen.totalDescu 0}}
 											{{formatNumber_Moneda resumen.totalDescu}}
@@ -1554,7 +1793,24 @@
 							{{/compareDTE}}
 							{{/compareDTE}}							
 							
+							<!--  MONTO GLOBAL DESCUENTO REBAJAS Y OTROS A VENTAS  -->
+							{{#compareDTE identificacion.tipoDte values="14"}}
+								<tr>
+									<td class="colxxx1" align="right" style="border: 1px solid #ddd; padding-right: 0.5em">
+										<p class="tamanio_04"><b>Monto Global Desc., Rebajas y otros a Ventas:</b></p>
+									</td>
+									<td class="colxxx2" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
+										<p class="tamanio_04">
+											{{#existe resumen.totalDescu 0}}
+											{{formatNumber_Moneda resumen.totalDescu}}
+											{{/existe}}
+										</p>
+									</td>
+								</tr>
+							{{else}}
 
+							{{/compareDTE}}							
+							<!--      -->
 
 							<!--  TRIBUTOS  -->
 							{{#compareDTE identificacion.tipoDte values="01,03,04,05,06,08"}}
@@ -1562,7 +1818,7 @@
 								<!-- <p>CON Tributo</p> -->
 								{{#each resumen.tributos}}
 								<tr>
-									<td class="colxxx1" align="right">
+									<td class="colxxx1" align="right" style="border: 1px solid #ddd; padding-right: 0.5em">
 										<p class="tamanio_04">
 											<b>
 												{{#if this.descripcion}}
@@ -1571,7 +1827,7 @@
 											</b>
 										</p>
 									</td>
-									<td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
+									<td class="colxxx2" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
 										<p class="tamanio_04">
 											{{#existe this.valor 0}}
 											{{formatNumber_Moneda this.valor}}
@@ -1583,20 +1839,22 @@
 								{{/each}}
 								{{else}}
 								<!-- <p>SIN Tributo</p> -->
+								<!--
 								<tr>
-									<td class="colxxx1" align="right">
+									<td class="colxxx1" align="right" style="border: 1px solid #ddd; padding-right: 0.5em">
 										<p class="tamanio_04">
 											<b>
 												<p class="tamanio_04"><b>Tributo</b></p>
 											</b>
 										</p>
 									</td>
-									<td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
+									<td class="colxxx2" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
 										<p class="tamanio_04">
 										<p class="tamanio_04">$0.00</p>
 										</p>
 									</td>
 								</tr>
+								-->
 								{{/if}}
 							{{else}}
 							
@@ -1607,10 +1865,10 @@
 							<!--  SUB TOTAL  -->
 							{{#compareDTE identificacion.tipoDte values="01,03,04,05,06,14"}}
 								<tr>
-									<td class="colxxx1" align="right">
+									<td class="colxxx1" align="right" style="border: 1px solid #ddd; padding-right: 0.5em">
 										<p class="tamanio_04"><b>Sub-Total:</b></p>
 									</td>
-									<td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
+									<td class="colxxx2" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
 										<p class="tamanio_04">
 											{{#existe resumen.subTotal 0}}
 											{{formatNumber_Moneda resumen.subTotal}}
@@ -1624,15 +1882,13 @@
 							{{/compareDTE}}
 							{{/compareDTE}}							
 							
-
 							<!--  IVA PERCIBIDO  -->
-							
-							{{#compareDTE identificacion.tipoDte values="03,04,05,06,08"}}
+							{{#compareDTE identificacion.tipoDte values="03,04,08"}}
 								<tr>
-									<td class="colxxx1" align="right">
+									<td class="colxxx1" align="right" style="border: 1px solid #ddd; padding-right: 0.5em">
 										<p class="tamanio_04"><b>IVA Percibido:</b></p>
 									</td>
-									<td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
+									<td class="colxxx2" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
 										<p class="tamanio_04">
 											{{#existe resumen.ivaPerci1 0}}
 											{{formatNumber_Moneda resumen.ivaPerci1}}
@@ -1646,12 +1902,12 @@
 							<!--      -->
 
 							<!--  IVA RETENIDO   -->						
-							{{#compareDTE identificacion.tipoDte values="01,03,04,05,06"}}
+							{{#compareDTE identificacion.tipoDte values="01,03,04,14"}}
 								<tr>
-									<td class="colxxx1" align="right">
+									<td class="colxxx1" align="right" style="border: 1px solid #ddd; padding-right: 0.5em">
 										<p class="tamanio_04"><b>IVA Retenido:</b></p>
 									</td>
-									<td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
+									<td class="colxxx2" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
 										<p class="tamanio_04">
 											{{#existe resumen.ivaRete1 0}}
 											{{formatNumber_Moneda resumen.ivaRete1}}
@@ -1666,12 +1922,12 @@
 
 
 							<!--  RETENCIÓN RENTA -->
-							{{#compareDTE identificacion.tipoDte values="01,03"}}
+							{{#compareDTE identificacion.tipoDte values="01,03,14"}}
 								<tr>
-									<td class="colxxx1" align="right">
+									<td class="colxxx1" align="right" style="border: 1px solid #ddd; padding-right: 0.5em">
 										<p class="tamanio_04"><b>Retención Renta:</b></p>
 									</td>
-									<td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
+									<td class="colxxx2" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
 										<p class="tamanio_04">
 											{{#existe resumen.reteRenta 0}}
 											{{formatNumber_Moneda resumen.reteRenta}}
@@ -1685,11 +1941,12 @@
 
 							<!--  SEGURO  -->
 							{{#compareDTE identificacion.tipoDte values="11"}}
+							<!--
 								<tr>
-									<td class="colxxx1" align="right">
+									<td class="colxxx1" align="right" style="border: 1px solid #ddd; padding-right: 0.5em">
 										<p class="tamanio_04"><b>Seguro:</b></p>
 									</td>
-									<td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
+									<td class="colxxx2" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
 										<p class="tamanio_04">
 											{{#existe resumen.seguro 0}}
 											{{formatNumber_Moneda resumen.seguro}}
@@ -1697,6 +1954,7 @@
 										</p>
 									</td>
 								</tr>
+							-->
 							{{else}}
 
 							{{/compareDTE}}							
@@ -1704,11 +1962,12 @@
 
 							<!--  FLETE  -->
 							{{#compareDTE identificacion.tipoDte values="11"}}
+							<!--
 								<tr>
-									<td class="colxxx1" align="right">
+									<td class="colxxx1" align="right" style="border: 1px solid #ddd; padding-right: 0.5em">
 										<p class="tamanio_04"><b>Flete:</b></p>
 									</td>
-									<td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
+									<td class="colxxx2" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
 										<p class="tamanio_04">
 											{{#existe resumen.flete 0}}
 											{{formatNumber_Moneda resumen.flete}}
@@ -1716,6 +1975,7 @@
 										</p>
 									</td>
 								</tr>
+							-->
 							{{else}}
 
 							{{/compareDTE}}							
@@ -1725,10 +1985,10 @@
 							<!--  MONTO TOTAL DE LA OPERACIÓN  -->
 							{{#compareDTE identificacion.tipoDte values="01,03,04,05,06,08,11"}}
 								<tr>
-									<td class="colxxx1" align="right">
+									<td class="colxxx1" align="right" style="border: 1px solid #ddd; padding-right: 0.5em">
 										<p class="tamanio_04"><b>Monto Total de la Operación:</b></p>
 									</td>
-									<td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
+									<td class="colxxx2" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
 										<p class="tamanio_04">
 											{{#existe resumen.montoTotalOperacion 0}}
 											{{formatNumber_Moneda resumen.montoTotalOperacion}}
@@ -1743,13 +2003,13 @@
 
 
 							<!--  TOTAL NO GRAVADO  -->
-							
 							{{#compareDTE identificacion.tipoDte values="01,03,11"}}
+							<!--      
 								<tr>
-									<td class="colxxx1" align="right">
+									<td class="colxxx1" align="right" style="border: 1px solid #ddd; padding-right: 0.5em">
 										<p class="tamanio_04"><b>Total Otros montos no afectos:</b></p>
 									</td>
-									<td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
+									<td class="colxxx2" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
 										<p class="tamanio_04">
 											{{#existe resumen.totalNoGravado 0}}
 											{{formatNumber_Moneda resumen.totalNoGravado}}
@@ -1757,6 +2017,7 @@
 										</p>
 									</td>
 								</tr>
+							-->
 							{{else}}
 
 							{{/compareDTE}}							
@@ -1769,10 +2030,10 @@
 							
 							{{#compareDTE identificacion.tipoDte values="01,03,14"}}
 								<tr>
-									<td class="colxxx1" align="right">
+									<td class="colxxx1" align="right" style="border: 1px solid #ddd; padding-right: 0.5em">
 										<p class="tamanio_04"><b>Total a Pagar:</b></p>
 									</td>
-									<td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
+									<td class="colxxx2" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
 										<p class="tamanio_04">
 											{{#existe resumen.totalPagar 0}}
 											{{formatNumber_Moneda resumen.totalPagar}}
@@ -1783,10 +2044,10 @@
 							{{else}}
 							{{#compareDTE identificacion.tipoDte values="08"}}
 								<tr>
-									<td class="colxxx1" align="right">
+									<td class="colxxx1" align="right" style="border: 1px solid #ddd; padding-right: 0.5em">
 										<p class="tamanio_04"><b>Total:</b></p>
 									</td>
-									<td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
+									<td class="colxxx2" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
 										<p class="tamanio_04">
 											{{#existe resumen.totalPagar 0}}
 											{{formatNumber_Moneda resumen.totalPagar}}
@@ -1796,11 +2057,12 @@
 								</tr>							
 							{{else}}
 							{{#compareDTE identificacion.tipoDte values="11"}}
+							<!--
 								<tr>
-									<td class="colxxx1" align="right">
+									<td class="colxxx1" align="right" style="border: 1px solid #ddd; padding-right: 0.5em">
 										<p class="tamanio_04"><b>Total General:</b></p>
 									</td>
-									<td class="colxxx2" style="text-align: right; padding-right: 0.5em;">
+									<td class="colxxx2" style="text-align: right; padding-right: 0.5em; border: 1px solid #ddd">
 										<p class="tamanio_04">
 											{{#existe resumen.totalPagar 0}}
 											{{formatNumber_Moneda resumen.totalPagar}}
@@ -1808,6 +2070,7 @@
 										</p>
 									</td>
 								</tr>
+							-->
 							{{/compareDTE}}
 							{{/compareDTE}}
 							{{/compareDTE}}
@@ -1837,7 +2100,13 @@
 								<td style="width: 10%; text-align: left; padding-left: 0.5em;">
 									<p class="tamanio_04">
 										{{#if resumen.condicionOperacion}}
-										{{resumen.condicionOperacion}}
+											{{#ifCond resumen.condicionOperacion "===" 1}}
+											  Contado
+											{{else ifCond resumen.condicionOperacion "===" 2}}
+											  A crédito
+											{{else ifCond resumen.condicionOperacion "===" 3}}
+											  Otro
+											{{/ifCond}}												
 										{{/if}}
 									</p>
 								</td>
@@ -1931,7 +2200,7 @@
 						style="width: 100%; margin-bottom: 2px; font-size: small;">
 						<tbody>
 							<tr>
-								<td colspan="4" style="text-align: left; padding-left: 0.5em;">
+								<td colspan="4" style="text-align: center; padding-left: 0.5em; background-color: #fafafa">
 									<p class="tamanio_04"><b>APENDICES</b></p>
 								</td>
 							</tr>

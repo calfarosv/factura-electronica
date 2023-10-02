@@ -271,19 +271,35 @@
                                 </td>
                                 <td align="left" valign="top"
                                     style="background-color: #fafafa; border: 1px solid #ddd; padding: 1px; padding-left: 0.5em; letter-spacing: 0.3px; width: 42%; font-size: small;">
-                                    <p class="tamanio_04">
-                                        <b>Modelo de Facturación:</b><br>
-                                        -MODELO DE FACTURACIÓN-<br>
-                                        <b>Tipo de Transmisión:</b><br>
-                                        -MODELO DE TRANSMISIÓN-<br>
-                                        <b>Fecha y hora de Generación:</b><br>
-                                        {{#if identificacion.fecEmi}}
-                                        {{formatDate identificacion.fecEmi}}
-                                        {{/if}}
-                                        {{#if identificacion.horEmi}}
-                                        {{identificacion.horEmi}}
-                                        {{/if}}
-                                    </p>
+									<p class="tamanio_04">
+										<b>Modelo de Facturación:</b><br>
+										
+										<!-- MODELO DE FACTURACIÓN -->
+										{{#ifCond identificacion.tipoModelo "===" 1}}
+										  Previo
+										{{else ifCond identificacion.tipoModelo "===" 2}}
+										  Diferido
+										{{/ifCond}}
+										<br>
+
+										<b>Tipo de Transmisión:</b><br>
+										
+										<!-- MODELO DE TRANSMISIÓN -->
+										{{#ifCond identificacion.tipoOperacion "===" 1}}
+										  Normal
+										{{else ifCond identificacion.tipoOperacion "===" 2}}
+										  Contingencia
+										{{/ifCond}}
+										<br>									
+										
+										<b>Fecha y hora de Generación:</b><br>
+										{{#if identificacion.fecEmi}}
+										{{formatDate identificacion.fecEmi}}
+										{{/if}}
+										{{#if identificacion.horEmi}}
+										{{identificacion.horEmi}}
+										{{/if}}
+									</p>
                                 </td>
                             </tr>
                         </tbody>
@@ -405,16 +421,30 @@
                                 </td>
                                 <td style="width: 23%; text-align: left;; padding-left: 0.5em;">
                                     <p class="tamanio_04">
-                                        {{#if emisor.tipoEstablecimiento}}
-                                        {{emisor.tipoEstablecimiento}}
-                                        {{/if}}
+											{{#if emisor.tipoEstablecimiento}}
+
+												{{#ifCond emisor.tipoEstablecimiento "===" "01"}}
+												  Sucursal / Agencia
+												{{else ifCond emisor.tipoEstablecimiento "===" "02"}}
+												  Casa matriz
+												{{else ifCond emisor.tipoEstablecimiento "===" "04"}}
+												  Bodega
+												{{else ifCond emisor.tipoEstablecimiento "===" "07"}}
+												  Predio y/o patio
+												{{else ifCond emisor.tipoEstablecimiento "===" "20"}}
+												  Otro
+												{{/ifCond}}												
+
+											{{tipoEstablecimiento}}
+											{{/if}}
                                         <br>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
 
-
+				
+				
 					{{#compareDTE identificacion.tipoDte values="07"}}
 						<table class="order-detail" border="0" cellpadding="0" cellspacing="0"
 							style="width: 100%; margin-bottom: 2px; font-size: small;">
