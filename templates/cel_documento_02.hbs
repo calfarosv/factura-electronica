@@ -665,6 +665,9 @@
 											<p class="tamanio_05"><strong>No</strong></p>
 										</td>
 										<td class="col8" style="text-align: center;">
+											<p class="tamanio_05"><b>Tipo de Generacion</b></p>
+										</td>
+										<td class="col8" style="text-align: center;">
 											<p class="tamanio_05"><b>Tipo de Doc. Relacionado</b></p>
 										</td>
 										<td class="col8" style="text-align: center;">
@@ -696,7 +699,28 @@
 										<td class="col8" style="text-align: center;">
 											<p class="tamanio_05">
 												{{#if cuerpodoc.tipoDoc}}
-												{{cuerpodoc.tipoDoc}}
+												
+												{{#ifCond cuerpodoc.tipoDoc "===" 1}}
+												  Físico
+												{{else ifCond cuerpodoc.tipoDoc "===" 2}}
+												  Electrónico
+												{{/ifCond}}													
+												
+												{{/if}}
+											</p>
+										</td>
+										<td class="col8" style="text-align: center;">
+											<p class="tamanio_05">
+												{{#if cuerpodoc.tipoDte}}
+												
+												{{#ifCond cuerpodoc.tipoDte "===" "01"}}
+												  Factura
+												{{else ifCond cuerpodoc.tipoDte "===" "03"}}
+												  Comprobante de Crédito Fiscal
+												{{else ifCond cuerpodoc.tipoDte "===" "14"}}
+												  Factura de Sujeto Excluido
+												{{/ifCond}}													
+												
 												{{/if}}
 											</p>
 										</td>
@@ -749,7 +773,7 @@
 								<tbody>
 									<tr style="background-color: #fafafa;border: 1px solid #ddd;">
 										<td colspan="3" style="width: 90%; text-align: right; padding-right: 0.5em;">
-											<p class="tamanio_04"><strong> Total monto sujeto a tetención:</strong></p>
+											<p class="tamanio_04"><strong> Total monto sujeto a Retención:</strong></p>
 										</td>
 										<td style="width: 10%; text-align: right; padding-right: 0.5em;">
 											<p class="tamanio_04">

@@ -1174,7 +1174,7 @@ export class DocumentosService {
     }
 
 
-    this.genera_documento_cel(jsonDte_15);
+    this.genera_documento_cel(jsonDte_07);
     return 'Proceso Finalizado';
   }
 
